@@ -98,6 +98,21 @@ const SECTIONS = [
 
 const norm = (s) => s.replace(/\s+/g, ' ').trim().toLowerCase();
 
+/*
+ * Button labels that sit inside a section's markup on the Wix pages and would
+ * otherwise be read as the last item of that section's list — "Enroll" turning
+ * up as an activity on the summer school pages, for example.
+ */
+const CTA_LABELS = new Set(
+  ['enroll', 'enroll now', 'sign up', 'signup', 'apply', 'quiz', 'book consultation',
+   'learn more', 'read more', 'register',
+   '\u10e0\u10d4\u10d2\u10d8\u10e1\u10e2\u10e0\u10d0\u10ea\u10d8\u10d0',
+   '\u10d3\u10d0\u10e0\u10d4\u10d2\u10d8\u10e1\u10e2\u10e0\u10d8\u10e0\u10d3\u10d8',
+   '\u10d2\u10d0\u10d8\u10d2\u10d4 \u10db\u10d4\u10e2\u10d8'].map((v) => v.toLowerCase())
+);
+const isCta = (block) => CTA_LABELS.has(norm(block));
+
+
 /**
  * The course pages render their key facts as a label block followed by a value
  * block ("Course Duration" then "4 months"). These are the labels per locale;
@@ -163,7 +178,9 @@ function segment(blocks, locale) {
       if (!found.has(key)) found.set(key, { heading: block, body: [] });
       continue;
     }
-    if (current) found.get(current).body.push(block);
+    if (current) {
+      if (!isCta(block)) found.get(current).body.push(block);
+    }
     else header.push(block);
   }
   return { header, sections: found };

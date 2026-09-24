@@ -1,7 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
+import { Image } from 'astro:assets';
 import team from '../../data/team.json';
+import { image } from '../../data/images';
 import { localePath, type Locale } from '../../i18n/utils';
 import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
 import { SITE_URL } from '../../data/site';
@@ -55,6 +57,16 @@ const jsonLd = graph([organizationSchema(locale), ...people, breadcrumbSchema(tr
     <ul class="grid grid--3 team-list">
       {team.map((person) => (
         <li class="card person">
+          {person.photo && image(person.photo) && (
+            <Image
+              class="person__photo"
+              src={image(person.photo)!}
+              alt={person.name[locale] || person.name.en}
+              widths={[200, 400]}
+              sizes="(max-width: 52rem) 40vw, 18vw"
+              loading="lazy"
+            />
+          )}
           <p class="eyebrow">{person.role[locale] || person.role.en}</p>
           <h2 class="person__name">{person.name[locale] || person.name.en}</h2>
           <p class="muted">{person.bio[locale] || person.bio.en}</p>
@@ -79,4 +91,11 @@ const jsonLd = graph([organizationSchema(locale), ...people, breadcrumbSchema(tr
   .team-list { list-style: none; padding: 0; margin: 0; }
   .person { display: flex; flex-direction: column; gap: 0.5rem; height: 100%; }
   .person__name { font-size: var(--step-1); }
+  .person__photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-block-end: 0.5rem;
+  }
 </style>

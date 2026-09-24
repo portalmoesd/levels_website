@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import PriceTag from '../PriceTag.astro';
 import QuizCta from '../QuizCta.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
+import { Image } from 'astro:assets';
+import { heroFor } from '../../data/images';
 import type { Course } from '../../data/types';
 import { useTranslations, localePath, type Locale } from '../../i18n/utils';
 import { sections, splitProse } from '../../lib/content';
@@ -19,6 +21,7 @@ const { course, locale, parent } = Astro.props;
 const t = useTranslations(locale);
 
 const path = localePath(course.slug, locale);
+const hero = heroFor(course.slug);
 const body = sections(course.slug, locale);
 
 /*
@@ -79,7 +82,19 @@ const facts = [
             <p class="hero__cambridge">{t('cambridge.partner')}</p>
           )}
         </div>
-        <div class="hero__panel" aria-hidden="true"></div>
+        {hero ? (
+          <Image
+            class="hero__image"
+            src={hero}
+            alt=""
+            widths={[480, 800, 1100]}
+            sizes="(max-width: 56rem) 100vw, 44vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        ) : (
+          <div class="hero__panel" aria-hidden="true"></div>
+        )}
       </div>
     </header>
 
@@ -233,6 +248,14 @@ const facts = [
   }
 
   /* Stands in for the course photograph the current site shows here. */
+  .hero__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+  }
+
   .hero__panel {
     aspect-ratio: 16 / 10;
     border-radius: var(--radius-xl);
@@ -328,7 +351,7 @@ const facts = [
 
   @media (max-width: 56rem) {
     .hero__inner { grid-template-columns: 1fr; }
-    .hero__panel { order: -1; }
+    .hero__panel, .hero__image { order: -1; }
     .body { grid-template-columns: 1fr; }
   }
 </style>

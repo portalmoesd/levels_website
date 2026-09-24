@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import PriceTag from '../PriceTag.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
+import { Image } from 'astro:assets';
+import { imageSet, heroFor } from '../../data/images';
 import type { SummerSchool } from '../../data/summer';
 import { countryLabels } from '../../data/summer';
 import { useTranslations, localePath, type Locale } from '../../i18n/utils';
@@ -20,6 +22,24 @@ const t = useTranslations(locale);
 
 const path = localePath(school.slug, locale);
 const body = sections(school.slug, locale);
+
+/*
+ * Each destination page carried its own set of campus photographs; the
+ * optimiser named them after that page, so the prefix selects the right set.
+ * The first becomes the hero and the rest form a strip below.
+ */
+const PREFIX: Record<string, string> = {
+  'summer-school-california': 'summer-california-',
+  'summer-school-new-york-st-johns': 'summer-new-york-',
+  'summer-school-miami-barry': 'summer-miami-',
+  'london-kingston-summer-school': 'summer-kingston-',
+  'summer-school-london-brunel': 'summer-brunel-',
+  'summer-school-uk-ellesmere': 'summer-ellesmere-',
+  'summer-school-london-hertfordshire': 'summer-hertfordshire-',
+};
+const photos = PREFIX[school.slug] ? imageSet(PREFIX[school.slug]) : [];
+const hero = photos[0] ?? heroFor(school.slug);
+const strip = photos.slice(1, 9);
 const country = countryLabels[school.country][locale];
 
 const facts = [
@@ -109,6 +129,17 @@ const jsonLd = graph([
           <a class="btn btn--primary" href={localePath('enroll', locale)}>{t('cta.signUp')}</a>
         </div>
 
+        {hero && (
+          <Image
+            class="summer-hero__image"
+            src={hero}
+            alt=""
+            widths={[480, 800, 1100]}
+            sizes="(max-width: 52rem) 100vw, 40vw"
+            loading="eager"
+          />
+        )}
+
         <aside class="card summer-facts">
           <dl>
             {facts.map((fact) => (
@@ -125,6 +156,24 @@ const jsonLd = graph([
         </aside>
       </div>
     </header>
+
+    {strip.length > 0 && (
+      <div class="container">
+        <ul class="photo-strip">
+          {strip.map((photo) => (
+            <li>
+              <Image
+                src={photo}
+                alt=""
+                widths={[240, 420]}
+                sizes="(max-width: 52rem) 45vw, 22vw"
+                loading="lazy"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
     <div class="container summer-body">
       {school.excursions && (
@@ -184,6 +233,29 @@ const jsonLd = graph([
   .summer-facts dt { color: var(--ink-muted); }
   .summer-facts dd { margin: 0; font-weight: 600; text-align: end; }
   .summer-facts__price { margin-block-start: 1.25rem; }
+
+  .summer-hero__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+  }
+
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+    gap: clamp(0.6rem, 0.4rem + 0.8vw, 1rem);
+    list-style: none;
+    padding: 0;
+    margin-block-start: clamp(1rem, 0.75rem + 1vw, 1.75rem);
+  }
+  .photo-strip img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
 
   .summer-body { padding-block: var(--section-y); }
   .summer-section + .summer-section { margin-block-start: clamp(2rem, 1.5rem + 2vw, 3.5rem); }

@@ -4,7 +4,9 @@ import CourseCard from '../CourseCard.astro';
 import QuizCta from '../QuizCta.astro';
 import { courses, corporateTracks } from '../../data/courses';
 import { artCourses } from '../../data/art';
-import { useTranslations, localePath, asset, type Locale } from '../../i18n/utils';
+import { Image } from 'astro:assets';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { image, CAMBRIDGE_CARD } from '../../data/images';
 import {
   graph,
   organizationSchema,
@@ -19,6 +21,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const partnerCard = image(CAMBRIDGE_CARD);
 
 /*
  * The four audience blocks. Each renders as a blue panel with its courses as
@@ -119,16 +122,22 @@ const jsonLd = graph([
         </a>
       </div>
 
-      {/* The Cambridge partnership card the current site leads with. */}
-      <div class="partner">
-        <img class="partner__mark" src={asset('favicon.svg')} alt="" width="48" height="48" />
-        <p class="partner__name">levels academy.</p>
-        <p class="partner__plus" aria-hidden="true">+</p>
-        <p class="partner__cambridge">Cambridge</p>
-        <p class="partner__role">
-          {locale === 'ka' ? 'ოფიციალური საგანმანათლებლო პარტნიორი' : 'English Educational Partner'}
-        </p>
-      </div>
+      {/* The academy's own Cambridge partnership card. */}
+      {partnerCard ? (
+        <Image
+          class="partner-card"
+          src={partnerCard}
+          alt={locale === 'ka'
+            ? 'ლეველს აკადემია — კემბრიჯის ოფიციალური საგანმანათლებლო პარტნიორი'
+            : 'Levels Academy — official Cambridge English Educational Partner'}
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 56rem) 100vw, 52vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      ) : (
+        <p class="partner-fallback">{t('cambridge.partner')}</p>
+      )}
     </div>
   </section>
 
@@ -249,30 +258,21 @@ const jsonLd = graph([
     max-width: 32ch;
   }
 
-  .partner {
-    display: grid;
-    justify-items: center;
-    gap: 0.35rem;
-    padding: clamp(2rem, 1.5rem + 3vw, 3.5rem) clamp(1.25rem, 1rem + 2vw, 2.5rem);
+  .partner-card {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+  }
+  .partner-fallback {
+    padding: clamp(2rem, 1.5rem + 3vw, 3.5rem);
     border-radius: var(--radius-xl);
     background: linear-gradient(135deg, #ffdd8e 0%, var(--yellow) 45%, #f9b73d 100%);
+    font-family: var(--font-display);
+    font-weight: 700;
     text-align: center;
     color: var(--navy);
   }
-  .partner__mark { border-radius: 10px; }
-  .partner__name {
-    font-family: var(--font-display);
-    font-size: var(--step-1);
-    font-weight: 800;
-  }
-  .partner__plus { font-size: var(--step-1); opacity: 0.55; margin-block: 0.15rem; }
-  .partner__cambridge {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .partner__role { font-size: var(--step--1); font-weight: 600; max-width: 22ch; }
 
   /* Jump links ------------------------------------------------------ */
   .jumps {

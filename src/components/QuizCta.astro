@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { useTranslations, localePath, type Locale } from '../i18n/utils';
+import { image, QUIZ_ART } from '../data/images';
 
 interface Props {
   locale: Locale;
@@ -7,6 +9,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const art = image(QUIZ_ART);
 ---
 
 <section class="quiz-cta">
@@ -24,30 +27,16 @@ const t = useTranslations(locale);
       </a>
     </div>
 
-    {/* A stylised answer sheet, drawn inline so it costs no extra request. */}
-    <svg class="quiz-cta__art" viewBox="0 0 260 180" role="img"
-         aria-label={locale === 'ka' ? 'ტესტის ილუსტრაცია' : 'Quiz illustration'}>
-      <rect x="6" y="10" width="214" height="160" rx="14" fill="#fff" />
-      <rect x="196" y="10" width="58" height="160" rx="14" fill="var(--yellow)" />
-      <g fill="var(--navy)" opacity="0.82" font-family="var(--font-display)"
-         font-size="26" font-weight="800" text-anchor="middle">
-        <text x="225" y="58">Q</text>
-        <text x="225" y="92">U</text>
-        <text x="225" y="126">I</text>
-        <text x="225" y="160">Z</text>
-      </g>
-      <g fill="#c9cede">
-        <rect x="30" y="36" width="96" height="8" rx="4" />
-        <rect x="30" y="76" width="140" height="6" rx="3" />
-        <rect x="30" y="104" width="122" height="6" rx="3" />
-        <rect x="30" y="132" width="104" height="6" rx="3" />
-      </g>
-      <g fill="var(--yellow)">
-        <rect x="30" y="90" width="72" height="6" rx="3" />
-        <rect x="30" y="118" width="58" height="6" rx="3" />
-        <rect x="30" y="146" width="66" height="6" rx="3" />
-      </g>
-    </svg>
+    {art && (
+      <Image
+        class="quiz-cta__art"
+        src={art}
+        alt=""
+        widths={[320, 520, 720]}
+        sizes="(max-width: 52rem) 70vw, 34vw"
+        loading="lazy"
+      />
+    )}
   </div>
 </section>
 
@@ -84,6 +73,7 @@ const t = useTranslations(locale);
     width: 100%;
     max-width: 22rem;
     height: auto;
+    border-radius: var(--radius);
     justify-self: end;
     filter: drop-shadow(0 12px 28px rgb(29 35 63 / 14%));
   }
