@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { useTranslations, localePath, otherLocale, type Locale } from '../i18n/utils';
+import { useTranslations, localePath, otherLocale, asset, type Locale } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -12,80 +12,92 @@ const { locale, slug } = Astro.props;
 const t = useTranslations(locale);
 const other = otherLocale(locale);
 
+/* The four main sections sit in the header bar; About and Contact live in the
+   utility strip above it, as they do on the current site. */
 const nav = [
   { key: 'nav.english', slug: 'english' },
   { key: 'nav.art', slug: 'art' },
   { key: 'nav.summer', slug: 'summer-schools' },
   { key: 'nav.studyAbroad', slug: 'study-abroad' },
-  { key: 'nav.about', slug: 'about' },
-  { key: 'nav.contact', slug: 'contact' },
 ] as const;
 
 const here = localePath(slug, locale);
 ---
 
 <header class="site-header">
-  <div class="container site-header__inner">
-    <a class="brand" href={localePath('', locale)}>
-      <span class="brand__mark" aria-hidden="true">L</span>
-      <span class="brand__name">{site.name}</span>
-    </a>
+  {/* Utility strip */}
+  <div class="utility">
+    <div class="container utility__inner">
+      <nav class="utility__links" aria-label={locale === 'ka' ? 'დამატებითი' : 'Secondary'}>
+        <a href={localePath('about', locale)}>{t('nav.about')}</a>
+        <a href={localePath('contact', locale)}>{t('nav.contact')}</a>
+      </nav>
+      <a class="utility__phone" href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+    </div>
+  </div>
 
-    <nav class="site-nav" aria-label="Main">
-      <ul class="site-nav__list">
-        {
-          nav.map((item) => {
+  {/* Main bar */}
+  <div class="container">
+    <div class="bar">
+      <a class="brand" href={localePath('', locale)}>
+        <img src={asset('favicon.svg')} alt="" width="34" height="34" />
+        <span class="brand__name">levels<br />academy.</span>
+      </a>
+
+      <nav class="bar__nav" aria-label="Main">
+        <ul>
+          {nav.map((item) => {
             const href = localePath(item.slug, locale);
-            const current = here === href;
             return (
               <li>
-                <a href={href} aria-current={current ? 'page' : undefined}>
+                <a href={href} aria-current={here === href ? 'page' : undefined}>
                   {t(item.key)}
                 </a>
               </li>
             );
-          })
-        }
-      </ul>
-    </nav>
+          })}
+        </ul>
+      </nav>
 
-    <div class="site-header__actions">
-      <a class="site-header__phone" href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
-      <a class="btn btn--primary btn--sm" href={localePath('placement-quiz', locale)}>
-        {t('nav.quiz')}
-      </a>
-      <a
-        class="lang-switch"
-        href={localePath(slug, other)}
-        hreflang={other === 'ka' ? 'ka-GE' : 'en'}
-        lang={other === 'ka' ? 'ka-GE' : 'en'}
+      <div class="bar__actions">
+        <a
+          class="lang"
+          href={localePath(slug, other)}
+          hreflang={other === 'ka' ? 'ka-GE' : 'en'}
+          lang={other === 'ka' ? 'ka-GE' : 'en'}
+        >{other === 'ka' ? 'ქარ' : 'EN'}</a>
+        <a class="quiz" href={localePath('placement-quiz', locale)}>{t('nav.quiz')}</a>
+      </div>
+
+      <button
+        class="burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label={t('nav.menu')}
       >
-        {other === 'ka' ? 'ქარ' : 'EN'}
-      </a>
+        <span aria-hidden="true"></span>
+      </button>
     </div>
-
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      aria-label={t('nav.menu')}
-    >
-      <span class="nav-toggle__bar" aria-hidden="true"></span>
-    </button>
   </div>
 
-  <div class="mobile-nav" id="mobile-nav" hidden>
-    <ul>
-      {nav.map((item) => (
-        <li><a href={localePath(item.slug, locale)}>{t(item.key)}</a></li>
-      ))}
-      <li><a href={localePath('placement-quiz', locale)}>{t('nav.quiz')}</a></li>
-      <li><a href={localePath(slug, other)} lang={other === 'ka' ? 'ka-GE' : 'en'}>
-        {other === 'ka' ? 'ქართული' : 'English'}
-      </a></li>
-      <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
-    </ul>
+  <div class="mobile" id="mobile-nav" hidden>
+    <div class="container">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={localePath(item.slug, locale)}>{t(item.key)}</a></li>
+        ))}
+        <li><a href={localePath('about', locale)}>{t('nav.about')}</a></li>
+        <li><a href={localePath('contact', locale)}>{t('nav.contact')}</a></li>
+        <li><a href={localePath('placement-quiz', locale)}>{t('nav.quiz')}</a></li>
+        <li>
+          <a href={localePath(slug, other)} lang={other === 'ka' ? 'ka-GE' : 'en'}>
+            {other === 'ka' ? 'ქართული' : 'English'}
+          </a>
+        </li>
+        <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
+      </ul>
+    </div>
   </div>
 </header>
 
@@ -94,157 +106,181 @@ const here = localePath(slug, locale);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgb(255 255 255 / 92%);
-    backdrop-filter: blur(10px);
-    border-block-end: 1px solid var(--line);
+    background: var(--surface);
   }
 
-  .site-header__inner {
+  /* Utility strip ---------------------------------------------------- */
+  .utility {
+    background: var(--yellow);
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+  .utility__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.6rem;
+  }
+  .utility__links { display: flex; gap: clamp(1rem, 3vw, 2.75rem); }
+  .utility a { color: var(--navy); text-decoration: none; }
+  .utility a:hover { text-decoration: underline; }
+  .utility__phone { white-space: nowrap; letter-spacing: 0.01em; }
+
+  /* Main bar --------------------------------------------------------- */
+  .bar {
     display: flex;
     align-items: center;
     gap: clamp(0.75rem, 2vw, 2rem);
-    min-height: 4.5rem;
+    min-height: 4.25rem;
+    margin-block: 0.6rem;
+    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+    background: var(--surface);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .brand img { border-radius: 8px; }
+  .brand__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.78rem;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .bar__nav { margin-inline: auto; }
+  .bar__nav ul {
+    display: flex;
+    gap: clamp(0.85rem, 2vw, 2.25rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .bar__nav a {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-block: 0.35rem;
+    border-block-end: 2px solid transparent;
+  }
+  .bar__nav a:hover,
+  .bar__nav a[aria-current='page'] {
+    color: var(--blue);
+    border-block-end-color: var(--blue);
+  }
+
+  .bar__actions {
+    display: flex;
+    align-items: center;
     gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .lang {
+    font-family: var(--font-display);
+    font-size: var(--step--2);
     font-weight: 700;
     color: var(--navy);
     text-decoration: none;
-    flex-shrink: 0;
-  }
-  .brand__mark {
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 8px;
-    background: var(--navy);
-    color: var(--gold);
-    font-weight: 800;
-  }
-  .brand__name { font-size: var(--step-0); white-space: nowrap; }
-
-  .site-nav { margin-inline-end: auto; }
-  .site-nav__list {
-    display: flex;
-    gap: clamp(0.75rem, 1.5vw, 1.75rem);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .site-nav a {
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: var(--step--1);
-    white-space: nowrap;
-    padding-block: 0.5rem;
-    border-block-end: 2px solid transparent;
-  }
-  .site-nav a:hover,
-  .site-nav a[aria-current='page'] {
-    color: var(--navy);
-    border-block-end-color: var(--gold);
-  }
-
-  .site-header__actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .site-header__phone {
-    font-weight: 600;
-    font-size: var(--step--1);
-    color: var(--navy);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .btn--sm { padding: 0.55em 1.1em; font-size: var(--step--1); }
-
-  .lang-switch {
-    font-size: var(--step--1);
-    font-weight: 600;
-    color: var(--navy);
-    text-decoration: none;
-    padding: 0.4rem 0.6rem;
-    border: 1px solid var(--line);
+    padding: 0.45rem 0.7rem;
+    border: 1.5px solid var(--line);
     border-radius: 999px;
   }
-  .lang-switch:hover { background: var(--surface-alt); }
+  .lang:hover { border-color: var(--navy); }
 
-  .nav-toggle {
+  /* The dark pill that anchors the right-hand side of the bar. */
+  .quiz {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 6.5rem;
+    padding: 0.7rem 1.5rem;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .quiz:hover { background: #2a3355; color: #fff; }
+
+  /* Mobile ----------------------------------------------------------- */
+  .burger {
     display: none;
     width: 2.75rem;
     height: 2.75rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
     background: transparent;
     cursor: pointer;
     position: relative;
   }
-  .nav-toggle__bar,
-  .nav-toggle__bar::before,
-  .nav-toggle__bar::after {
+  .burger span,
+  .burger span::before,
+  .burger span::after {
     position: absolute;
     left: 50%;
     translate: -50% 0;
-    width: 1.25rem;
+    width: 1.1rem;
     height: 2px;
+    border-radius: 2px;
     background: var(--navy);
     content: '';
-    transition: translate 0.2s ease, rotate 0.2s ease, opacity 0.2s ease;
+    transition: translate 0.2s ease, rotate 0.2s ease, background-color 0.2s ease;
   }
-  .nav-toggle__bar { top: 50%; }
-  .nav-toggle__bar::before { top: -6px; }
-  .nav-toggle__bar::after { top: 6px; }
+  .burger span { top: 50%; }
+  .burger span::before { top: -6px; }
+  .burger span::after { top: 6px; }
+  .burger[aria-expanded='true'] span { background: transparent; }
+  .burger[aria-expanded='true'] span::before { top: 0; rotate: 45deg; }
+  .burger[aria-expanded='true'] span::after { top: 0; rotate: -45deg; }
 
-  .nav-toggle[aria-expanded='true'] .nav-toggle__bar { background: transparent; }
-  .nav-toggle[aria-expanded='true'] .nav-toggle__bar::before { top: 0; rotate: 45deg; }
-  .nav-toggle[aria-expanded='true'] .nav-toggle__bar::after { top: 0; rotate: -45deg; }
-
-  .mobile-nav {
+  .mobile {
     border-block-start: 1px solid var(--line);
     background: var(--surface);
   }
-  .mobile-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0.5rem var(--gutter) 1.25rem;
-  }
-  .mobile-nav a {
+  .mobile ul { list-style: none; margin: 0; padding: 0.5rem 0 1.25rem; }
+  .mobile a {
     display: block;
     padding: 0.85rem 0;
-    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy);
     text-decoration: none;
-    font-weight: 500;
     border-block-end: 1px solid var(--line);
   }
 
-  @media (max-width: 62rem) {
-    .site-nav,
-    .site-header__phone { display: none; }
-    .nav-toggle { display: block; }
+  @media (max-width: 64rem) {
+    .bar__nav { display: none; }
+    .burger { display: block; }
     .brand { margin-inline-end: auto; }
   }
 
-  /*
-   * Below this width the quiz button and language pill crowd the menu toggle
-   * off the edge of the screen. Both already appear inside the mobile menu,
-   * so nothing is lost by dropping them from the bar.
-   */
   @media (max-width: 30rem) {
-    .site-header__actions { display: none; }
-    .brand__name { font-size: var(--step--1); }
+    .lang { display: none; }
+    .quiz { min-width: 0; padding: 0.6rem 1.1rem; }
+    .utility__links { gap: 1rem; }
   }
 </style>
 
 <script>
-  // Mobile navigation. Progressive enhancement: with JS off the panel simply
-  // stays hidden and the nav is reachable from the footer.
-  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const toggle = document.querySelector<HTMLButtonElement>('.burger');
   const panel = document.querySelector<HTMLElement>('#mobile-nav');
 
   toggle?.addEventListener('click', () => {
@@ -253,7 +289,6 @@ const here = localePath(slug, locale);
     if (panel) panel.hidden = open;
   });
 
-  // Escape closes it, and focus goes back to the button.
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
     if (toggle?.getAttribute('aria-expanded') !== 'true') return;

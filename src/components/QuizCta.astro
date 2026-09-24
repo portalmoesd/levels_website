@@ -10,30 +10,86 @@ const t = useTranslations(locale);
 ---
 
 <section class="quiz-cta">
-  <div class="container quiz-cta__inner">
-    <div>
+  <div class="container quiz-cta__panel">
+    <div class="quiz-cta__text">
       <h2>{t('quiz.title')}</h2>
       <p>{t('quiz.body')}</p>
+      <a class="btn btn--pill" href={localePath('placement-quiz', locale)}>
+        <span class="quiz-cta__chevron" aria-hidden="true">
+          <svg viewBox="0 0 20 20" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12l5-5 5 5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        {t('nav.quiz')}
+      </a>
     </div>
-    <a class="btn btn--primary" href={localePath('placement-quiz', locale)}>
-      {t('cta.takeQuiz')}
-    </a>
+
+    {/* A stylised answer sheet, drawn inline so it costs no extra request. */}
+    <svg class="quiz-cta__art" viewBox="0 0 260 180" role="img"
+         aria-label={locale === 'ka' ? 'ტესტის ილუსტრაცია' : 'Quiz illustration'}>
+      <rect x="6" y="10" width="214" height="160" rx="14" fill="#fff" />
+      <rect x="196" y="10" width="58" height="160" rx="14" fill="var(--yellow)" />
+      <g fill="var(--navy)" opacity="0.82" font-family="var(--font-display)"
+         font-size="26" font-weight="800" text-anchor="middle">
+        <text x="225" y="58">Q</text>
+        <text x="225" y="92">U</text>
+        <text x="225" y="126">I</text>
+        <text x="225" y="160">Z</text>
+      </g>
+      <g fill="#c9cede">
+        <rect x="30" y="36" width="96" height="8" rx="4" />
+        <rect x="30" y="76" width="140" height="6" rx="3" />
+        <rect x="30" y="104" width="122" height="6" rx="3" />
+        <rect x="30" y="132" width="104" height="6" rx="3" />
+      </g>
+      <g fill="var(--yellow)">
+        <rect x="30" y="90" width="72" height="6" rx="3" />
+        <rect x="30" y="118" width="58" height="6" rx="3" />
+        <rect x="30" y="146" width="66" height="6" rx="3" />
+      </g>
+    </svg>
   </div>
 </section>
 
 <style>
-  .quiz-cta {
-    background: var(--navy);
-    color: #fff;
-    padding-block: var(--section-y);
-  }
-  .quiz-cta__inner {
-    display: flex;
-    flex-wrap: wrap;
+  .quiz-cta { padding-block: var(--section-y); }
+
+  .quiz-cta__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    padding: clamp(1.75rem, 1.25rem + 3vw, 3.25rem);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(115deg, #fff6e0 0%, #ffe3a8 55%, var(--yellow) 100%);
   }
-  .quiz-cta h2 { color: #fff; }
-  .quiz-cta p { color: #cfdded; max-width: 52ch; margin-block-start: 0.5rem; }
+
+  .quiz-cta h2 { max-width: 12ch; }
+  .quiz-cta p {
+    max-width: 46ch;
+    margin-block: 0.85rem 1.6rem;
+    color: var(--navy);
+  }
+
+  .quiz-cta__chevron {
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+  }
+
+  .quiz-cta__art {
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
+    justify-self: end;
+    filter: drop-shadow(0 12px 28px rgb(29 35 63 / 14%));
+  }
+
+  @media (max-width: 52rem) {
+    .quiz-cta__panel { grid-template-columns: 1fr; }
+    .quiz-cta__art { justify-self: start; max-width: 16rem; }
+  }
 </style>

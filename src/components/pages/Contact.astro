@@ -34,7 +34,7 @@ const jsonLd = graph([
 <Base title={title} description={description} slug="contact" locale={locale} jsonLd={jsonLd}>
   <Breadcrumbs trail={trail} locale={locale} />
 
-  <header class="contact-hero">
+  <header class="contact-hero glow">
     <div class="container">
       <h1>{title}</h1>
       <p class="contact-hero__lede">
@@ -90,7 +90,7 @@ const jsonLd = graph([
 
 <style>
   .contact-hero {
-    background: var(--surface-alt);
+    background: transparent;
     padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
     border-block-end: 1px solid var(--line);
   }

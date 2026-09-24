@@ -4,7 +4,7 @@ import CourseCard from '../CourseCard.astro';
 import QuizCta from '../QuizCta.astro';
 import { courses, corporateTracks } from '../../data/courses';
 import { artCourses } from '../../data/art';
-import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { useTranslations, localePath, asset, type Locale } from '../../i18n/utils';
 import {
   graph,
   organizationSchema,
@@ -20,24 +20,46 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
+/*
+ * The four audience blocks. Each renders as a blue panel with its courses as
+ * white cards, and each has an anchor so the pills above can jump to it.
+ */
 const audiences = [
-  { id: 'children', label: t('group.children'), age: { en: 'Age 6–10', ka: 'ასაკი 6–10' } },
-  { id: 'teenagers', label: t('group.teenagers'), age: { en: 'Age 11–17', ka: 'ასაკი 11–17' } },
-  { id: 'adults', label: t('group.adults'), age: { en: 'Age 18+', ka: 'ასაკი 18+' } },
+  {
+    id: 'children',
+    anchor: 'children',
+    label: t('group.children'),
+    pill: { en: 'Courses for children', ka: 'ბავშვების კურსები' },
+    age: { en: 'age: 6–10', ka: 'ასაკი: 6–10' },
+    edge: 'var(--accent-red)',
+  },
+  {
+    id: 'teenagers',
+    anchor: 'teenagers',
+    label: t('group.teenagers'),
+    pill: { en: 'Courses for teenagers', ka: 'თინეიჯერების კურსები' },
+    age: { en: 'age: 11–17', ka: 'ასაკი: 11–17' },
+    edge: 'var(--yellow)',
+  },
+  {
+    id: 'adults',
+    anchor: 'adults',
+    label: t('group.adults'),
+    pill: { en: 'Courses for adults', ka: 'ზრდასრულების კურსები' },
+    age: { en: 'age: from 18', ka: 'ასაკი: 18-დან' },
+    edge: 'var(--accent-green)',
+  },
 ] as const;
 
-/**
- * The three discounts come from the /home variant of the Wix homepage. The
- * root homepage did not show them, but they are current offers, so they are
- * kept — see docs/content-conflicts.md §2.
- */
+/* Discounts are carried over from the /home variant of the Wix homepage; the
+   root homepage did not show them. See docs/content-conflicts.md §2. */
 const discounts = [
   {
     id: 'family',
     title: { en: 'Family discount', ka: 'ოჯახური ფასდაკლება' },
     body: {
-      en: 'Enroll more than one family member and both get a discount. Learning together works better.',
-      ka: 'დაარეგისტრირე ოჯახის ერთზე მეტი წევრი და ორივემ მიიღეთ ფასდაკლება. ერთად სწავლა უფრო ეფექტურია.',
+      en: 'Enroll more than one family member and both of you get a discount.',
+      ka: 'დაარეგისტრირე ოჯახის ერთზე მეტი წევრი და ორივემ მიიღეთ ფასდაკლება.',
     },
   },
   {
@@ -52,43 +74,8 @@ const discounts = [
     id: 'friend',
     title: { en: 'Bring a friend', ka: 'მოიყვანე მეგობარი' },
     body: {
-      en: 'Invite a friend to join the course and you both get a discount on enrollment.',
-      ka: 'მოიწვიე მეგობარი კურსზე და ორივემ მიიღეთ ფასდაკლება რეგისტრაციისას.',
-    },
-  },
-] as const;
-
-const pillars = [
-  {
-    slug: 'english',
-    title: { en: 'Language Academy', ka: 'ენის აკადემია' },
-    body: {
-      en: 'English for children, teenagers, adults and companies, from beginner to exam-ready.',
-      ka: 'ინგლისური ბავშვებისთვის, მოზარდებისთვის, ზრდასრულებისა და კომპანიებისთვის — დამწყებიდან გამოცდისთვის მზადყოფნამდე.',
-    },
-  },
-  {
-    slug: 'art',
-    title: { en: 'Art Academy', ka: 'ხელოვნების აკადემია' },
-    body: {
-      en: 'Drawing and painting with practising artists, ending in an annual exhibition.',
-      ka: 'ხატვა და ფერწერა მოქმედ ხელოვანებთან ერთად, ყოველწლიური გამოფენით.',
-    },
-  },
-  {
-    slug: 'summer-schools',
-    title: { en: 'Summer Schools', ka: 'საზაფხულო სკოლები' },
-    body: {
-      en: 'Two weeks on a university campus in the UK, the USA or Georgia.',
-      ka: 'ორი კვირა საუნივერსიტეტო კამპუსზე დიდ ბრიტანეთში, აშშ-ში ან საქართველოში.',
-    },
-  },
-  {
-    slug: 'study-abroad',
-    title: { en: 'Study Abroad', ka: 'სწავლა საზღვარგარეთ' },
-    body: {
-      en: 'End-to-end guidance from choosing a programme through to visas and departure.',
-      ka: 'სრული მხარდაჭერა პროგრამის არჩევიდან ვიზასა და გამგზავრებამდე.',
+      en: 'Invite a friend to join and you both get a discount on enrollment.',
+      ka: 'მოიწვიე მეგობარი და ორივემ მიიღეთ ფასდაკლება რეგისტრაციისას.',
     },
   },
 ] as const;
@@ -114,112 +101,126 @@ const jsonLd = graph([
 ]);
 ---
 
-<Base
-  title={title}
-  description={description}
-  slug=""
-  locale={locale}
-  jsonLd={jsonLd}
-  wide
->
-  <section class="hero">
+<Base title={title} description={description} slug="" locale={locale} jsonLd={jsonLd} wide>
+  {/* Hero ---------------------------------------------------------- */}
+  <section class="hero glow">
     <div class="container hero__inner">
-      <p class="hero__kicker">{t('cambridge.partner')}</p>
-      <h1>{locale === 'ka' ? 'თანამედროვე კურსები. რეალური შედეგი.' : 'Modern courses. Real results.'}</h1>
-      <p class="hero__lede">
-        {locale === 'ka'
-          ? 'დამწყებიდან თავისუფლად საუბრამდე — ნაბიჯ-ნაბიჯ. მცირე ჯგუფები, კემბრიჯის მეთოდოლოგია, ქართველი და მშობლიურენოვანი პედაგოგები.'
-          : 'From beginner to fluent, step by step. Small groups, Cambridge methodology, and a teaching team of Georgian and native-speaker instructors.'}
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href={localePath('enroll', locale)}>{t('cta.enroll')}</a>
-        <a class="btn btn--ghost" href={localePath('placement-quiz', locale)}>{t('cta.takeQuiz')}</a>
+      <div class="hero__left">
+        <h1 class="hero__title">
+          {locale === 'ka' ? 'თანამედროვე კურსები. რეალური შედეგი.' : 'Modern courses. Real results.'}
+        </h1>
+        <p class="hero__lede">
+          {locale === 'ka'
+            ? 'დამწყებიდან თავისუფლად საუბრამდე — ნაბიჯ-ნაბიჯ.'
+            : 'From beginner to fluent, step by step.'}
+        </p>
+        <a class="btn btn--pill" href={localePath('enroll', locale)}>
+          {t('cta.enroll')} <span aria-hidden="true">✦</span>
+        </a>
+      </div>
+
+      {/* The Cambridge partnership card the current site leads with. */}
+      <div class="partner">
+        <img class="partner__mark" src={asset('favicon.svg')} alt="" width="48" height="48" />
+        <p class="partner__name">levels academy.</p>
+        <p class="partner__plus" aria-hidden="true">+</p>
+        <p class="partner__cambridge">Cambridge</p>
+        <p class="partner__role">
+          {locale === 'ka' ? 'ოფიციალური საგანმანათლებლო პარტნიორი' : 'English Educational Partner'}
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="section container">
-    <h2 class="visually-hidden">
-      {locale === 'ka' ? 'ჩვენი მიმართულებები' : 'What we offer'}
-    </h2>
-    <ul class="pillars grid grid--4">
-      {pillars.map((pillar) => (
-        <li>
-          <a class="pillar" href={localePath(pillar.slug, locale)}>
-            <h3>{pillar.title[locale]}</h3>
-            <p class="muted">{pillar.body[locale]}</p>
-            <span class="pillar__more">{t('cta.learnMore')} →</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+  {/* Jump links ---------------------------------------------------- */}
+  <nav class="container jumps" aria-label={locale === 'ka' ? 'კურსები' : 'Courses'}>
+    {audiences.map((audience) => (
+      <a class="jump" href={`#${audience.anchor}`}>
+        <span class="jump__icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        {audience.pill[locale]}
+      </a>
+    ))}
+    <a class="jump" href="#corporate">
+      <span class="jump__icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+      {locale === 'ka' ? 'კორპორაციული კურსები' : 'Corporate courses'}
+    </a>
+  </nav>
 
-  {
-    audiences.map((audience) => {
-      const list = courses.filter((c) => c.audiences.includes(audience.id));
-      if (!list.length) return null;
-      return (
-        <section class="section container">
-          <header class="section-head">
-            <h2>{audience.label}</h2>
-            <p class="eyebrow">{audience.age[locale]}</p>
-          </header>
-          <div class="grid grid--4">
-            {list.map((course) => <CourseCard course={course} locale={locale} />)}
-          </div>
-        </section>
-      );
-    })
-  }
+  {/* Audience panels ----------------------------------------------- */}
+  <div class="container panels">
+    {
+      audiences.map((audience) => {
+        const list = courses.filter((c) => c.audiences.includes(audience.id));
+        return (
+          <section class="panel" id={audience.anchor} style={`--panel-edge:${audience.edge}`}>
+            <header class="panel__head">
+              <h2 class="panel__title">{audience.label}</h2>
+              <p class="panel__age">{audience.age[locale]}</p>
+            </header>
+            <div class="panel__cards">
+              {list.map((course, i) => (
+                <CourseCard course={course} locale={locale} index={i} />
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
 
-  <section class="section section--alt">
-    <div class="container">
-      <header class="section-head">
-        <h2>{t('group.corporate')}</h2>
-        <p class="eyebrow">{t('group.forCompanies')}</p>
+    <section class="panel panel--corporate" id="corporate" style="--panel-edge:var(--navy)">
+      <header class="panel__head">
+        <h2 class="panel__title">{t('group.corporate')}</h2>
+        <p class="panel__age">{t('group.forCompanies')}</p>
       </header>
-      <ul class="grid grid--4 tracks">
-        {corporateTracks.map((track) => (
-          <li class="card track">
-            <h3>{track[locale]}</h3>
-            <p class="muted">{t('course.tailored')}</p>
-          </li>
+      <div class="panel__cards">
+        {corporateTracks.map((track, i) => (
+          <a class="track" href={localePath('corporate-english', locale)} data-i={i % 6}>
+            <span class="track__title">{track[locale]}</span>
+            <span class="track__meta">{t('course.tailored')}</span>
+            <span class="track__price">{t('course.individual')}</span>
+          </a>
         ))}
-      </ul>
-      <p class="section-foot">
-        <a class="btn btn--secondary" href={localePath('corporate-english', locale)}>
-          {t('cta.learnMore')}
-        </a>
-      </p>
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 
+  {/* Art ------------------------------------------------------------ */}
   <section class="section container">
-    <header class="section-head">
+    <header class="head">
       <h2>{locale === 'ka' ? 'ხელოვნების კურსები' : 'Art courses'}</h2>
+      <a class="head__more" href={localePath('art', locale)}>{t('cta.learnMore')} →</a>
     </header>
-    <div class="grid grid--4">
-      {artCourses.slice(0, 4).map((course) => (
+    <div class="grid grid--4 art-grid">
+      {artCourses.slice(0, 4).map((course, i) => (
         <CourseCard
           course={course}
           locale={locale}
+          index={i + 2}
           href={course.slug === 'contemporary-art' ? localePath('art', locale) : undefined}
         />
       ))}
     </div>
   </section>
 
-  <section class="section section--alt">
+  {/* Discounts ------------------------------------------------------ */}
+  <section class="section">
     <div class="container">
-      <header class="section-head">
+      <header class="head">
         <h2>{locale === 'ka' ? 'ფასდაკლებები' : 'Discounts'}</h2>
       </header>
-      <ul class="grid grid--3">
+      <ul class="grid grid--3 discounts">
         {discounts.map((discount) => (
-          <li class="card discount">
+          <li class="discount">
             <p class="discount__value">−10%</p>
-            <h3>{discount.title[locale]}</h3>
+            <h3 class="discount__title">{discount.title[locale]}</h3>
             <p class="muted">{discount.body[locale]}</p>
           </li>
         ))}
@@ -231,76 +232,202 @@ const jsonLd = graph([
 </Base>
 
 <style>
-  .hero {
-    background:
-      radial-gradient(120% 120% at 15% 0%, #1b4570 0%, var(--navy) 55%, #0a1f34 100%);
-    color: #fff;
-    padding-block: clamp(3.5rem, 2rem + 8vw, 8rem);
+  /* Hero ------------------------------------------------------------ */
+  .hero { padding-block: clamp(2rem, 1.5rem + 3vw, 4rem); }
+  .hero__inner {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: center;
   }
-  /*
-   * The hero text is constrained on the children rather than on .hero__inner
-   * itself: .hero__inner is a .container, and narrowing it would either centre
-   * the block (so it stops lining up with the nav) or, if the auto margin is
-   * removed, drop the page gutter entirely on narrow screens.
-   */
-  /*
-   * Constrained on the heading itself rather than on .hero__inner, which is a
-   * .container: narrowing that would centre the block away from the nav, and
-   * zeroing its auto margin would drop the page gutter on narrow screens.
-   */
-  .hero h1 { color: #fff; margin-block: 0.75rem 1rem; max-width: 16ch; }
-  .hero__kicker {
+  .hero__left { align-self: center; }
+  .hero__title { max-width: 14ch; }
+  .hero__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    margin-block: 0.9rem 1.6rem;
+    max-width: 32ch;
+  }
+
+  .partner {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    padding: clamp(2rem, 1.5rem + 3vw, 3.5rem) clamp(1.25rem, 1rem + 2vw, 2.5rem);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #ffdd8e 0%, var(--yellow) 45%, #f9b73d 100%);
+    text-align: center;
+    color: var(--navy);
+  }
+  .partner__mark { border-radius: 10px; }
+  .partner__name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 800;
+  }
+  .partner__plus { font-size: var(--step-1); opacity: 0.55; margin-block: 0.15rem; }
+  .partner__cambridge {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .partner__role { font-size: var(--step--1); font-weight: 600; max-width: 22ch; }
+
+  /* Jump links ------------------------------------------------------ */
+  .jumps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: 0.75rem;
+    margin-block: clamp(1.25rem, 1rem + 1vw, 2rem);
+  }
+  .jump {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--font-display);
     font-size: var(--step--1);
     font-weight: 600;
-    color: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    background: var(--surface);
   }
-  .hero__lede { color: #cfdded; font-size: var(--step-1); max-width: 40ch; }
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-block-start: 2rem;
+  .jump:hover { border-color: var(--navy); color: var(--navy); }
+  .jump__icon {
+    display: grid;
+    place-items: center;
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    flex-shrink: 0;
   }
-  .hero .btn--ghost { color: #fff; }
-  .hero .btn--ghost:hover { background: #fff; color: var(--navy); }
 
-  .section-head {
+  /* Audience panels ------------------------------------------------- */
+  .panels { display: grid; gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); }
+
+  .panel {
+    display: grid;
+    grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr);
+    gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+    padding: clamp(0.85rem, 0.6rem + 1vw, 1.25rem);
+    border-radius: var(--radius-lg);
+    /* The panel fades from the brand blue into a per-audience accent. */
+    background: linear-gradient(100deg, var(--blue) 0%, var(--blue) 55%, var(--panel-edge) 190%);
+  }
+  .panel--corporate {
+    background: linear-gradient(100deg, var(--blue) 0%, var(--blue) 55%, var(--navy) 150%);
+  }
+
+  .panel__head {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 1rem 0.5rem;
+  }
+  .panel__title {
+    font-size: var(--step-1);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .panel__age {
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--navy);
+    font-family: var(--font-display);
+    font-size: var(--step--2);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .panel__cards {
+    display: grid;
+    gap: clamp(0.6rem, 0.4rem + 0.8vw, 1rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr));
+  }
+
+  /* Corporate tracks reuse the card shape without price or schedule. */
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 9rem;
+    padding: 1.1rem 1.15rem 1rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .track:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .track__title {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+  }
+  .track__meta { font-size: var(--step--2); color: var(--ink-muted); flex-grow: 1; }
+  .track__price {
+    align-self: flex-end;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* Sections -------------------------------------------------------- */
+  .head {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
     gap: 0.5rem 1.5rem;
-    margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem);
+    margin-block-end: clamp(1rem, 0.75rem + 1vw, 1.75rem);
   }
-
-  .pillars, .tracks { list-style: none; padding: 0; margin: 0; }
-
-  .pillar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    height: 100%;
-    padding: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
+  .head__more {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step--1);
+    color: var(--blue);
     text-decoration: none;
-    color: inherit;
-    background: var(--surface);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
-  .pillar:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-  .pillar h3 { font-size: var(--step-1); }
-  .pillar__more { margin-block-start: auto; font-weight: 600; color: var(--navy); }
 
-  .track h3 { font-size: var(--step-0); }
+  /* Art cards sit on white, so they need a border the panel cards do not. */
+  .art-grid :global(.course-card) { border: 1.5px solid var(--line); }
 
+  .discounts { list-style: none; padding: 0; margin: 0; }
+  .discount {
+    padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    border-radius: var(--radius-lg);
+    background: var(--yellow-pale);
+  }
   .discount__value {
+    font-family: var(--font-display);
     font-size: var(--step-3);
     font-weight: 800;
-    color: var(--gold-600);
+    color: var(--navy);
     line-height: 1;
   }
-  .discount h3 { font-size: var(--step-1); margin-block: 0.5rem 0.35rem; }
+  .discount__title { font-size: var(--step-1); margin-block: 0.5rem 0.35rem; }
 
-  .section-foot { margin-block-start: 1.75rem; }
+  @media (max-width: 56rem) {
+    .hero__inner { grid-template-columns: 1fr; }
+    .panel { grid-template-columns: 1fr; }
+    .panel__head {
+      grid-auto-flow: column;
+      justify-content: start;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.35rem 0.35rem 0.5rem;
+    }
+  }
 </style>

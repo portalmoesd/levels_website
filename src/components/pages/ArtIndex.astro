@@ -39,7 +39,7 @@ const jsonLd = graph([
 <Base title={title} description={description} slug="art" locale={locale} jsonLd={jsonLd}>
   <Breadcrumbs trail={trail} locale={locale} />
 
-  <header class="art-hero">
+  <header class="art-hero glow">
     <div class="container">
       <p class="eyebrow">Levels Art Academy</p>
       <h1>{title}</h1>
@@ -98,13 +98,12 @@ const jsonLd = graph([
 
 <style>
   .art-hero {
-    background: linear-gradient(135deg, #2a1f3d 0%, var(--navy) 100%);
-    color: #fff;
+    background: transparent;
     padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
   }
-  .art-hero h1 { color: #fff; margin-block: 0.5rem 1rem; }
-  .art-hero .eyebrow { color: var(--gold); }
-  .art-hero__lede { color: #d5dce6; font-size: var(--step-1); max-width: 60ch; }
+  .art-hero h1 { margin-block: 0.5rem 1rem; }
+  .art-hero .eyebrow { color: var(--blue); }
+  .art-hero__lede { color: var(--ink-muted); font-size: var(--step-1); max-width: 60ch; }
 
   .section-title { margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem); }
   .highlights { list-style: none; padding: 0; margin: 0; }

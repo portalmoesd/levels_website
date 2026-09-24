@@ -21,13 +21,17 @@ const t = useTranslations(locale);
 const path = localePath(course.slug, locale);
 const body = sections(course.slug, locale);
 
-// Sections phrased as questions become FAQ structured data, which can earn an
-// expandable result in Google. The rest render as ordinary prose.
-const FAQ_KEYS = new Set([
-  'start', 'groups', 'lessonStructure', 'teacher', 'materials', 'faqWork', 'faqHousing',
-]);
-const faqs = body
-  .filter((s) => FAQ_KEYS.has(s.key) && s.heading.includes('?'))
+/*
+ * The page splits in two: the opening "About the course" prose stays expanded,
+ * and every other section collapses into an accordion, which is how the
+ * current site presents them. Question-shaped sections also become FAQ
+ * structured data, which can earn an expandable result in Google.
+ */
+const about = body.find((s) => s.key === 'about');
+const rest = body.filter((s) => s.key !== 'about');
+
+const faqs = rest
+  .filter((s) => s.heading.includes('?'))
   .map((s) => ({ question: s.heading, answer: s.body.join(' ') }));
 
 const trail = [
@@ -43,12 +47,12 @@ const jsonLd = graph([
   breadcrumbSchema(trail),
 ]);
 
-const metaRows = [
-  { label: t('course.duration'), value: course.duration[locale] },
-  { label: t('course.lessonLength'), value: course.lessonLength[locale] },
-  { label: t('course.perWeek'), value: course.perWeek[locale] },
-  { label: t('course.age'), value: course.ageLabel[locale] },
-];
+const facts = [
+  { label: t('course.duration'), value: course.duration[locale], icon: 'calendar' },
+  { label: t('course.lessonLength'), value: course.lessonLength[locale], icon: 'clock' },
+  { label: t('course.perWeek'), value: course.perWeek[locale], icon: 'repeat' },
+  { label: t('course.age'), value: course.ageLabel[locale], icon: 'user' },
+] as const;
 ---
 
 <Base
@@ -61,63 +65,114 @@ const metaRows = [
   <Breadcrumbs trail={trail} locale={locale} />
 
   <article>
-    <header class="course-hero">
-      <div class="container course-hero__inner">
-        <div>
-          {course.kicker && <p class="eyebrow">{course.kicker[locale]}</p>}
+    <header class="hero glow">
+      <div class="container hero__inner">
+        <div class="hero__left">
+          <p class="hero__age">{course.ageLabel[locale]}</p>
+          {course.kicker && <p class="hero__kicker">{course.kicker[locale]}</p>}
           <h1>{course.title[locale]}</h1>
-          <p class="course-hero__summary">{course.summary[locale]}</p>
-          {course.cambridge && (
-            <p class="cambridge-badge">{t('cambridge.partner')}</p>
-          )}
-          <a class="btn btn--primary" href={localePath('enroll', locale)} data-course={course.slug}>
-            {t('cta.enroll')}
+          <p class="hero__summary">{course.summary[locale]}</p>
+          <a class="btn btn--pill" href={localePath('enroll', locale)}>
+            {t('cta.enroll')} <span aria-hidden="true">✦</span>
           </a>
+          {course.cambridge && (
+            <p class="hero__cambridge">{t('cambridge.partner')}</p>
+          )}
         </div>
-
-        <aside class="course-facts card" aria-label={t('course.about')}>
-          <dl>
-            {metaRows.map((row) => (
-              <div>
-                <dt>{row.label}</dt>
-                <dd>{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-          <div class="course-facts__price">
-            <p class="eyebrow">{t('course.price')}</p>
-            <PriceTag price={course.price} locale={locale} />
-          </div>
-        </aside>
+        <div class="hero__panel" aria-hidden="true"></div>
       </div>
     </header>
 
-    <div class="container course-body">
+    {/* Facts ------------------------------------------------------- */}
+    <div class="container facts">
       {
-        body.map((sectionItem) => {
-          const { lead, items } = splitProse(sectionItem.body);
-          return (
-            <section class="course-section">
-              <h2>{sectionItem.heading}</h2>
-              <div class="prose">
-                {lead.map((paragraph) => <p>{paragraph}</p>)}
-                {items.length > 0 && (
-                  <ul>{items.map((item) => <li>{item}</li>)}</ul>
-                )}
-              </div>
-            </section>
-          );
-        })
+        facts.map((fact) => (
+          <div class="fact">
+            <span class="fact__icon" aria-hidden="true">
+              {fact.icon === 'calendar' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3.5" y="5" width="17" height="16" rx="3" />
+                  <path d="M3.5 10h17M8.5 3v4M15.5 3v4" stroke-linecap="round" />
+                </svg>
+              )}
+              {fact.icon === 'clock' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5.4l3.4 2.2" stroke-linecap="round" />
+                </svg>
+              )}
+              {fact.icon === 'repeat' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 8h13l-3-3M20 16H7l3 3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {fact.icon === 'user' && (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="8.5" r="3.6" />
+                  <path d="M4.8 20c1.2-3.6 4-5.4 7.2-5.4s6 1.8 7.2 5.4" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <p class="fact__label">{fact.label}</p>
+            <p class="fact__value">{fact.value}</p>
+          </div>
+        ))
       }
+
+      <div class="fact">
+        <span class="fact__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M14.5 9.2a3 3 0 0 0-5 2.2c0 2.6 5 1.6 5 4.2a3 3 0 0 1-5 2.2M12 6.4v11.2" stroke-linecap="round" />
+          </svg>
+        </span>
+        <p class="fact__label">{t('course.price')}</p>
+        <PriceTag price={course.price} locale={locale} layout="stacked" />
+      </div>
+    </div>
+
+    {/* Body -------------------------------------------------------- */}
+    <div class="container body">
+      {about && (
+        <section class="about">
+          <h2>{about.heading}</h2>
+          <div class="prose">
+            {about.body.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </section>
+      )}
+
+      {rest.length > 0 && (
+        <div class="accordion">
+          {rest.map((sectionItem, i) => {
+            const { lead, items } = splitProse(sectionItem.body);
+            return (
+              // <details> gives the open/close behaviour, keyboard support and
+              // screen-reader semantics natively — no JavaScript needed, and it
+              // still works if scripts fail.
+              <details class="acc" open={i === 0}>
+                <summary>
+                  <span>{sectionItem.heading}</span>
+                  <span class="acc__sign" aria-hidden="true"></span>
+                </summary>
+                <div class="acc__body prose">
+                  {lead.map((paragraph) => <p>{paragraph}</p>)}
+                  {items.length > 0 && <ul>{items.map((item) => <li>{item}</li>)}</ul>}
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      )}
     </div>
   </article>
 
   <QuizCta locale={locale} />
 
   {/*
-    The course identity is passed through data attributes rather than
-    define:vars, because define:vars forces the script inline and an inline
-    script cannot import the bundled analytics module.
+    The course identity travels through data attributes rather than
+    define:vars: define:vars forces a script inline, and an inline script
+    cannot import the bundled analytics module.
   */}
   <div
     id="course-tracking"
@@ -129,8 +184,8 @@ const metaRows = [
   </div>
 
   <script>
-    // ViewContent lets Meta build an audience of people who looked at a course
-    // but did not enrol — the audience retargeting campaigns are built from.
+    // ViewContent builds the audience of people who looked at a course but did
+    // not enrol — the audience retargeting campaigns are built from.
     import { trackCourseView } from '../../lib/analytics';
 
     const el = document.getElementById('course-tracking');
@@ -146,58 +201,134 @@ const metaRows = [
 </Base>
 
 <style>
-  .course-hero {
-    background: var(--surface-alt);
-    padding-block: clamp(2rem, 1.5rem + 3vw, 4rem);
-    border-block-end: 1px solid var(--line);
-  }
-  .course-hero__inner {
+  /* Hero ------------------------------------------------------------ */
+  .hero { padding-block: clamp(1.75rem, 1.25rem + 3vw, 3.5rem); }
+  .hero__inner {
     display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(1.5rem, 1rem + 3vw, 3rem);
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    align-items: start;
+    align-items: center;
   }
-  .course-hero h1 { margin-block: 0.4rem 0.75rem; }
-  .course-hero__summary {
+  .hero__age,
+  .hero__kicker {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+  .hero__kicker { color: var(--blue); }
+  .hero h1 { margin-block: 0.5rem 0.75rem; }
+  .hero__summary {
     font-size: var(--step-1);
     color: var(--ink-muted);
-    max-width: 52ch;
-    margin-block-end: 1.25rem;
+    max-width: 44ch;
+    margin-block-end: 1.5rem;
   }
-
-  .cambridge-badge {
-    display: inline-block;
-    padding: 0.45rem 0.9rem;
-    margin-block-end: 1.25rem;
-    border: 1px solid var(--gold);
-    border-radius: 999px;
+  .hero__cambridge {
+    margin-block-start: 1.25rem;
     font-size: var(--step--1);
     font-weight: 600;
     color: var(--navy);
-    background: rgb(232 176 45 / 12%);
+    max-width: 34ch;
   }
 
-  .course-facts dl { margin: 0; display: grid; gap: 0.6rem; }
-  .course-facts dl div {
+  /* Stands in for the course photograph the current site shows here. */
+  .hero__panel {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #ffdd8e 0%, var(--yellow) 50%, #f4a93c 100%);
+    box-shadow: var(--shadow);
+  }
+
+  /* Facts ----------------------------------------------------------- */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
+    gap: clamp(1rem, 0.75rem + 1vw, 2rem);
+    padding-block: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  }
+  .fact { display: grid; justify-items: center; gap: 0.4rem; text-align: center; }
+  .fact__icon {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: var(--navy);
+    color: var(--yellow);
+  }
+  .fact__label {
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .fact__value { font-size: var(--step--1); color: var(--ink-muted); }
+
+  /* Body ------------------------------------------------------------ */
+  .body {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    align-items: start;
+    padding-block: clamp(1.5rem, 1rem + 2vw, 3rem);
+  }
+  .about h2 { font-size: var(--step-2); margin-block-end: 0.85rem; }
+
+  .accordion { display: grid; gap: 0.6rem; }
+
+  .acc {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .acc summary {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding-block-end: 0.6rem;
-    border-block-end: 1px solid var(--line);
-    font-size: var(--step--1);
+    padding: 1rem 1.15rem;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 700;
+    color: var(--navy);
+    cursor: pointer;
+    list-style: none;
   }
-  .course-facts dt { color: var(--ink-muted); }
-  .course-facts dd { margin: 0; font-weight: 600; text-align: end; }
-  .course-facts__price { margin-block-start: 1.25rem; }
+  .acc summary::-webkit-details-marker { display: none; }
+  .acc summary:hover { color: var(--blue); }
 
-  .course-body { padding-block: var(--section-y); }
-  .course-section + .course-section { margin-block-start: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
-  .course-section h2 {
-    font-size: var(--step-2);
-    margin-block-end: 0.85rem;
+  /* A plus that becomes a minus, built from two bars so it needs no icon. */
+  .acc__sign {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .acc__sign::before,
+  .acc__sign::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto 0;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    translate: 0 -50%;
+    transition: rotate 0.2s ease, opacity 0.2s ease;
+  }
+  .acc__sign::after { rotate: 90deg; }
+  .acc[open] .acc__sign::after { rotate: 0deg; opacity: 0; }
+
+  .acc__body {
+    padding: 0 1.15rem 1.15rem;
+    max-width: none;
+    color: var(--ink-muted);
   }
 
-  @media (max-width: 52rem) {
-    .course-hero__inner { grid-template-columns: 1fr; }
+  @media (max-width: 56rem) {
+    .hero__inner { grid-template-columns: 1fr; }
+    .hero__panel { order: -1; }
+    .body { grid-template-columns: 1fr; }
   }
 </style>

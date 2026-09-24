@@ -32,7 +32,7 @@ const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
 <Base title={title} description={description} slug="summer-schools" locale={locale} jsonLd={jsonLd}>
   <Breadcrumbs trail={trail} locale={locale} />
 
-  <header class="summer-hero">
+  <header class="summer-hero glow">
     <div class="container">
       <p class="eyebrow">{locale === 'ka' ? 'ასაკი 10–17' : 'Ages 10–17'}</p>
       <h1>{title}</h1>
@@ -88,14 +88,13 @@ const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
 
 <style>
   .summer-hero {
-    background: linear-gradient(140deg, #0d4f6c 0%, var(--navy) 70%);
-    color: #fff;
+    background: transparent;
     padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
   }
-  .summer-hero h1 { color: #fff; margin-block: 0.5rem 1rem; }
-  .summer-hero .eyebrow { color: var(--gold); }
+  .summer-hero h1 { margin-block: 0.5rem 1rem; }
+  .summer-hero .eyebrow { color: var(--blue); }
   .summer-hero__lede {
-    color: #cfdded;
+    color: var(--ink-muted);
     font-size: var(--step-1);
     max-width: 58ch;
     margin-block-end: 1.75rem;

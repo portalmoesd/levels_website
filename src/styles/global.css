@@ -1,56 +1,77 @@
 /*
  * Levels Academy design system.
  *
- * Deliberately small: tokens, resets, layout primitives and the handful of
- * components that repeat across the site. Page-specific styling stays in the
- * page's own <style> block, which Astro scopes automatically.
+ * Tokens, fonts and accent colours are taken from the existing levels.ge site
+ * so the rebuilt pages carry the same visual identity: a warm yellow header
+ * and calls to action, strong blue panels grouping the course cards, and a
+ * near-black navy for text and primary buttons.
  */
 
 :root {
   /* Brand ------------------------------------------------------------- */
-  --navy: #0f2d4a;
-  --navy-700: #163c62;
-  --navy-300: #4a6f96;
-  --gold: #e8b02d;
-  --gold-600: #c9931c;
+  --navy: #1d233f;          /* text, primary buttons */
+  --navy-soft: #2b445b;     /* secondary text, borders on dark */
+  --blue: #0255d0;          /* audience panels */
+  --blue-mid: #3881e6;
+  --blue-light: #5e97ff;
+  --blue-pale: #a5bcfd;
+
+  --yellow: #ffd166;        /* header bar, hero card, CTA panels */
+  --yellow-deep: #f7b731;
+  --yellow-pale: #fff3d4;
+
+  /* Card accents, used to tint each course card and audience panel edge. */
+  --accent-mint: #ade2d7;
+  --accent-green: #23b899;
+  --accent-red: #f66e6e;
+  --accent-rose: #e68080;
+  --accent-lilac: #c1b4f2;
 
   /* Neutrals ---------------------------------------------------------- */
-  --ink: #16202b;
-  --ink-muted: #5b6b7c;
-  --line: #e2e8ef;
+  --ink: #1d233f;
+  --ink-muted: #6b7280;
+  --line: #e6e8ef;
   --surface: #ffffff;
-  --surface-alt: #f5f8fb;
+  --surface-alt: #f7f8fb;
 
-  /* Feedback ---------------------------------------------------------- */
-  --danger: #c0392b;
+  --danger: #d23b3b;
   --success: #1e7d44;
 
   /* Type -------------------------------------------------------------- */
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-georgian: 'Noto Sans Georgian', 'Inter', system-ui, sans-serif;
+  /* Red Hat Display for headings and UI, Raleway for body — the pairing
+     the current site uses. Noto Sans Georgian covers the Georgian pages. */
+  --font-display: 'Red Hat Display', 'Noto Sans Georgian', system-ui, sans-serif;
+  --font-body: 'Raleway', 'Noto Sans Georgian', system-ui, sans-serif;
 
-  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
-  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
-  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-  --step-3: clamp(1.9rem, 1.5rem + 2vw, 2.9rem);
-  --step-4: clamp(2.4rem, 1.7rem + 3.4vw, 4.2rem);
+  --step--2: clamp(0.69rem, 0.67rem + 0.1vw, 0.75rem);
+  --step--1: clamp(0.81rem, 0.78rem + 0.15vw, 0.88rem);
+  --step-0: clamp(0.95rem, 0.92rem + 0.18vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.06rem + 0.42vw, 1.35rem);
+  --step-2: clamp(1.4rem, 1.24rem + 0.8vw, 1.85rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.5vw, 2.6rem);
+  --step-4: clamp(2.2rem, 1.7rem + 2.6vw, 3.6rem);
 
   /* Space and shape --------------------------------------------------- */
   --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
-  --section-y: clamp(3rem, 2rem + 5vw, 6rem);
-  --radius: 14px;
-  --radius-lg: 22px;
-  --shadow: 0 1px 2px rgb(15 45 74 / 6%), 0 8px 24px rgb(15 45 74 / 8%);
-  --shadow-lg: 0 2px 4px rgb(15 45 74 / 8%), 0 18px 48px rgb(15 45 74 / 14%);
+  --section-y: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
 
-  --max-width: 1200px;
-  --measure: 68ch;
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+
+  --shadow-sm: 0 1px 2px rgb(29 35 63 / 6%), 0 4px 12px rgb(29 35 63 / 6%);
+  --shadow: 0 2px 6px rgb(29 35 63 / 7%), 0 12px 28px rgb(29 35 63 / 9%);
+  --shadow-lg: 0 4px 10px rgb(29 35 63 / 9%), 0 24px 56px rgb(29 35 63 / 14%);
+
+  --max-width: 1280px;
+  --measure: 62ch;
 }
 
-/* Georgian needs a different face and a little more line height. */
+/* Georgian sets a little looser and needs its own face. */
 html[lang='ka-GE'] {
-  --font-sans: var(--font-georgian);
+  --font-display: 'Noto Sans Georgian', 'Red Hat Display', system-ui, sans-serif;
+  --font-body: 'Noto Sans Georgian', 'Raleway', system-ui, sans-serif;
   --line-height-body: 1.75;
 }
 
@@ -70,9 +91,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
   *,
   *::before,
   *::after {
@@ -83,7 +102,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: var(--step-0);
   line-height: var(--line-height-body, 1.6);
   color: var(--ink);
@@ -101,33 +120,29 @@ video {
   height: auto;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  line-height: 1.15;
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.12;
   color: var(--navy);
   text-wrap: balance;
   font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
-h1 { font-size: var(--step-4); letter-spacing: -0.02em; }
-h2 { font-size: var(--step-3); letter-spacing: -0.015em; }
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
 h3 { font-size: var(--step-2); }
 h4 { font-size: var(--step-1); }
 
 p, li { text-wrap: pretty; }
 
-a {
-  color: var(--navy-700);
-  text-underline-offset: 0.2em;
-}
-a:hover { color: var(--navy); }
+a { color: var(--navy); text-underline-offset: 0.2em; }
+a:hover { color: var(--blue); }
 
 :focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--blue);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .skip-link {
@@ -140,9 +155,7 @@ a:hover { color: var(--navy); }
   color: #fff;
   border-radius: 0 0 var(--radius) 0;
 }
-.skip-link:focus {
-  left: 0;
-}
+.skip-link:focus { left: 0; }
 
 /* Layout primitives ---------------------------------------------------- */
 
@@ -151,35 +164,14 @@ a:hover { color: var(--navy); }
   margin-inline: auto;
 }
 
-.section {
-  padding-block: var(--section-y);
-}
+.section { padding-block: var(--section-y); }
 
-.section--alt {
-  background: var(--surface-alt);
-}
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-block-start: 1em; }
+.prose ul { padding-inline-start: 1.2em; }
+.prose li + li { margin-block-start: 0.4em; }
 
-.stack > * + * {
-  margin-block-start: var(--stack-gap, 1rem);
-}
-
-.prose {
-  max-width: var(--measure);
-}
-.prose > * + * {
-  margin-block-start: 1em;
-}
-.prose ul {
-  padding-inline-start: 1.25em;
-}
-.prose li + li {
-  margin-block-start: 0.4em;
-}
-
-.grid {
-  display: grid;
-  gap: clamp(1rem, 0.6rem + 1.5vw, 2rem);
-}
+.grid { display: grid; gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); }
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
 .grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
 .grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
@@ -191,94 +183,98 @@ a:hover { color: var(--navy); }
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.8em 1.6em;
-  border: 2px solid transparent;
+  padding: 0.85em 1.7em;
+  border: 1.5px solid transparent;
   border-radius: 999px;
-  font: inherit;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: background-color 0.18s ease, color 0.18s ease,
+              border-color 0.18s ease, transform 0.18s ease;
 }
 .btn:active { transform: translateY(1px); }
 
-.btn--primary {
-  background: var(--gold);
+/* The site's main call to action: a white pill with a thin dark outline. */
+.btn--pill {
+  background: var(--surface);
+  border-color: var(--navy);
   color: var(--navy);
+  box-shadow: var(--shadow-sm);
 }
-.btn--primary:hover {
-  background: var(--gold-600);
-  color: var(--navy);
-}
+.btn--pill:hover { background: var(--navy); color: #fff; }
 
-.btn--secondary {
-  background: var(--navy);
-  color: #fff;
-}
-.btn--secondary:hover {
-  background: var(--navy-700);
-  color: #fff;
-}
+.btn--primary { background: var(--navy); color: #fff; }
+.btn--primary:hover { background: #2a3355; color: #fff; }
 
-.btn--ghost {
-  border-color: currentColor;
-  color: var(--navy);
-}
-.btn--ghost:hover {
-  background: var(--navy);
-  color: #fff;
-}
+.btn--yellow { background: var(--yellow); color: var(--navy); }
+.btn--yellow:hover { background: var(--yellow-deep); color: var(--navy); }
 
-.btn[disabled] {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
+.btn--ghost { border-color: currentColor; color: var(--navy); }
+.btn--ghost:hover { background: var(--navy); color: #fff; }
 
-/* Cards ---------------------------------------------------------------- */
+.btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+/* Shared pieces -------------------------------------------------------- */
 
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 1rem + 1vw, 2rem);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
 }
 
 .eyebrow {
+  font-family: var(--font-display);
   font-size: var(--step--1);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--navy-300);
+  color: var(--ink-muted);
 }
 
 .muted { color: var(--ink-muted); }
 
-/* Price -------------------------------------------------------------- */
+/*
+ * The soft yellow wash behind several sections. A radial gradient rather than
+ * an image, so it scales to any viewport without another asset to load.
+ */
+.glow {
+  position: relative;
+  isolation: isolate;
+}
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 55% at 70% 30%, rgb(255 209 102 / 45%) 0%, transparent 70%),
+    radial-gradient(45% 40% at 20% 75%, rgb(255 209 102 / 28%) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Price ---------------------------------------------------------------- */
 
 .price {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.25;
 }
 .price__was {
-  color: var(--ink-muted);
+  color: var(--accent-red);
   text-decoration: line-through;
   font-size: var(--step--1);
+  font-weight: 600;
 }
 .price__now {
-  font-size: var(--step-1);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
   font-weight: 700;
   color: var(--navy);
 }
-.price__unit {
-  color: var(--ink-muted);
-  font-size: var(--step--1);
-}
 
-/* Visually hidden, still read by screen readers. */
 .visually-hidden {
   position: absolute;
   width: 1px;

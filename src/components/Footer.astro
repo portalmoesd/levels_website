@@ -1,5 +1,5 @@
 ---
-import { site, branches, social } from '../data/site';
+import { site, social } from '../data/site';
 import { useTranslations, localePath, type Locale } from '../i18n/utils';
 
 interface Props {
@@ -10,152 +10,116 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const year = new Date().getFullYear();
 
-const columns = [
-  {
-    heading: { en: 'Courses', ka: 'კურსები' },
-    links: [
-      { label: { en: 'English', ka: 'ინგლისური' }, slug: 'english' },
-      { label: { en: 'Art', ka: 'ხელოვნება' }, slug: 'art' },
-      { label: { en: 'Summer Schools', ka: 'საზაფხულო სკოლები' }, slug: 'summer-schools' },
-      { label: { en: 'Study Abroad', ka: 'სწავლა საზღვარგარეთ' }, slug: 'study-abroad' },
-      { label: { en: 'Corporate', ka: 'კორპორაციული' }, slug: 'corporate-english' },
-    ],
-  },
-  {
-    heading: { en: 'Academy', ka: 'აკადემია' },
-    links: [
-      { label: { en: 'About', ka: 'ჩვენ შესახებ' }, slug: 'about' },
-      { label: { en: 'Our Team', ka: 'ჩვენი გუნდი' }, slug: 'team' },
-      { label: { en: 'Contact', ka: 'კონტაქტი' }, slug: 'contact' },
-      { label: { en: 'Work with us', ka: 'შემოუერთდი ჩვენს გუნდს' }, slug: 'work-with-us' },
-      { label: { en: 'Verify a certificate', ka: 'სერტიფიკატის შემოწმება' }, slug: 'verify' },
-    ],
-  },
+const sections = [
+  { key: 'nav.english', slug: 'english' },
+  { key: 'nav.art', slug: 'art' },
+  { key: 'nav.summer', slug: 'summer-schools' },
+  { key: 'nav.studyAbroad', slug: 'study-abroad' },
 ] as const;
 
-// Only render the social row for profiles that have actually been configured.
+/* Only profiles that have actually been configured. The Facebook, Instagram
+   and LinkedIn URLs load from Wix's API at runtime on the current site, so
+   they could not be recovered from the crawl — see docs/wix-decommission.md. */
 const socialLinks = (
   [
     ['Facebook', social.facebook],
     ['Instagram', social.instagram],
+    ['Whatsapp', social.whatsapp],
     ['LinkedIn', social.linkedin],
-    ['WhatsApp', social.whatsapp],
   ] as const
 ).filter(([, url]) => Boolean(url));
 ---
 
 <footer class="site-footer">
-  <div class="container site-footer__grid">
-    <div class="site-footer__brand">
-      <p class="site-footer__name">{site.name}</p>
-      <p class="muted">{t('cambridge.partner')}</p>
+  <div class="container">
+    <p class="site-footer__brand">levels academy</p>
 
-      <address class="site-footer__contact">
-        {branches.map((b) => (
-          <span class="site-footer__branch">
-            <strong>{b.name[locale]}</strong> — {b.street[locale]}
-          </span>
-        ))}
-        <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </address>
-
-      {socialLinks.length > 0 && (
-        <ul class="site-footer__social">
-          {socialLinks.map(([name, url]) => (
-            <li>
-              <a href={url} rel="noopener noreferrer me" target="_blank">{name}</a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-
-    {columns.map((column) => (
-      <nav class="site-footer__col" aria-label={column.heading[locale]}>
-        <h2 class="site-footer__heading">{column.heading[locale]}</h2>
+    <div class="site-footer__cols">
+      <nav aria-label={locale === 'ka' ? 'განყოფილებები' : 'Sections'}>
         <ul>
-          {column.links.map((link) => (
-            <li><a href={localePath(link.slug, locale)}>{link.label[locale]}</a></li>
+          {sections.map((item) => (
+            <li><a href={localePath(item.slug, locale)}>{t(item.key)}</a></li>
           ))}
         </ul>
       </nav>
-    ))}
-  </div>
 
-  <div class="container site-footer__bar">
-    <p>© {year} {site.name}. {t('footer.rights')}</p>
-    <a href={localePath('privacy-policy', locale)}>{t('footer.privacy')}</a>
+      <nav aria-label={locale === 'ka' ? 'აკადემია' : 'Academy'}>
+        <ul>
+          <li><a href={localePath('about', locale)}>{t('nav.about')}</a></li>
+          <li><a href={localePath('team', locale)}>{t('nav.team')}</a></li>
+          <li><a href={localePath('contact', locale)}>{t('nav.contact')}</a></li>
+          <li><a href={localePath('work-with-us', locale)}>{t('footer.workWithUs')}</a></li>
+          <li><a href={localePath('verify', locale)}>{t('verify.title')}</a></li>
+        </ul>
+      </nav>
+
+      {socialLinks.length > 0 && (
+        <nav aria-label="Social">
+          <ul>
+            {socialLinks.map(([name, url]) => (
+              <li><a href={url} rel="noopener noreferrer me" target="_blank">{name}</a></li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <div class="site-footer__contact">
+        <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <p class="site-footer__legal">
+          © {year} by {site.name}.
+        </p>
+        <a href={localePath('privacy-policy', locale)}>{t('footer.privacy')}</a>
+      </div>
+    </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
     margin-block-start: var(--section-y);
-    background: var(--navy);
-    color: #dbe6f1;
-    padding-block-start: var(--section-y);
+    padding-block: var(--section-y);
+    border-block-start: 1px solid var(--line);
+    background: var(--surface);
   }
 
-  .site-footer a { color: #dbe6f1; text-decoration: none; }
-  .site-footer a:hover { color: var(--gold); text-decoration: underline; }
-  .site-footer .muted { color: #9db2c8; }
-
-  .site-footer__grid {
-    display: grid;
-    gap: clamp(1.5rem, 1rem + 3vw, 4rem);
-    grid-template-columns: minmax(0, 2fr) repeat(auto-fit, minmax(10rem, 1fr));
-  }
-
-  .site-footer__name {
-    font-size: var(--step-1);
+  .site-footer__brand {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
     font-weight: 700;
-    color: #fff;
+    color: var(--navy);
+    margin-block-end: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   }
+
+  .site-footer__cols {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .site-footer a {
+    font-size: var(--step--1);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .site-footer a:hover { color: var(--blue); text-decoration: underline; }
 
   .site-footer__contact {
     display: grid;
-    gap: 0.35rem;
-    margin-block-start: 1.25rem;
-    font-style: normal;
-    font-size: var(--step--1);
+    gap: 0.6rem;
+    align-content: start;
   }
-  .site-footer__branch strong { color: #fff; }
-
-  .site-footer__social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-    margin-block-start: 1.25rem;
+  .site-footer__legal {
     font-size: var(--step--1);
-  }
-
-  .site-footer__heading {
-    font-size: var(--step--1);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    margin-block-end: 0.85rem;
-  }
-  .site-footer__col ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 0.5rem;
-    font-size: var(--step--1);
-  }
-
-  .site-footer__bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-    margin-block-start: var(--section-y);
-    padding-block: 1.5rem;
-    border-block-start: 1px solid rgb(255 255 255 / 12%);
-    font-size: var(--step--1);
-    color: #9db2c8;
+    color: var(--ink-muted);
+    margin-block-start: 0.4rem;
   }
 </style>

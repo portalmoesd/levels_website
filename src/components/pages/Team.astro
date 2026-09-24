@@ -40,7 +40,7 @@ const jsonLd = graph([organizationSchema(locale), ...people, breadcrumbSchema(tr
 <Base title={title} description={description} slug="team" locale={locale} jsonLd={jsonLd}>
   <Breadcrumbs trail={trail} locale={locale} />
 
-  <header class="team-hero">
+  <header class="team-hero glow">
     <div class="container">
       <h1>{title}</h1>
       <p class="team-hero__lede">
@@ -66,7 +66,7 @@ const jsonLd = graph([organizationSchema(locale), ...people, breadcrumbSchema(tr
 
 <style>
   .team-hero {
-    background: var(--surface-alt);
+    background: transparent;
     padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
     border-block-end: 1px solid var(--line);
   }

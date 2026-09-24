@@ -97,7 +97,7 @@ const jsonLd = graph([
   <Breadcrumbs trail={trail} locale={locale} />
 
   <article>
-    <header class="summer-hero">
+    <header class="summer-hero glow">
       <div class="container summer-hero__inner">
         <div>
           <p class="eyebrow">{country}</p>
@@ -154,7 +154,7 @@ const jsonLd = graph([
 
 <style>
   .summer-hero {
-    background: var(--surface-alt);
+    background: transparent;
     padding-block: clamp(2rem, 1.5rem + 3vw, 4rem);
     border-block-end: 1px solid var(--line);
   }
@@ -168,7 +168,7 @@ const jsonLd = graph([
   .summer-hero__institution {
     font-size: var(--step-1);
     font-weight: 600;
-    color: var(--navy-300);
+    color: var(--ink-muted);
   }
   .summer-hero__location { margin-block: 0.75rem 1.5rem; max-width: 48ch; }
 

@@ -63,7 +63,7 @@ await page.screenshot({ path: `${SHOT}/01-home.png`, fullPage: false });
 
 // --- language switch --------------------------------------------------
 await page.goto(BASE + '/ielts', { waitUntil: 'domcontentloaded' });
-const switchHref = await page.locator('.lang-switch').getAttribute('href');
+const switchHref = await page.locator('.lang').getAttribute('href');
 // Base-aware: a subpath deployment prefixes every internal link.
 const basePath = new URL(BASE).pathname.replace(/\/+$/, '');
 ok(
@@ -154,7 +154,7 @@ const mp = await mobile.newPage();
 await mp.goto(HOME, { waitUntil: 'domcontentloaded' });
 const overflow = await mp.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 ok('no horizontal overflow on mobile', overflow <= 1, `${overflow}px`);
-await mp.locator('.nav-toggle').click();
+await mp.locator('.burger').click();
 await mp.waitForTimeout(250);
 ok('mobile menu opens', await mp.locator('#mobile-nav').isVisible());
 await mp.screenshot({ path: `${SHOT}/07-mobile-menu.png`, fullPage: false });
