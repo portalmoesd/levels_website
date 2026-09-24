@@ -1,0 +1,156 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { sections, splitProse } from '../../lib/content';
+import { graph, organizationSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const body = sections('study-abroad', locale);
+const faqs = body
+  .filter((s) => s.heading.includes('?'))
+  .map((s) => ({
+    // The live site's heading reads "Do you help we housing?"; corrected here.
+    question: s.heading.replace('Do you help we housing?', 'Do you help with housing?'),
+    answer: s.body.join(' '),
+  }));
+
+const programmes = [
+  { en: "Bachelor's", ka: 'ბაკალავრიატი' },
+  { en: "Master's", ka: 'მაგისტრატურა' },
+  { en: 'Foundation', ka: 'ფაუნდეიშენი' },
+  { en: 'Short programmes', ka: 'მოკლევადიანი პროგრამები' },
+];
+
+const title = locale === 'ka' ? 'სწავლა საზღვარგარეთ' : 'Study Abroad';
+const description =
+  locale === 'ka'
+    ? 'სრული მხარდაჭერა საზღვარგარეთ სწავლისთვის: პროგრამის არჩევა, IELTS-ის გეგმა, CV და სამოტივაციო წერილი, პორტფოლიო, განაცხადები, სტიპენდიები, ვიზა და გამგზავრებამდე მომზადება.'
+    : 'End-to-end study abroad support: programme shortlist, IELTS plan, CV and motivation letter, portfolio coaching, applications, scholarships, visa and pre-departure.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('study-abroad', locale) },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  faqSchema(faqs),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug="study-abroad" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="sa-hero">
+    <div class="container">
+      <h1>{locale === 'ka' ? 'ისწავლე საზღვარგარეთ თავდაჯერებულად' : 'Study abroad with confidence'}</h1>
+      <p class="sa-hero__lede">
+        {locale === 'ka'
+          ? 'სრული მხარდაჭერა — სწორი პროგრამის არჩევიდან ვიზასა და გამგზავრებამდე.'
+          : 'End-to-end guidance — from choosing the right programme through to visas and pre-departure.'}
+      </p>
+      <a class="btn btn--primary" href={localePath('study-abroad-consultation', locale)}>
+        {t('cta.bookConsult')}
+      </a>
+      <p class="sa-hero__note">
+        {locale === 'ka'
+          ? 'ვადები ქვეყნისა და პროგრამის მიხედვით განსხვავდება — იდეალურია 6–9 თვით ადრე დაწყება.'
+          : 'Deadlines vary by country and programme — starting 6–9 months ahead is ideal.'}
+      </p>
+    </div>
+  </header>
+
+  <section class="section container">
+    <h2 class="section-title">{locale === 'ka' ? 'პროგრამები' : 'Programmes'}</h2>
+    <ul class="grid grid--4 programmes">
+      {programmes.map((programme) => <li class="card">{programme[locale]}</li>)}
+    </ul>
+  </section>
+
+  <div class="container sa-body">
+    {
+      body.map((sectionItem) => {
+        const { lead, items } = splitProse(sectionItem.body);
+        const heading = sectionItem.heading.replace(
+          'Do you help we housing?',
+          'Do you help with housing?'
+        );
+        // "How it works" is a numbered process on the live site.
+        const ordered = sectionItem.key === 'how';
+        return (
+          <section class="sa-section">
+            <h2>{heading}</h2>
+            <div class="prose">
+              {lead.map((paragraph) => <p>{paragraph}</p>)}
+              {items.length > 0 &&
+                (ordered ? (
+                  <ol>{items.map((item) => <li>{item}</li>)}</ol>
+                ) : (
+                  <ul>{items.map((item) => <li>{item}</li>)}</ul>
+                ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+
+  <section class="section section--alt">
+    <div class="container sa-cta">
+      <div>
+        <h2>{locale === 'ka' ? 'მზად ხარ დასაწყებად?' : 'Ready to start?'}</h2>
+        <p class="muted">
+          {locale === 'ka'
+            ? 'დაჯავშნე უფასო კონსულტაცია და მიიღე შენზე მორგებული პროგრამების სია და ვადები.'
+            : 'Book a free consultation and get a tailored programme shortlist and timeline.'}
+        </p>
+      </div>
+      <a class="btn btn--primary" href={localePath('study-abroad-consultation', locale)}>
+        {t('cta.bookConsult')}
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sa-hero {
+    background: linear-gradient(140deg, #14456b 0%, var(--navy) 70%);
+    color: #fff;
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+  }
+  .sa-hero h1 { color: #fff; }
+  .sa-hero__lede {
+    color: #cfdded;
+    font-size: var(--step-1);
+    max-width: 58ch;
+    margin-block: 1rem 1.75rem;
+  }
+  .sa-hero__note {
+    margin-block-start: 1.25rem;
+    font-size: var(--step--1);
+    color: #9db2c8;
+  }
+
+  .section-title { margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem); }
+  .programmes { list-style: none; padding: 0; margin: 0; font-weight: 600; }
+
+  .sa-body { padding-block-end: var(--section-y); }
+  .sa-section + .sa-section { margin-block-start: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+  .sa-section h2 { font-size: var(--step-2); margin-block-end: 0.85rem; }
+
+  .sa-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+</style>

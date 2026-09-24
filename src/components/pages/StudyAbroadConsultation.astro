@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import EnquiryForm from '../EnquiryForm.astro';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'ka' ? 'უფასო კონსულტაცია' : 'Free consultation';
+const description =
+  locale === 'ka'
+    ? 'დაჯავშნე უფასო კონსულტაცია საზღვარგარეთ სწავლაზე და მიიღე შენზე მორგებული პროგრამების სია და ვადები.'
+    : 'Book a free study abroad consultation and get a tailored programme shortlist and timeline.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: locale === 'ka' ? 'სწავლა საზღვარგარეთ' : 'Study Abroad', path: localePath('study-abroad', locale) },
+  { name: title, path: localePath('study-abroad-consultation', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="study-abroad-consultation" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container consult">
+    <h1>{title}</h1>
+    <p class="consult__lede">
+      {locale === 'ka'
+        ? 'გვიამბე შენი მიზნების, ბიუჯეტისა და ვადების შესახებ — შევთავაზებთ 3–5 შესაფერის პროგრამას და დეტალურ გეგმას.'
+        : 'Tell us your goals, budget and timeline, and we will come back with three to five well-matched programmes and a step-by-step plan.'}
+    </p>
+    <EnquiryForm locale={locale} formName="study-abroad" />
+  </div>
+</Base>
+
+<style>
+  .consult { max-width: 46rem; }
+  .consult__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    margin-block: 1rem 2rem;
+  }
+</style>

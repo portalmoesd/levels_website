@@ -1,0 +1,236 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { useTranslations, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const title = t('verify.title');
+const description =
+  locale === 'ka'
+    ? 'შეამოწმე Levels Academy-ის სერტიფიკატის ნამდვილობა QR კოდით ან ვერიფიკაციის კოდით.'
+    : 'Check that a Levels Academy certificate is genuine using its QR code or verification code.';
+
+const jsonLd = graph([organizationSchema(locale)]);
+---
+
+{/*
+  This page is what every certificate QR code resolves to. The codes printed on
+  certificates already in circulation point at https://levels.ge/verify?v=<token>,
+  so this URL and this query parameter cannot change without invalidating them.
+
+  Kept out of the search index: it is a lookup tool, not a landing page, and the
+  result depends entirely on the query string.
+*/}
+<Base title={title} description={description} slug="verify" locale={locale} noindex jsonLd={jsonLd}>
+  <div class="section container verify">
+    <h1>{title}</h1>
+    <p class="verify__lede">
+      {locale === 'ka'
+        ? 'შეიყვანე სერტიფიკატზე დატანილი ვერიფიკაციის კოდი, ან დაასკანერე QR კოდი.'
+        : 'Enter the verification code printed on the certificate, or scan its QR code.'}
+    </p>
+
+    <form class="verify__form" id="verify-form">
+      <label for="verify-code">
+        {locale === 'ka' ? 'ვერიფიკაციის კოდი' : 'Verification code'}
+      </label>
+      <div class="verify__row">
+        <input
+          id="verify-code"
+          name="v"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        />
+        <button class="btn btn--primary" type="submit">
+          {locale === 'ka' ? 'შემოწმება' : 'Verify'}
+        </button>
+      </div>
+    </form>
+
+    <div class="verify__result" id="verify-result" role="status" aria-live="polite" hidden></div>
+
+    <p class="verify__help muted">
+      {locale === 'ka'
+        ? 'კითხვები გაქვს? დაგვიკავშირდი: '
+        : 'Questions? Contact us at '}
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .verify { max-width: 40rem; }
+  .verify__lede { color: var(--ink-muted); margin-block: 1rem 2rem; }
+
+  .verify__form label { font-weight: 600; font-size: var(--step--1); display: block; }
+  .verify__row {
+    display: flex;
+    gap: 0.75rem;
+    margin-block-start: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .verify__row input {
+    font: inherit;
+    flex: 1 1 14rem;
+    padding: 0.7em 0.85em;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .verify__result { margin-block-start: 2rem; }
+  .verify__result[data-state='checking'] { color: var(--ink-muted); }
+
+  .certificate {
+    border: 1px solid var(--line);
+    border-inline-start: 4px solid var(--success);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .certificate__status {
+    font-weight: 700;
+    color: var(--success);
+    margin-block-end: 1rem;
+  }
+  .certificate dl { display: grid; gap: 0.6rem; margin: 0; }
+  .certificate dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block-end: 0.5rem;
+    border-block-end: 1px solid var(--line);
+  }
+  .certificate dt { color: var(--ink-muted); font-size: var(--step--1); }
+  .certificate dd { margin: 0; font-weight: 600; text-align: end; }
+
+  .not-found {
+    border: 1px solid var(--line);
+    border-inline-start: 4px solid var(--danger);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    background: var(--surface);
+  }
+  .not-found strong { color: var(--danger); }
+
+  .verify__help { margin-block-start: 2.5rem; font-size: var(--step--1); }
+</style>
+
+<script>
+  /**
+   * Looks a certificate up by its token.
+   *
+   * The token, not the sequential certificate number, is what the QR encodes
+   * and what the API accepts — the registry must not be enumerable by counting
+   * upwards from LVE-2026-0001. This mirrors the behaviour of the Wix Velo
+   * backend it replaces.
+   */
+  const form = document.getElementById('verify-form') as HTMLFormElement | null;
+  const input = document.getElementById('verify-code') as HTMLInputElement | null;
+  const result = document.getElementById('verify-result');
+
+  const isKa = document.documentElement.lang.startsWith('ka');
+  const text = {
+    checking: isKa ? 'მოწმდება…' : 'Checking…',
+    valid: isKa ? 'სერტიფიკატი ნამდვილია' : 'This certificate is valid',
+    notFound: isKa ? 'ამ კოდით სერტიფიკატი ვერ მოიძებნა.' : 'No certificate matches this code.',
+    error: isKa
+      ? 'შემოწმება ვერ მოხერხდა. სცადე ხელახლა მოგვიანებით.'
+      : 'Verification is unavailable right now. Please try again shortly.',
+    name: isKa ? 'სახელი' : 'Name',
+    course: isKa ? 'კურსი' : 'Course',
+    level: isKa ? 'დონე' : 'Level',
+    hours: isKa ? 'საათები' : 'Hours',
+    period: isKa ? 'პერიოდი' : 'Period',
+    number: isKa ? 'სერტიფიკატის №' : 'Certificate No.',
+    issued: isKa ? 'გაცემის თარიღი' : 'Issued',
+  };
+
+  const escapeHtml = (value: string) =>
+    value.replace(/[&<>"']/g, (ch) =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch] as string
+    );
+
+  const row = (label: string, value: unknown) =>
+    value ? `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(String(value))}</dd></div>` : '';
+
+  function show(html: string, state: string) {
+    if (!result) return;
+    result.hidden = false;
+    result.dataset.state = state;
+    result.innerHTML = html;
+  }
+
+  async function verify(token: string) {
+    const apiBase = window.__API_BASE;
+    if (!apiBase) {
+      show(`<div class="not-found"><strong>${text.error}</strong></div>`, 'error');
+      return;
+    }
+
+    show(text.checking, 'checking');
+
+    try {
+      const response = await fetch(
+        `${apiBase}/api/certificates/verify?v=${encodeURIComponent(token)}`
+      );
+      if (!response.ok) throw new Error(String(response.status));
+      const data = await response.json();
+
+      if (!data.found) {
+        show(`<div class="not-found"><strong>${text.notFound}</strong></div>`, 'not-found');
+        return;
+      }
+
+      const c = data.certificate;
+      const issued = c.issuedAt
+        ? new Date(c.issuedAt).toLocaleDateString(isKa ? 'ka-GE' : 'en-GB', {
+            year: 'numeric', month: 'long', day: 'numeric',
+          })
+        : '';
+      const period = [c.startDate, c.endDate].filter(Boolean).join(' – ');
+
+      show(
+        `<div class="certificate">
+          <p class="certificate__status">✓ ${text.valid}</p>
+          <dl>
+            ${row(text.name, [c.firstName, c.lastName].filter(Boolean).join(' '))}
+            ${row(text.course, c.course)}
+            ${row(text.level, c.level)}
+            ${row(text.hours, c.hours)}
+            ${row(text.period, period)}
+            ${row(text.number, c.certNumber)}
+            ${row(text.issued, issued)}
+          </dl>
+        </div>`,
+        'valid'
+      );
+    } catch {
+      show(`<div class="not-found"><strong>${text.error}</strong></div>`, 'error');
+    }
+  }
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const token = input?.value.trim();
+    if (token) void verify(token);
+  });
+
+  // A scanned QR arrives as ?v=<token>, so verify immediately.
+  const fromQuery = new URLSearchParams(location.search).get('v');
+  if (fromQuery) {
+    if (input) input.value = fromQuery;
+    void verify(fromQuery.trim());
+  }
+</script>

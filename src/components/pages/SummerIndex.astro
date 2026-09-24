@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import PriceTag from '../PriceTag.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { summerSchools, countryLabels } from '../../data/summer';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const countries = ['usa', 'uk', 'georgia'] as const;
+
+const title = locale === 'ka' ? 'საზაფხულო სკოლები' : 'Summer Schools';
+const description =
+  locale === 'ka'
+    ? 'საზაფხულო სკოლები დიდ ბრიტანეთში, აშშ-სა და საქართველოში 10–17 წლისთვის. ორკვირიანი პროგრამები საუნივერსიტეტო კამპუსებზე, ინგლისურის გაკვეთილები, ექსკურსიები და ზედამხედველობა.'
+    : 'Summer schools in the UK, USA and Georgia for ages 10–17. Two-week programmes on university campuses with English lessons, supervised campus life and excursions.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('summer-schools', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="summer-schools" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="summer-hero">
+    <div class="container">
+      <p class="eyebrow">{locale === 'ka' ? 'ასაკი 10–17' : 'Ages 10–17'}</p>
+      <h1>{title}</h1>
+      <p class="summer-hero__lede">
+        {locale === 'ka'
+          ? 'ისწავლე, იმოგზაურე და გაიჩინე მეგობრები მთელი მსოფლიოდან — ორი კვირა საუნივერსიტეტო კამპუსზე, თანმხლები ჯგუფით ან ინდივიდუალურად.'
+          : 'Learn, travel and make friends from around the world — two weeks on a university campus, travelling with a chaperoned group or independently.'}
+      </p>
+      <a class="btn btn--primary" href={localePath('enroll', locale)}>{t('cta.signUp')}</a>
+    </div>
+  </header>
+
+  {
+    countries.map((country) => {
+      const list = summerSchools.filter((s) => s.country === country);
+      if (!list.length) return null;
+      return (
+        <section class="section container">
+          <header class="section-head">
+            <h2>{countryLabels[country][locale]}</h2>
+            <p class="eyebrow">{locale === 'ka' ? 'ასაკი 10–17' : 'Ages 10–17'}</p>
+          </header>
+          <div class="grid grid--3">
+            {list.map((school) => {
+              const Tag = school.hasPage ? 'a' : 'div';
+              return (
+                <Tag
+                  class:list={['destination', school.hasPage && 'destination--link']}
+                  href={school.hasPage ? localePath(school.slug, locale) : undefined}
+                >
+                  <p class="eyebrow">{school.city[locale]}</p>
+                  <h3>{school.institution[locale]}</h3>
+                  <p class="destination__duration muted">
+                    {locale === 'ka'
+                      ? `${school.durationWeeks} კვირა`
+                      : `${school.durationWeeks} weeks`}
+                    {school.hoursPerWeek
+                      ? locale === 'ka'
+                        ? ` · ${school.hoursPerWeek} სთ/კვირა`
+                        : ` · ${school.hoursPerWeek} hrs/week`
+                      : ''}
+                  </p>
+                  <PriceTag price={school.price} locale={locale} />
+                </Tag>
+              );
+            })}
+          </div>
+        </section>
+      );
+    })
+  }
+</Base>
+
+<style>
+  .summer-hero {
+    background: linear-gradient(140deg, #0d4f6c 0%, var(--navy) 70%);
+    color: #fff;
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+  }
+  .summer-hero h1 { color: #fff; margin-block: 0.5rem 1rem; }
+  .summer-hero .eyebrow { color: var(--gold); }
+  .summer-hero__lede {
+    color: #cfdded;
+    font-size: var(--step-1);
+    max-width: 58ch;
+    margin-block-end: 1.75rem;
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem);
+  }
+
+  .destination {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    height: 100%;
+    padding: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .destination--link:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .destination h3 { font-size: var(--step-1); }
+  .destination__duration { font-size: var(--step--1); flex-grow: 1; }
+</style>

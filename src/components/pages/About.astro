@@ -1,0 +1,157 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { site, branches } from '../../data/site';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, branchSchemas, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const pillars = [
+  { slug: 'english', label: { en: 'Language Academy', ka: 'ენის აკადემია' } },
+  { slug: 'art', label: { en: 'Art Academy', ka: 'ხელოვნების აკადემია' } },
+  { slug: 'summer-schools', label: { en: 'Summer Schools', ka: 'საზაფხულო სკოლები' } },
+  { slug: 'study-abroad', label: { en: 'Study Abroad', ka: 'სწავლა საზღვარგარეთ' } },
+];
+
+const stats = [
+  { value: String(site.founded), label: { en: 'Founded', ka: 'დაარსდა' } },
+  { value: '600+', label: { en: 'Learners a year', ka: 'მოსწავლე წელიწადში' } },
+  { value: '2', label: { en: 'Branches in Tbilisi', ka: 'ფილიალი თბილისში' } },
+  { value: '6', label: { en: 'Max students per group', ka: 'მაქს. მოსწავლე ჯგუფში' } },
+];
+
+const title = locale === 'ka' ? 'ჩვენ შესახებ' : 'About Levels Academy';
+const description =
+  locale === 'ka'
+    ? 'დაარსებულია 2018 წელს. თანამედროვე სასწავლო სივრცე თბილისში ორი ფილიალით — ვაკე და კრწანისი. კემბრიჯის ოფიციალური საგანმანათლებლო პარტნიორი.'
+    : 'Founded in 2018. A modern learning space in Tbilisi with two branches in Vake and Krtsanisi, teaching over 600 learners a year. Official Cambridge English Educational Partner.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('about', locale) },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  ...branchSchemas(locale),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug="about" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="about-hero">
+    <div class="container">
+      <h1>{title}</h1>
+      <p class="about-hero__lede">
+        {locale === 'ka'
+          ? 'დაარსებული 2018 წელს, Levels Academy თანამედროვე სასწავლო სივრცეა თბილისში, ორი ფილიალითა და მზარდი სტუდენტური საზოგადოებით. ვასწავლით ბავშვებს, მოზარდებს, ზრდასრულებსა და კორპორაციულ გუნდებს სტრუქტურირებული პროგრამებით, რომლებიც რეალურ პროგრესზე, თავდაჯერებულობასა და პრაქტიკულ უნარებზეა ორიენტირებული.'
+          : 'Founded in 2018, Levels Academy is a modern learning space in Tbilisi with two branches and a growing community of students. We teach children, teenagers, adults and corporate teams through structured programmes focused on real progress, confidence and practical skills.'}
+      </p>
+    </div>
+  </header>
+
+  <section class="section container">
+    <ul class="grid grid--4 stats">
+      {stats.map((stat) => (
+        <li class="stat">
+          <p class="stat__value">{stat.value}</p>
+          <p class="stat__label muted">{stat.label[locale]}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container cambridge">
+      <h2>{locale === 'ka' ? 'კემბრიჯის საგანმანათლებლო პარტნიორი' : 'Cambridge English Educational Partner'}</h2>
+      <p class="prose">
+        {locale === 'ka'
+          ? 'Levels Academy კემბრიჯის ოფიციალური საგანმანათლებლო პარტნიორია. ეს აღიარება ადასტურებს, რომ ჩვენი სწავლების სტანდარტები, კურსები და სასწავლო გარემო აკმაყოფილებს კემბრიჯის ხარისხის მოთხოვნებს. პარტნიორობის ფარგლებში მოსწავლეები სარგებლობენ კემბრიჯზე მორგებული პროგრამებით, ოფიციალური რესურსებითა და საერთაშორისოდ აღიარებული კვალიფიკაციის მკაფიო გზით.'
+          : 'Levels Academy is an official Cambridge English Educational Partner. This recognition confirms that our teaching standards, courses and learning environment meet the quality requirements set by Cambridge. Through the partnership our students benefit from Cambridge-aligned programmes, official resources and a clear pathway to internationally recognised Cambridge English Qualifications.'}
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">{locale === 'ka' ? 'ერთი აკადემია. მრავალი მიმართულება.' : 'One Academy. Many Directions.'}</h2>
+    <ul class="grid grid--4 pillars">
+      {pillars.map((pillar) => (
+        <li>
+          <a class="card pillar" href={localePath(pillar.slug, locale)}>
+            <h3>{pillar.label[locale]}</h3>
+            <span class="pillar__more">{t('cta.learnMore')} →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section-title">{locale === 'ka' ? 'ჩვენი ფილიალები' : 'Our branches'}</h2>
+      <ul class="grid grid--2 branches">
+        {branches.map((branch) => (
+          <li class="card">
+            <h3>{branch.name[locale]}</h3>
+            <address>{branch.street[locale]}, {branch.locality[locale]}</address>
+            <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="section-foot">
+        <a class="btn btn--secondary" href={localePath('team', locale)}>
+          {locale === 'ka' ? 'გაიცანი ჩვენი გუნდი' : 'Meet the team'}
+        </a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .about-hero__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    max-width: 68ch;
+    margin-block-start: 1rem;
+  }
+
+  .stats, .pillars, .branches { list-style: none; padding: 0; margin: 0; }
+  .stat { text-align: center; }
+  .stat__value {
+    font-size: var(--step-3);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat__label { font-size: var(--step--1); margin-block-start: 0.35rem; }
+
+  .section-title { margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem); }
+
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .pillar h3 { font-size: var(--step-1); }
+  .pillar__more { margin-block-start: auto; font-weight: 600; color: var(--navy); }
+
+  .branches address { font-style: normal; color: var(--ink-muted); margin-block: 0.5rem; }
+  .section-foot { margin-block-start: 1.75rem; }
+  .cambridge h2 { margin-block-end: 1rem; }
+</style>

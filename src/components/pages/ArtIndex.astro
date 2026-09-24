@@ -1,0 +1,118 @@
+---
+import Base from '../../layouts/Base.astro';
+import CourseCard from '../CourseCard.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { artCourses, artHighlights, artPartners } from '../../data/art';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, courseListSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const title = locale === 'ka' ? 'ხელოვნების აკადემია' : 'Art Academy';
+const description =
+  locale === 'ka'
+    ? 'ხატვისა და ფერწერის კურსები თბილისში 5 წლიდან: მოქმედი ხელოვანები, ინტერაქტიული გაკვეთილები, ყოველწლიური გამოფენა და ოფიციალური სერტიფიკატი. პორტფოლიოს მომზადება საზღვარგარეთ სასწავლებლად.'
+    : 'Drawing and painting courses in Tbilisi from age 5: taught by practising artists, with interactive lessons, an annual exhibition and an official certificate. Portfolio preparation for studying art abroad.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('art', locale) },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  courseListSchema(
+    artCourses
+      .filter((c) => c.slug !== 'contemporary-art')
+      .map((course) => ({ course, path: localePath(course.slug, locale) })),
+    locale
+  ),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug="art" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="art-hero">
+    <div class="container">
+      <p class="eyebrow">Levels Art Academy</p>
+      <h1>{title}</h1>
+      <p class="art-hero__lede">
+        {locale === 'ka'
+          ? 'ხატვა და ფერწერა მოქმედ ხელოვანებთან ერთად — კომპოზიციიდან და პერსპექტივიდან საკუთარ სტილამდე, დასკვნითი გამოფენითა და სერტიფიკატით.'
+          : 'Drawing and painting with practising artists — from composition and perspective through to a style of your own, ending in an exhibition and a certificate.'}
+      </p>
+    </div>
+  </header>
+
+  <section class="section container">
+    <h2 class="visually-hidden">{locale === 'ka' ? 'კურსები' : 'Courses'}</h2>
+    <div class="grid grid--3">
+      {artCourses.map((course) => (
+        <CourseCard
+          course={course}
+          locale={locale}
+          href={course.slug === 'contemporary-art' ? null : undefined}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section-title">{locale === 'ka' ? 'რატომ Levels Art' : 'Why Levels Art'}</h2>
+      <ul class="grid grid--4 highlights">
+        {artHighlights.map((highlight) => (
+          <li class="card">
+            <h3>{highlight.title[locale]}</h3>
+            <p class="muted">{highlight.body[locale]}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="partners card">
+      <h2>{locale === 'ka' ? 'პარტნიორი უნივერსიტეტები' : 'Partner universities'}</h2>
+      <p class="muted">
+        {locale === 'ka'
+          ? 'პორტფოლიოს კურსის მონაწილეები უფასო მხარდაჭერას იღებენ ამ უნივერსიტეტებში ჩაბარებისას:'
+          : 'Students on the portfolio course get free admission support for applications to:'}
+      </p>
+      <ul>
+        {artPartners.map((partner) => <li>{partner}</li>)}
+      </ul>
+      <a class="btn btn--secondary" href={localePath('portfolio-creation', locale)}>
+        {t('cta.learnMore')}
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .art-hero {
+    background: linear-gradient(135deg, #2a1f3d 0%, var(--navy) 100%);
+    color: #fff;
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+  }
+  .art-hero h1 { color: #fff; margin-block: 0.5rem 1rem; }
+  .art-hero .eyebrow { color: var(--gold); }
+  .art-hero__lede { color: #d5dce6; font-size: var(--step-1); max-width: 60ch; }
+
+  .section-title { margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem); }
+  .highlights { list-style: none; padding: 0; margin: 0; }
+  .highlights h3 { font-size: var(--step-1); margin-block-end: 0.5rem; }
+
+  .partners ul {
+    margin-block: 1rem 1.5rem;
+    padding-inline-start: 1.25rem;
+  }
+  .partners li + li { margin-block-start: 0.35rem; }
+</style>

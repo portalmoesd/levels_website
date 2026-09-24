@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import EnquiryForm from '../EnquiryForm.astro';
+import { courses } from '../../data/courses';
+import { artCourses } from '../../data/art';
+import { summerSchools } from '../../data/summer';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+/**
+ * The Wix site had five separate enrollment pages (english-enroll,
+ * art-academy-enroll, summer-school-enroll, corporate-enroll, enroll). They all
+ * collected the same fields, so they are consolidated into one form with a
+ * course selector; the old URLs redirect here. One form means one place to
+ * check submissions and one Lead event to optimise campaigns against.
+ */
+const options = [
+  {
+    label: locale === 'ka' ? 'ინგლისური' : 'English',
+    items: courses.map((c) => ({ value: c.slug, label: c.title[locale] })),
+  },
+  {
+    label: locale === 'ka' ? 'ხელოვნება' : 'Art',
+    items: artCourses.map((c) => ({
+      value: c.slug,
+      label: `${c.title[locale]} (${c.ageLabel[locale]})`,
+    })),
+  },
+  {
+    label: locale === 'ka' ? 'საზაფხულო სკოლები' : 'Summer Schools',
+    items: summerSchools.map((s) => ({
+      value: s.slug,
+      label: `${s.city[locale]} — ${s.institution[locale]}`,
+    })),
+  },
+];
+
+// Flattened for the select, with the group name kept in the label so the
+// option text stays meaningful.
+const courseOptions = options.flatMap((group) =>
+  group.items.map((item) => ({ value: item.value, label: `${group.label}: ${item.label}` }))
+);
+
+const title = locale === 'ka' ? 'რეგისტრაცია' : 'Enroll';
+const description =
+  locale === 'ka'
+    ? 'დარეგისტრირდი Levels Academy-ის კურსზე: ინგლისური, ხელოვნება, საზაფხულო სკოლები ან კორპორაციული ტრენინგი.'
+    : 'Enroll on a Levels Academy course: English, art, summer schools or corporate training. Tell us what you are interested in and we will be in touch.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('enroll', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="enroll" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container enroll">
+    <h1>{title}</h1>
+    <p class="enroll__lede">
+      {locale === 'ka'
+        ? 'შეავსე ფორმა და ჩვენი გუნდი დაგიკავშირდება დონის განსაზღვრისა და ჯგუფში ჩარიცხვისთვის.'
+        : 'Fill in the form and our team will contact you to arrange a placement test and find the right group.'}
+    </p>
+    <EnquiryForm locale={locale} formName="enroll" courseOptions={courseOptions} />
+  </div>
+</Base>
+
+<style>
+  .enroll { max-width: 46rem; }
+  .enroll__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    margin-block: 1rem 2rem;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { useTranslations, localePath } from '../i18n/utils';
+
+// GitHub Pages serves this file for any unmatched path, including Georgian
+// ones, so it is English with a link to both homepages.
+const t = useTranslations('en');
+---
+
+<Base title={t('error.404.title')} description={t('error.404.body')} slug="404" locale="en" noindex>
+  <div class="section container notfound">
+    <p class="notfound__code">404</p>
+    <h1>{t('error.404.title')}</h1>
+    <p class="notfound__body">{t('error.404.body')}</p>
+    <div class="notfound__actions">
+      <a class="btn btn--primary" href={localePath('', 'en')}>{t('error.backHome')}</a>
+      <a class="btn btn--ghost" href={localePath('', 'ka')} lang="ka-GE">ქართული</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .notfound { max-width: 34rem; text-align: center; margin-inline: auto; }
+  .notfound__code {
+    font-size: var(--step-4);
+    font-weight: 800;
+    color: var(--line);
+    line-height: 1;
+  }
+  .notfound__body { color: var(--ink-muted); margin-block: 1rem 2rem; }
+  .notfound__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+</style>

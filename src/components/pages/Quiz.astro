@@ -1,0 +1,249 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { quizQuestions, levelDescriptions, levelRecommendation, LEVEL_ORDER } from '../../data/quiz';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'ka' ? 'ინგლისურის დონის უფასო ტესტი' : 'Free English Level Quiz';
+const description =
+  locale === 'ka'
+    ? 'გაიარე უფასო ტესტი, გაიგე შენი ინგლისურის დონე (A1–C1) და აღმოაჩინე შენთვის შესაფერისი კურსი.'
+    : 'Take our free English quiz to find your level from A1 to C1 and discover which course is right for you. 20 questions, about five minutes.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('placement-quiz', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+
+// The scoring table is handed to the client as JSON so the answers are not
+// sitting in readable markup next to each question.
+const scoring = {
+  answers: Object.fromEntries(quizQuestions.map((q) => [q.id, q.answer])),
+  levels: Object.fromEntries(quizQuestions.map((q) => [q.id, q.level])),
+  order: LEVEL_ORDER,
+  descriptions: Object.fromEntries(
+    LEVEL_ORDER.map((level) => [level, levelDescriptions[level][locale]])
+  ),
+  recommendations: Object.fromEntries(
+    LEVEL_ORDER.map((level) => [
+      level,
+      {
+        label: levelRecommendation[level].label[locale],
+        href: localePath(levelRecommendation[level].slug, locale),
+      },
+    ])
+  ),
+  enrollHref: localePath('enroll', locale),
+};
+---
+
+<Base title={title} description={description} slug="placement-quiz" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container quiz">
+    <h1>{title}</h1>
+    <p class="quiz__lede">
+      {locale === 'ka'
+        ? '20 კითხვა, დაახლოებით 5 წუთი. შედეგს მაშინვე ნახავ — რეგისტრაცია არ არის საჭირო.'
+        : '20 questions, about five minutes. You get your result immediately — no sign-up needed.'}
+    </p>
+
+    <form id="quiz-form">
+      <ol class="quiz__list">
+        {
+          quizQuestions.map((question, index) => (
+            <li class="quiz__item">
+              <fieldset>
+                <legend>
+                  <span class="quiz__number">{index + 1}.</span> {question.prompt}
+                </legend>
+                <div class="quiz__options">
+                  {question.options.map((option, optionIndex) => (
+                    <label class="quiz__option">
+                      <input type="radio" name={question.id} value={optionIndex} />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="quiz__unanswered" id="quiz-unanswered" role="alert" hidden></p>
+      <button class="btn btn--primary" type="submit">
+        {locale === 'ka' ? 'შედეგის ნახვა' : 'See my result'}
+      </button>
+    </form>
+
+    <div class="quiz__result" id="quiz-result" role="status" aria-live="polite" hidden></div>
+  </div>
+
+  <script type="application/json" id="quiz-scoring" is:inline set:html={JSON.stringify(scoring)} />
+
+  <script>
+    import { trackEvent } from '../../lib/analytics';
+
+    interface Scoring {
+      answers: Record<string, number>;
+      levels: Record<string, string>;
+      order: string[];
+      descriptions: Record<string, string>;
+      recommendations: Record<string, { label: string; href: string }>;
+      enrollHref: string;
+    }
+
+    const raw = document.getElementById('quiz-scoring')?.textContent;
+    const form = document.getElementById('quiz-form') as HTMLFormElement | null;
+    const result = document.getElementById('quiz-result');
+    const warning = document.getElementById('quiz-unanswered');
+
+    const isKa = document.documentElement.lang.startsWith('ka');
+
+    if (raw && form && result) {
+      const scoring: Scoring = JSON.parse(raw);
+      const ids = Object.keys(scoring.answers);
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+
+        const unanswered = ids.filter((id) => data.get(id) === null);
+        if (unanswered.length > 0 && warning) {
+          warning.hidden = false;
+          warning.textContent = isKa
+            ? `გთხოვ უპასუხო ყველა კითხვას (დარჩა ${unanswered.length}).`
+            : `Please answer every question — ${unanswered.length} left.`;
+          form.querySelector<HTMLElement>(`[name="${unanswered[0]}"]`)?.focus();
+          return;
+        }
+        if (warning) warning.hidden = true;
+
+        // Count correct answers per level, then take the highest level the
+        // learner passed. A simple total would let a lucky guess at C1
+        // outweigh consistent B1 work.
+        const perLevel: Record<string, { correct: number; total: number }> = {};
+        for (const id of ids) {
+          const level = scoring.levels[id];
+          perLevel[level] ??= { correct: 0, total: 0 };
+          perLevel[level].total += 1;
+          if (Number(data.get(id)) === scoring.answers[id]) perLevel[level].correct += 1;
+        }
+
+        let level = scoring.order[0];
+        for (const candidate of scoring.order) {
+          const band = perLevel[candidate];
+          if (band && band.correct / band.total >= 0.6) level = candidate;
+          else break;
+        }
+
+        const total = Object.values(perLevel).reduce((sum, b) => sum + b.correct, 0);
+        const recommendation = scoring.recommendations[level];
+
+        result.hidden = false;
+        result.innerHTML = `
+          <div class="quiz__card">
+            <p class="quiz__level-label">${isKa ? 'შენი დონე' : 'Your level'}</p>
+            <p class="quiz__level">${level}</p>
+            <p class="quiz__score">${total} / ${ids.length}</p>
+            <p class="quiz__description">${scoring.descriptions[level]}</p>
+            <p class="quiz__recommend">
+              ${isKa ? 'რეკომენდებული კურსი:' : 'Recommended course:'}
+              <a href="${recommendation.href}">${recommendation.label}</a>
+            </p>
+            <a class="btn btn--primary" href="${scoring.enrollHref}">
+              ${isKa ? 'რეგისტრაცია' : 'Enroll'}
+            </a>
+          </div>`;
+        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Completing the quiz is a strong intent signal, so it is worth an
+        // event of its own for campaign optimisation.
+        trackEvent('CompleteRegistration', {
+          content_name: 'placement-quiz',
+          content_category: level,
+          value: total,
+          currency: 'GEL',
+        });
+      });
+    }
+  </script>
+</Base>
+
+<style>
+  .quiz { max-width: 44rem; }
+  .quiz__lede { color: var(--ink-muted); margin-block: 1rem 2.5rem; }
+
+  .quiz__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.75rem; }
+  .quiz__item fieldset { border: 0; padding: 0; margin: 0; }
+  .quiz__item legend {
+    font-weight: 600;
+    margin-block-end: 0.75rem;
+    padding: 0;
+  }
+  .quiz__number { color: var(--navy-300); }
+
+  .quiz__options {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  }
+  .quiz__option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .quiz__option:hover { border-color: var(--navy-300); background: var(--surface-alt); }
+  .quiz__option:has(input:checked) {
+    border-color: var(--navy);
+    background: rgb(15 45 74 / 6%);
+    font-weight: 600;
+  }
+
+  .quiz__unanswered { color: var(--danger); font-weight: 500; margin-block-end: 1rem; }
+  form button[type='submit'] { margin-block-start: 2rem; }
+
+  .quiz__result { margin-block-start: 2.5rem; }
+</style>
+
+<style is:global>
+  /* Written into the page by the result script, so it cannot be scoped. */
+  .quiz__card {
+    border: 1px solid var(--line);
+    border-inline-start: 4px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .quiz__level-label {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+  .quiz__level {
+    font-size: var(--step-4);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .quiz__score { color: var(--ink-muted); font-size: var(--step--1); }
+  .quiz__description { margin-block: 1rem; max-width: 44ch; margin-inline: auto; }
+  .quiz__recommend { margin-block-end: 1.5rem; font-weight: 600; }
+</style>

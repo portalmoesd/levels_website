@@ -1,0 +1,139 @@
+---
+import Base from '../../layouts/Base.astro';
+import CourseCard from '../CourseCard.astro';
+import QuizCta from '../QuizCta.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { courses, corporateTracks } from '../../data/courses';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, courseListSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const groups = [
+  {
+    id: 'children' as const,
+    heading: t('group.children'),
+    age: { en: 'Ages 6–10', ka: 'ასაკი 6–10' },
+  },
+  {
+    id: 'teenagers' as const,
+    heading: t('group.teenagers'),
+    age: { en: 'Ages 11–17', ka: 'ასაკი 11–17' },
+  },
+  {
+    id: 'adults' as const,
+    heading: t('group.adults'),
+    age: { en: 'Ages 18+', ka: 'ასაკი 18+' },
+  },
+];
+
+const title = locale === 'ka' ? 'ინგლისური ენის კურსები' : 'English Language Courses';
+const description =
+  locale === 'ka'
+    ? 'ინგლისურის კურსები ბავშვებისთვის, მოზარდებისთვის და ზრდასრულებისთვის თბილისში: საკვირაო და საშაბათო სკოლა, ზოგადი ინგლისური, IELTS, FCE/PET/CAE, პროფესიული და კორპორაციული კურსები.'
+    : 'English courses in Tbilisi for children, teenagers and adults: Sunday and Saturday School, General English, IELTS, Cambridge FCE/PET/CAE, Professional and Corporate English. Cambridge English Educational Partner.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('english', locale) },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  courseListSchema(
+    courses.map((course) => ({ course, path: localePath(course.slug, locale) })),
+    locale
+  ),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug="english" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="page-hero">
+    <div class="container">
+      <h1>{title}</h1>
+      <p class="page-hero__lede">
+        {locale === 'ka'
+          ? 'კემბრიჯის მეთოდოლოგია, მცირე ჯგუფები და ქართველ და მშობლიურენოვან პედაგოგთა გუნდი — დამწყებიდან გამოცდისთვის მზადყოფნამდე.'
+          : 'Cambridge methodology, small groups, and a teaching team of Georgian and native-speaker instructors — from beginner through to exam-ready.'}
+      </p>
+      <p class="cambridge-line">{t('cambridge.partner')}</p>
+    </div>
+  </header>
+
+  {
+    groups.map((group) => {
+      const list = courses.filter((c) => c.audiences.includes(group.id));
+      return (
+        <section class="section container">
+          <header class="section-head">
+            <h2>{group.heading}</h2>
+            <p class="eyebrow">{group.age[locale]}</p>
+          </header>
+          <div class="grid grid--4">
+            {list.map((course) => <CourseCard course={course} locale={locale} />)}
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section-head">
+        <h2>{t('group.corporate')}</h2>
+        <p class="eyebrow">{t('group.forCompanies')}</p>
+      </header>
+      <ul class="grid grid--4 tracks">
+        {corporateTracks.map((track) => (
+          <li class="card"><h3>{track[locale]}</h3><p class="muted">{t('course.tailored')}</p></li>
+        ))}
+      </ul>
+      <p class="section-foot">
+        <a class="btn btn--secondary" href={localePath('corporate-english', locale)}>
+          {t('cta.learnMore')}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <QuizCta locale={locale} />
+</Base>
+
+<style>
+  .page-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .page-hero__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    max-width: 60ch;
+    margin-block-start: 1rem;
+  }
+  .cambridge-line {
+    margin-block-start: 1.25rem;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: var(--step--1);
+  }
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem);
+  }
+  .tracks { list-style: none; padding: 0; margin: 0; }
+  .tracks h3 { font-size: var(--step-0); }
+  .section-foot { margin-block-start: 1.75rem; }
+</style>

@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import team from '../../data/team.json';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+import { SITE_URL } from '../../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'ka' ? 'ჩვენი გუნდი' : 'Our Team';
+const description =
+  locale === 'ka'
+    ? 'გაიცანი Levels Academy-ის გუნდი: კემბრიჯის CELTA-სერტიფიცირებული ქართველი და უცხოელი პედაგოგები და ხელოვნების აკადემიის მასწავლებლები.'
+    : 'Meet the Levels Academy team: Cambridge CELTA-certified Georgian and international English teachers, and our Art Academy instructors.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: locale === 'ka' ? 'ჩვენ შესახებ' : 'About', path: localePath('about', locale) },
+  { name: title, path: localePath('team', locale) },
+];
+
+// Each member is marked up as a Person employed by the academy, which helps
+// Google associate named staff with the business.
+const people = team.map((person) => ({
+  '@type': 'Person',
+  name: person.name[locale] || person.name.en,
+  jobTitle: person.role[locale] || person.role.en,
+  description: person.bio[locale] || person.bio.en,
+  worksFor: { '@id': `${SITE_URL}/#organization` },
+}));
+
+const jsonLd = graph([organizationSchema(locale), ...people, breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="team" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="team-hero">
+    <div class="container">
+      <h1>{title}</h1>
+      <p class="team-hero__lede">
+        {locale === 'ka'
+          ? 'ჩვენი პედაგოგები კემბრიჯის CELTA სერტიფიკატის მქონე ქართველი და უცხოელი სპეციალისტები არიან, ხელოვნების კურსებს კი მოქმედი ხელოვანები უძღვებიან.'
+          : 'Our English teachers are Cambridge CELTA-certified Georgian and international instructors; our art courses are led by practising, exhibiting artists.'}
+      </p>
+    </div>
+  </header>
+
+  <section class="section container">
+    <ul class="grid grid--3 team-list">
+      {team.map((person) => (
+        <li class="card person">
+          <p class="eyebrow">{person.role[locale] || person.role.en}</p>
+          <h2 class="person__name">{person.name[locale] || person.name.en}</h2>
+          <p class="muted">{person.bio[locale] || person.bio.en}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .team-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .team-hero__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    max-width: 62ch;
+    margin-block-start: 1rem;
+  }
+  .team-list { list-style: none; padding: 0; margin: 0; }
+  .person { display: flex; flex-direction: column; gap: 0.5rem; height: 100%; }
+  .person__name { font-size: var(--step-1); }
+</style>

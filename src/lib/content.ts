@@ -22,7 +22,7 @@ export interface PageContent {
   sections: PageSection[];
 }
 
-const modules = import.meta.glob<PageContent>('../content/pages/*.json', {
+const modules = import.meta.glob<PageContent>('../page-copy/*.json', {
   eager: true,
   import: 'default',
 });

@@ -1,0 +1,125 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import EnquiryForm from '../EnquiryForm.astro';
+import { site, branches, social } from '../../data/site';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, branchSchemas, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const title = locale === 'ka' ? 'დაგვიკავშირდით' : 'Contact us';
+const description =
+  locale === 'ka'
+    ? 'დაგვირეკე, მოგვწერე ან ეწვიე ჩვენს ფილიალებს ვაკესა და კრწანისში. ტელეფონი 032 2 18 06 05, ელ. ფოსტა info@levels.ge.'
+    : 'Call, email or visit our Vake and Krtsanisi branches in Tbilisi. Phone 032 2 18 06 05, email info@levels.ge.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('contact', locale) },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  ...branchSchemas(locale),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug="contact" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <header class="contact-hero">
+    <div class="container">
+      <h1>{title}</h1>
+      <p class="contact-hero__lede">
+        {locale === 'ka'
+          ? 'გვაქვს ორი ფილიალი თბილისში. დაგვირეკე, მოგვწერე ან შეავსე ფორმა — დაგიკავშირდებით უმოკლეს ვადაში.'
+          : 'We have two branches in Tbilisi. Call, email, or send us a message and we will get back to you shortly.'}
+      </p>
+    </div>
+  </header>
+
+  <div class="section container contact-grid">
+    <div>
+      <h2>{locale === 'ka' ? 'მოგვწერე' : 'Send us a message'}</h2>
+      <EnquiryForm locale={locale} formName="contact" />
+    </div>
+
+    <aside class="contact-details">
+      <h2>{locale === 'ka' ? 'საკონტაქტო ინფორმაცია' : 'Get in touch'}</h2>
+
+      <dl class="contact-list">
+        <div>
+          <dt>{locale === 'ka' ? 'ტელეფონი' : 'Phone'}</dt>
+          <dd><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></dd>
+        </div>
+        <div>
+          <dt>{locale === 'ka' ? 'ელ. ფოსტა' : 'Email'}</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+        </div>
+        <div>
+          <dt>WhatsApp</dt>
+          <dd><a href={social.whatsapp} rel="noopener noreferrer" target="_blank">{site.phoneDisplay}</a></dd>
+        </div>
+      </dl>
+
+      <h3>{locale === 'ka' ? 'ფილიალები' : 'Branches'}</h3>
+      <ul class="branches">
+        {branches.map((branch) => (
+          <li>
+            <strong>{branch.name[locale]}</strong>
+            <address>{branch.street[locale]}, {branch.locality[locale]}</address>
+          </li>
+        ))}
+      </ul>
+
+      <p class="work-with-us">
+        <a class="btn btn--ghost" href={localePath('work-with-us', locale)}>
+          {t('footer.workWithUs')}
+        </a>
+      </p>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .contact-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .contact-hero__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    max-width: 58ch;
+    margin-block-start: 1rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .contact-grid h2 { font-size: var(--step-2); margin-block-end: 1.25rem; }
+
+  .contact-list { display: grid; gap: 0.75rem; margin: 0 0 2rem; }
+  .contact-list div { display: grid; gap: 0.15rem; }
+  .contact-list dt { font-size: var(--step--1); color: var(--ink-muted); }
+  .contact-list dd { margin: 0; font-weight: 600; }
+
+  .contact-details h3 { font-size: var(--step-1); margin-block-end: 0.85rem; }
+  .branches { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .branches address { font-style: normal; color: var(--ink-muted); }
+  .work-with-us { margin-block-start: 2rem; }
+
+  @media (max-width: 52rem) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

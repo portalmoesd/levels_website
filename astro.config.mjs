@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { SITE_URL } from './src/data/site';
+import { localisedRedirects } from './src/data/redirects';
 
 export default defineConfig({
   site: SITE_URL,
@@ -21,6 +22,21 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  /*
+   * Redirects from the old Wix URLs.
+   *
+   * GitHub Pages cannot issue a real 301, so Astro emits a small HTML page per
+   * old URL carrying a meta refresh and a canonical link to the destination.
+   * Google follows these and passes ranking signals, though more slowly than a
+   * true 301 — if the site is ever put behind Cloudflare, move these to real
+   * 301s at the edge. See docs/deployment.md.
+   */
+  redirects: Object.fromEntries(
+    localisedRedirects
+      .filter((r) => r.to)
+      .map((r) => [r.from, { status: 301, destination: r.to }])
+  ),
+
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'en', locales: { en: 'en', ka: 'ka-GE' } },

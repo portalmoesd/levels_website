@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import EnquiryForm from '../EnquiryForm.astro';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'ka' ? 'კორპორაციული კონსულტაცია' : 'Corporate consultation';
+const description =
+  locale === 'ka'
+    ? 'დაჯავშნე კონსულტაცია კორპორაციული ინგლისურის პროგრამაზე — თქვენს გუნდზე მორგებული სილაბუსი, განრიგი და ფორმატი.'
+    : 'Book a consultation for corporate English training — a syllabus, schedule and format built around your team.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: locale === 'ka' ? 'კორპორაციული' : 'Corporate', path: localePath('corporate-english', locale) },
+  { name: title, path: localePath('corporate-enroll', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="corporate-enroll" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container corporate">
+    <h1>{title}</h1>
+    <p class="corporate__lede">
+      {locale === 'ka'
+        ? 'მოგვწერეთ თქვენი გუნდის შესახებ და ჩვენ მოვამზადებთ წინადადებას: დონის ტესტირება, სილაბუსი, განრიგი და ყოველთვიური ანგარიშები.'
+        : 'Tell us about your team and we will put together a proposal: placement testing, syllabus, schedule and monthly progress reports.'}
+    </p>
+    <EnquiryForm locale={locale} formName="corporate" withCompany />
+  </div>
+</Base>
+
+<style>
+  .corporate { max-width: 46rem; }
+  .corporate__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    margin-block: 1rem 2rem;
+  }
+</style>

@@ -1,6 +1,6 @@
 /**
  * Merges the per-locale extractions in content/raw into bilingual page files
- * under src/content/pages, segmented into sections.
+ * under src/page-copy, segmented into sections.
  *
  * Course pages on the Wix site all follow the same shape: a header block
  * (kicker, title, duration/lesson/price meta, sometimes the Cambridge badge)
@@ -18,7 +18,7 @@ import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const RAW = path.resolve('content/raw');
-const OUT = path.resolve('src/content/pages');
+const OUT = path.resolve('src/page-copy');
 
 /**
  * Section headings, keyed by a stable id. Several English variants map to one

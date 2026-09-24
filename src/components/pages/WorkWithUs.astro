@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import EnquiryForm from '../EnquiryForm.astro';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'ka' ? 'შემოუერთდი ჩვენს გუნდს' : 'Work with us';
+const description =
+  locale === 'ka'
+    ? 'გახდი Levels Academy-ის გუნდის წევრი. გამოგვიგზავნე CV და მოგვწერე შენ შესახებ.'
+    : 'Join the Levels Academy team in Tbilisi. Send us your CV and tell us about yourself.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: locale === 'ka' ? 'კონტაქტი' : 'Contact', path: localePath('contact', locale) },
+  { name: title, path: localePath('work-with-us', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="work-with-us" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container careers">
+    <h1>{title}</h1>
+    <p class="careers__lede">
+      {locale === 'ka'
+        ? 'გვიყვარს გამოცდილ და მოტივირებულ პედაგოგებთან მუშაობა. შეავსე ფორმა და ატვირთე CV — დაგიკავშირდებით.'
+        : 'We are always glad to hear from experienced, motivated teachers. Fill in the form and attach your CV, and we will be in touch.'}
+    </p>
+    <EnquiryForm locale={locale} formName="careers" withResume withBirthday />
+  </div>
+</Base>
+
+<style>
+  .careers { max-width: 46rem; }
+  .careers__lede {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    margin-block: 1rem 2rem;
+  }
+</style>

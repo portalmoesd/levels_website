@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import { site } from '../../data/site';
+import { getPage } from '../../lib/content';
+import { localePath, type Locale } from '../../i18n/utils';
+import { graph, organizationSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+/**
+ * The policy text is carried over verbatim from the Wix page — it is a legal
+ * document, so it is reproduced rather than rewritten. Numbered clause headings
+ * ("1) Who we are") are detected and rendered as headings.
+ */
+const page = getPage('privacy-policy');
+const blocks = page ? (page.header[locale].length ? page.header[locale] : page.header.en) : [];
+const isHeading = (block: string) => /^\d+\)\s/.test(block) || /^Last updated/i.test(block);
+
+const title = locale === 'ka' ? 'კონფიდენციალურობის პოლიტიკა' : 'Privacy Policy';
+const description =
+  locale === 'ka'
+    ? 'როგორ ვაგროვებთ, ვიყენებთ და ვინახავთ პერსონალურ ინფორმაციას Levels Academy-ში.'
+    : 'How Levels Academy collects, uses, stores and shares personal information.';
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: title, path: localePath('privacy-policy', locale) },
+];
+
+const jsonLd = graph([organizationSchema(locale), breadcrumbSchema(trail)]);
+---
+
+<Base title={title} description={description} slug="privacy-policy" locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <div class="section container policy">
+    <h1>{title}</h1>
+    <div class="prose">
+      {
+        blocks
+          .filter((block) => block !== title && !/^Privacy Policy/i.test(block))
+          .map((block) =>
+            isHeading(block) ? <h2>{block}</h2> : <p>{block}</p>
+          )
+      }
+    </div>
+    <p class="policy__contact">
+      {locale === 'ka' ? 'კითხვების შემთხვევაში: ' : 'Questions about this policy: '}
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .policy { max-width: 48rem; }
+  .policy h1 { margin-block-end: 1.5rem; }
+  .policy h2 {
+    font-size: var(--step-1);
+    margin-block-start: 2rem;
+  }
+  .policy__contact { margin-block-start: 2.5rem; font-weight: 500; }
+</style>
