@@ -9,11 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "test:e2e": "node test/e2e.mjs"
   },
   "dependencies": {
-    "astro": "^5.6.1",
     "@astrojs/sitemap": "^3.3.0",
+    "astro": "^5.6.1",
     "sharp": "^0.34.1"
   },
   "devDependencies": {

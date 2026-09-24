@@ -2,17 +2,21 @@
 /**
  * Meta Pixel.
  *
- * Loads the pixel and fires PageView. Other events are sent through
+ * Loads the pixel and fires PageView. Every event goes through
  * `src/lib/analytics.ts`, which generates an event ID and mirrors the event to
- * the Conversions API so the browser and server copies of the same event are
- * deduplicated by Meta rather than double-counted.
+ * the Conversions API, so the browser and server copies are deduplicated by
+ * Meta rather than double-counted.
  *
- * The pixel ID is a public value (it ships in the page either way), so it is a
+ * The pixel ID is public — it ships in the page either way — so it is a
  * PUBLIC_ env var read at build time. The CAPI access token is a secret and
- * lives only on the server — never here.
+ * lives only on the server, never here.
  *
  * With no PUBLIC_META_PIXEL_ID set, nothing is emitted at all, so local builds
- * and previews do not pollute the production dataset.
+ * and previews never write to the production dataset.
+ *
+ * The stub below is Meta's standard snippet written out longhand rather than
+ * pasted minified. Astro emits <script> contents as raw text, so the minified
+ * version's braces cannot be escaped and this is clearer to audit anyway.
  */
 const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 const apiBase = import.meta.env.PUBLIC_API_BASE ?? '';
@@ -21,49 +25,35 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? '';
 {
   pixelId && (
     <>
-      <script
-        is:inline
-        define:vars={{ pixelId, apiBase }}
-        type="text/javascript"
-      >
-        {`
+      <script is:inline define:vars={{ pixelId, apiBase }}>
         window.__META_PIXEL_ID = pixelId;
         window.__API_BASE = apiBase;
 
-        // Standard Meta Pixel bootstrap.
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-        t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
+        // Meta's queueing stub: collects fbq() calls made before fbevents.js
+        // has finished loading, then replays them once it has.
+        if (!window.fbq) {
+          const queue = function () {
+            queue.callMethod
+              ? queue.callMethod.apply(queue, arguments)
+              : queue.queue.push(arguments);
+          };
+          queue.push = queue;
+          queue.loaded = true;
+          queue.version = '2.0';
+          queue.queue = [];
 
-        fbq('init', pixelId);
+          window.fbq = queue;
+          window._fbq = window._fbq || queue;
 
-        // PageView carries an event ID so the server copy can be deduplicated.
-        var pvId = (crypto.randomUUID ? crypto.randomUUID()
-          : String(Date.now()) + Math.random().toString(16).slice(2));
-        fbq('track', 'PageView', {}, { eventID: pvId });
-
-        if (apiBase) {
-          // Mirrored server-side. Fire-and-forget: a tracking failure must
-          // never surface to the visitor or block the page.
-          try {
-            fetch(apiBase + '/api/meta/event', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              credentials: 'include',
-              keepalive: true,
-              body: JSON.stringify({
-                eventName: 'PageView',
-                eventId: pvId,
-                eventSourceUrl: window.location.href,
-              }),
-            }).catch(function () {});
-          } catch (e) {}
+          const tag = document.createElement('script');
+          tag.async = true;
+          tag.src = 'https://connect.facebook.net/en_US/fbevents.js';
+          document.head.appendChild(tag);
         }
-        `}
+
+        window.fbq('init', pixelId);
       </script>
+
       <noscript>
         <img
           height="1"
@@ -76,3 +66,17 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? '';
     </>
   )
 }
+
+{/*
+  PageView is fired from the bundled module rather than inline so it shares the
+  event-ID logic in lib/analytics.ts with every other event. Firing it inline
+  with its own ad-hoc ID risks the browser and server copies disagreeing, which
+  is exactly what deduplication depends on.
+*/}
+<script>
+  import { trackEvent } from '../lib/analytics';
+
+  if (window.__META_PIXEL_ID) {
+    trackEvent('PageView');
+  }
+</script>

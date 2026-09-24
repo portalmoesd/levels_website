@@ -237,14 +237,24 @@ const jsonLd = graph([
     color: #fff;
     padding-block: clamp(3.5rem, 2rem + 8vw, 8rem);
   }
-  .hero__inner { max-width: 54ch; }
-  .hero h1 { color: #fff; margin-block: 0.75rem 1rem; }
+  /*
+   * The hero text is constrained on the children rather than on .hero__inner
+   * itself: .hero__inner is a .container, and narrowing it would either centre
+   * the block (so it stops lining up with the nav) or, if the auto margin is
+   * removed, drop the page gutter entirely on narrow screens.
+   */
+  /*
+   * Constrained on the heading itself rather than on .hero__inner, which is a
+   * .container: narrowing that would centre the block away from the nav, and
+   * zeroing its auto margin would drop the page gutter on narrow screens.
+   */
+  .hero h1 { color: #fff; margin-block: 0.75rem 1rem; max-width: 16ch; }
   .hero__kicker {
     font-size: var(--step--1);
     font-weight: 600;
     color: var(--gold);
   }
-  .hero__lede { color: #cfdded; font-size: var(--step-1); }
+  .hero__lede { color: #cfdded; font-size: var(--step-1); max-width: 40ch; }
   .hero__actions {
     display: flex;
     flex-wrap: wrap;

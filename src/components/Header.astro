@@ -229,6 +229,16 @@ const here = localePath(slug, locale);
     .nav-toggle { display: block; }
     .brand { margin-inline-end: auto; }
   }
+
+  /*
+   * Below this width the quiz button and language pill crowd the menu toggle
+   * off the edge of the screen. Both already appear inside the mobile menu,
+   * so nothing is lost by dropping them from the bar.
+   */
+  @media (max-width: 30rem) {
+    .site-header__actions { display: none; }
+    .brand__name { font-size: var(--step--1); }
+  }
 </style>
 
 <script>

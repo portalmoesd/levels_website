@@ -37,7 +37,11 @@ const allowedOrigins = new Set(
     'https://www.levels.ge',
     'https://levels.ge',
     ...(process.env.EXTRA_ORIGINS ?? '').split(',').map((o) => o.trim()).filter(Boolean),
-    ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:4321'] : []),
+    // Both spellings of the dev server origin: a browser treats
+    // http://localhost:4321 and http://127.0.0.1:4321 as different origins.
+    ...(process.env.NODE_ENV !== 'production'
+      ? ['http://localhost:4321', 'http://127.0.0.1:4321']
+      : []),
   ]
 );
 

@@ -32,9 +32,12 @@ export default defineConfig({
    * 301s at the edge. See docs/deployment.md.
    */
   redirects: Object.fromEntries(
-    localisedRedirects
-      .filter((r) => r.to)
-      .map((r) => [r.from, { status: 301, destination: r.to }])
+    // flatMap rather than filter+map so the destination narrows to a string —
+    // entries with no `to` are the draft pages, which are deliberately left to
+    // 404 rather than redirected anywhere.
+    localisedRedirects.flatMap((r) =>
+      r.to ? [[r.from, { status: 301, destination: r.to }]] : []
+    )
   ),
 
   integrations: [
