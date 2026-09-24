@@ -1,0 +1,13 @@
+{
+  "name": "Levels Academy",
+  "short_name": "Levels",
+  "description": "English and art courses in Tbilisi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f2d4a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

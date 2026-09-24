@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Lookup tool, not a landing page — its content depends entirely on the query
+# string, so there is nothing useful to index.
+Disallow: /verify
+Disallow: /ka/verify
+
+Sitemap: https://www.levels.ge/sitemap-index.xml
