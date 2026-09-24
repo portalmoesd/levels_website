@@ -1,0 +1,75 @@
+---
+import { site } from '../data/site';
+import type { Locale } from '../data/site';
+import { absoluteUrl, localePath, alternateLinks } from '../i18n/utils';
+
+interface Props {
+  /** Page title, without the brand suffix. */
+  title: string;
+  description: string;
+  /** Locale-independent slug ('' for the homepage) — drives canonical + hreflang. */
+  slug: string;
+  locale: Locale;
+  /** Social share image, relative to the site root. */
+  image?: string;
+  imageAlt?: string;
+  /** 'article' for blog-style pages; everything here is a website page. */
+  ogType?: 'website' | 'article';
+  /** Keeps a page out of search results (thank-you pages, the quiz result). */
+  noindex?: boolean;
+  /** Structured data, already serialised by lib/schema.ts `graph()`. */
+  jsonLd?: string;
+}
+
+const {
+  title,
+  description,
+  slug,
+  locale,
+  image = '/og-default.jpg',
+  imageAlt,
+  ogType = 'website',
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const canonical = absoluteUrl(localePath(slug, locale));
+const alternates = alternateLinks(slug);
+const ogImage = absoluteUrl(image);
+
+// Titles read "<page> | Levels Academy", except the homepage which already
+// carries the brand and would otherwise repeat it.
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const ogLocale = locale === 'ka' ? 'ka_GE' : 'en_US';
+const altOgLocale = locale === 'ka' ? 'en_US' : 'ka_GE';
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{noindex
+  ? <meta name="robots" content="noindex, follow" />
+  : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+
+<meta property="og:site_name" content={site.name} />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={altOgLocale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+
+{jsonLd && <script type="application/ld+json" is:inline set:html={jsonLd} />}

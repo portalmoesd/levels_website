@@ -1,0 +1,78 @@
+---
+/**
+ * Meta Pixel.
+ *
+ * Loads the pixel and fires PageView. Other events are sent through
+ * `src/lib/analytics.ts`, which generates an event ID and mirrors the event to
+ * the Conversions API so the browser and server copies of the same event are
+ * deduplicated by Meta rather than double-counted.
+ *
+ * The pixel ID is a public value (it ships in the page either way), so it is a
+ * PUBLIC_ env var read at build time. The CAPI access token is a secret and
+ * lives only on the server — never here.
+ *
+ * With no PUBLIC_META_PIXEL_ID set, nothing is emitted at all, so local builds
+ * and previews do not pollute the production dataset.
+ */
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+const apiBase = import.meta.env.PUBLIC_API_BASE ?? '';
+---
+
+{
+  pixelId && (
+    <>
+      <script
+        is:inline
+        define:vars={{ pixelId, apiBase }}
+        type="text/javascript"
+      >
+        {`
+        window.__META_PIXEL_ID = pixelId;
+        window.__API_BASE = apiBase;
+
+        // Standard Meta Pixel bootstrap.
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+        t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', pixelId);
+
+        // PageView carries an event ID so the server copy can be deduplicated.
+        var pvId = (crypto.randomUUID ? crypto.randomUUID()
+          : String(Date.now()) + Math.random().toString(16).slice(2));
+        fbq('track', 'PageView', {}, { eventID: pvId });
+
+        if (apiBase) {
+          // Mirrored server-side. Fire-and-forget: a tracking failure must
+          // never surface to the visitor or block the page.
+          try {
+            fetch(apiBase + '/api/meta/event', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              keepalive: true,
+              body: JSON.stringify({
+                eventName: 'PageView',
+                eventId: pvId,
+                eventSourceUrl: window.location.href,
+              }),
+            }).catch(function () {});
+          } catch (e) {}
+        }
+        `}
+      </script>
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style="display:none"
+          alt=""
+          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
+        />
+      </noscript>
+    </>
+  )
+}

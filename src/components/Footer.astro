@@ -1,0 +1,161 @@
+---
+import { site, branches, social } from '../data/site';
+import { useTranslations, localePath, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    heading: { en: 'Courses', ka: 'კურსები' },
+    links: [
+      { label: { en: 'English', ka: 'ინგლისური' }, slug: 'english' },
+      { label: { en: 'Art', ka: 'ხელოვნება' }, slug: 'art' },
+      { label: { en: 'Summer Schools', ka: 'საზაფხულო სკოლები' }, slug: 'summer-schools' },
+      { label: { en: 'Study Abroad', ka: 'სწავლა საზღვარგარეთ' }, slug: 'study-abroad' },
+      { label: { en: 'Corporate', ka: 'კორპორაციული' }, slug: 'corporate-english' },
+    ],
+  },
+  {
+    heading: { en: 'Academy', ka: 'აკადემია' },
+    links: [
+      { label: { en: 'About', ka: 'ჩვენ შესახებ' }, slug: 'about' },
+      { label: { en: 'Our Team', ka: 'ჩვენი გუნდი' }, slug: 'team' },
+      { label: { en: 'Contact', ka: 'კონტაქტი' }, slug: 'contact' },
+      { label: { en: 'Work with us', ka: 'შემოუერთდი ჩვენს გუნდს' }, slug: 'work-with-us' },
+      { label: { en: 'Verify a certificate', ka: 'სერტიფიკატის შემოწმება' }, slug: 'verify' },
+    ],
+  },
+] as const;
+
+// Only render the social row for profiles that have actually been configured.
+const socialLinks = (
+  [
+    ['Facebook', social.facebook],
+    ['Instagram', social.instagram],
+    ['LinkedIn', social.linkedin],
+    ['WhatsApp', social.whatsapp],
+  ] as const
+).filter(([, url]) => Boolean(url));
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">{site.name}</p>
+      <p class="muted">{t('cambridge.partner')}</p>
+
+      <address class="site-footer__contact">
+        {branches.map((b) => (
+          <span class="site-footer__branch">
+            <strong>{b.name[locale]}</strong> — {b.street[locale]}
+          </span>
+        ))}
+        <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </address>
+
+      {socialLinks.length > 0 && (
+        <ul class="site-footer__social">
+          {socialLinks.map(([name, url]) => (
+            <li>
+              <a href={url} rel="noopener noreferrer me" target="_blank">{name}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    {columns.map((column) => (
+      <nav class="site-footer__col" aria-label={column.heading[locale]}>
+        <h2 class="site-footer__heading">{column.heading[locale]}</h2>
+        <ul>
+          {column.links.map((link) => (
+            <li><a href={localePath(link.slug, locale)}>{link.label[locale]}</a></li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+  </div>
+
+  <div class="container site-footer__bar">
+    <p>© {year} {site.name}. {t('footer.rights')}</p>
+    <a href={localePath('privacy-policy', locale)}>{t('footer.privacy')}</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: var(--section-y);
+    background: var(--navy);
+    color: #dbe6f1;
+    padding-block-start: var(--section-y);
+  }
+
+  .site-footer a { color: #dbe6f1; text-decoration: none; }
+  .site-footer a:hover { color: var(--gold); text-decoration: underline; }
+  .site-footer .muted { color: #9db2c8; }
+
+  .site-footer__grid {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+    grid-template-columns: minmax(0, 2fr) repeat(auto-fit, minmax(10rem, 1fr));
+  }
+
+  .site-footer__name {
+    font-size: var(--step-1);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .site-footer__contact {
+    display: grid;
+    gap: 0.35rem;
+    margin-block-start: 1.25rem;
+    font-style: normal;
+    font-size: var(--step--1);
+  }
+  .site-footer__branch strong { color: #fff; }
+
+  .site-footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-block-start: 1.25rem;
+    font-size: var(--step--1);
+  }
+
+  .site-footer__heading {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-block-end: 0.85rem;
+  }
+  .site-footer__col ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: var(--step--1);
+  }
+
+  .site-footer__bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-block-start: var(--section-y);
+    padding-block: 1.5rem;
+    border-block-start: 1px solid rgb(255 255 255 / 12%);
+    font-size: var(--step--1);
+    color: #9db2c8;
+  }
+</style>

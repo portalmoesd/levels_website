@@ -1,0 +1,68 @@
+---
+import Seo from '../components/Seo.astro';
+import MetaPixel from '../components/MetaPixel.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { htmlLang, useTranslations, type Locale } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  locale: Locale;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  jsonLd?: string;
+  /** Adds a wide layout class for pages with full-bleed sections. */
+  wide?: boolean;
+}
+
+const { title, description, slug, locale, image, imageAlt, noindex, jsonLd, wide } =
+  Astro.props;
+const t = useTranslations(locale);
+---
+
+<!doctype html>
+<html lang={htmlLang(locale)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f2d4a" />
+
+    {/* Preconnect to the font host so the first text paint is not held up. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+
+    <Seo
+      title={title}
+      description={description}
+      slug={slug}
+      locale={locale}
+      image={image}
+      imageAlt={imageAlt}
+      noindex={noindex}
+      jsonLd={jsonLd}
+    />
+    <MetaPixel />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{t('nav.skipToContent')}</a>
+    <Header locale={locale} slug={slug} />
+    <main id="main" class={wide ? 'wide' : undefined}>
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

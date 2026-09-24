@@ -1,0 +1,59 @@
+---
+import type { Price } from '../data/types';
+import { useTranslations, type Locale } from '../i18n/utils';
+
+interface Props {
+  price: Price;
+  locale: Locale;
+}
+
+const { price, locale } = Astro.props;
+const t = useTranslations(locale);
+
+const SYMBOL: Record<NonNullable<Price['currency']>, string> = {
+  GEL: '₾',
+  USD: '$',
+  GBP: '£',
+};
+const symbol = SYMBOL[price.currency ?? 'GEL'];
+
+// Georgian and English both group thousands with a comma here, matching the
+// existing site ("₾1,680", "$5,300").
+const format = (value: number) => `${symbol}${value.toLocaleString('en-US')}`;
+
+const unitLabel =
+  price.unit === 'month'
+    ? t('course.perMonth')
+    : price.unit === 'course'
+      ? t('course.perCourse')
+      : '';
+---
+
+{
+  price.unit === 'individual' || price.now === undefined ? (
+    <p class="price">
+      <span class="price__now price__now--individual">{t('course.individual')}</span>
+    </p>
+  ) : (
+    <p class="price">
+      {price.was !== undefined && (
+        <span class="price__was">
+          <span class="visually-hidden">
+            {locale === 'ka' ? 'ძველი ფასი' : 'Was'}
+          </span>
+          {format(price.was)}
+        </span>
+      )}
+      <span class="price__now">{format(price.now)}</span>
+      {unitLabel && <span class="price__unit">{unitLabel}</span>}
+    </p>
+  )
+}
+
+<style>
+  .price__now--individual {
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+</style>

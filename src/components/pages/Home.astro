@@ -1,0 +1,296 @@
+---
+import Base from '../../layouts/Base.astro';
+import CourseCard from '../CourseCard.astro';
+import QuizCta from '../QuizCta.astro';
+import { courses, corporateTracks } from '../../data/courses';
+import { artCourses } from '../../data/art';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import {
+  graph,
+  organizationSchema,
+  branchSchemas,
+  websiteSchema,
+  courseListSchema,
+} from '../../lib/schema';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const audiences = [
+  { id: 'children', label: t('group.children'), age: { en: 'Age 6–10', ka: 'ასაკი 6–10' } },
+  { id: 'teenagers', label: t('group.teenagers'), age: { en: 'Age 11–17', ka: 'ასაკი 11–17' } },
+  { id: 'adults', label: t('group.adults'), age: { en: 'Age 18+', ka: 'ასაკი 18+' } },
+] as const;
+
+/**
+ * The three discounts come from the /home variant of the Wix homepage. The
+ * root homepage did not show them, but they are current offers, so they are
+ * kept — see docs/content-conflicts.md §2.
+ */
+const discounts = [
+  {
+    id: 'family',
+    title: { en: 'Family discount', ka: 'ოჯახური ფასდაკლება' },
+    body: {
+      en: 'Enroll more than one family member and both get a discount. Learning together works better.',
+      ka: 'დაარეგისტრირე ოჯახის ერთზე მეტი წევრი და ორივემ მიიღეთ ფასდაკლება. ერთად სწავლა უფრო ეფექტურია.',
+    },
+  },
+  {
+    id: 'student',
+    title: { en: 'Student discount', ka: 'სტუდენტური ფასდაკლება' },
+    body: {
+      en: 'Are you a student? Get an exclusive discount on our courses.',
+      ka: 'სტუდენტი ხარ? მიიღე ექსკლუზიური ფასდაკლება ჩვენს კურსებზე.',
+    },
+  },
+  {
+    id: 'friend',
+    title: { en: 'Bring a friend', ka: 'მოიყვანე მეგობარი' },
+    body: {
+      en: 'Invite a friend to join the course and you both get a discount on enrollment.',
+      ka: 'მოიწვიე მეგობარი კურსზე და ორივემ მიიღეთ ფასდაკლება რეგისტრაციისას.',
+    },
+  },
+] as const;
+
+const pillars = [
+  {
+    slug: 'english',
+    title: { en: 'Language Academy', ka: 'ენის აკადემია' },
+    body: {
+      en: 'English for children, teenagers, adults and companies, from beginner to exam-ready.',
+      ka: 'ინგლისური ბავშვებისთვის, მოზარდებისთვის, ზრდასრულებისა და კომპანიებისთვის — დამწყებიდან გამოცდისთვის მზადყოფნამდე.',
+    },
+  },
+  {
+    slug: 'art',
+    title: { en: 'Art Academy', ka: 'ხელოვნების აკადემია' },
+    body: {
+      en: 'Drawing and painting with practising artists, ending in an annual exhibition.',
+      ka: 'ხატვა და ფერწერა მოქმედ ხელოვანებთან ერთად, ყოველწლიური გამოფენით.',
+    },
+  },
+  {
+    slug: 'summer-schools',
+    title: { en: 'Summer Schools', ka: 'საზაფხულო სკოლები' },
+    body: {
+      en: 'Two weeks on a university campus in the UK, the USA or Georgia.',
+      ka: 'ორი კვირა საუნივერსიტეტო კამპუსზე დიდ ბრიტანეთში, აშშ-ში ან საქართველოში.',
+    },
+  },
+  {
+    slug: 'study-abroad',
+    title: { en: 'Study Abroad', ka: 'სწავლა საზღვარგარეთ' },
+    body: {
+      en: 'End-to-end guidance from choosing a programme through to visas and departure.',
+      ka: 'სრული მხარდაჭერა პროგრამის არჩევიდან ვიზასა და გამგზავრებამდე.',
+    },
+  },
+] as const;
+
+const title =
+  locale === 'ka'
+    ? 'ინგლისური ენის კურსები თბილისში'
+    : 'English & Art Courses in Tbilisi';
+
+const description =
+  locale === 'ka'
+    ? 'ინგლისური და ხელოვნების კურსები ბავშვებისთვის, მოზარდებისთვის, ზრდასრულებისა და კომპანიებისთვის. IELTS, კემბრიჯის გამოცდები, საზაფხულო სკოლები. ორი ფილიალი — ვაკე და კრწანისი.'
+    : 'English and art courses for children, teenagers, adults and companies in Tbilisi. IELTS and Cambridge exam preparation, summer schools and study abroad. Small groups at our Vake and Krtsanisi branches.';
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  ...branchSchemas(locale),
+  websiteSchema(locale),
+  courseListSchema(
+    courses.map((course) => ({ course, path: localePath(course.slug, locale) })),
+    locale
+  ),
+]);
+---
+
+<Base
+  title={title}
+  description={description}
+  slug=""
+  locale={locale}
+  jsonLd={jsonLd}
+  wide
+>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__kicker">{t('cambridge.partner')}</p>
+      <h1>{locale === 'ka' ? 'თანამედროვე კურსები. რეალური შედეგი.' : 'Modern courses. Real results.'}</h1>
+      <p class="hero__lede">
+        {locale === 'ka'
+          ? 'დამწყებიდან თავისუფლად საუბრამდე — ნაბიჯ-ნაბიჯ. მცირე ჯგუფები, კემბრიჯის მეთოდოლოგია, ქართველი და მშობლიურენოვანი პედაგოგები.'
+          : 'From beginner to fluent, step by step. Small groups, Cambridge methodology, and a teaching team of Georgian and native-speaker instructors.'}
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={localePath('enroll', locale)}>{t('cta.enroll')}</a>
+        <a class="btn btn--ghost" href={localePath('placement-quiz', locale)}>{t('cta.takeQuiz')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="visually-hidden">
+      {locale === 'ka' ? 'ჩვენი მიმართულებები' : 'What we offer'}
+    </h2>
+    <ul class="pillars grid grid--4">
+      {pillars.map((pillar) => (
+        <li>
+          <a class="pillar" href={localePath(pillar.slug, locale)}>
+            <h3>{pillar.title[locale]}</h3>
+            <p class="muted">{pillar.body[locale]}</p>
+            <span class="pillar__more">{t('cta.learnMore')} →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {
+    audiences.map((audience) => {
+      const list = courses.filter((c) => c.audiences.includes(audience.id));
+      if (!list.length) return null;
+      return (
+        <section class="section container">
+          <header class="section-head">
+            <h2>{audience.label}</h2>
+            <p class="eyebrow">{audience.age[locale]}</p>
+          </header>
+          <div class="grid grid--4">
+            {list.map((course) => <CourseCard course={course} locale={locale} />)}
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section-head">
+        <h2>{t('group.corporate')}</h2>
+        <p class="eyebrow">{t('group.forCompanies')}</p>
+      </header>
+      <ul class="grid grid--4 tracks">
+        {corporateTracks.map((track) => (
+          <li class="card track">
+            <h3>{track[locale]}</h3>
+            <p class="muted">{t('course.tailored')}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="section-foot">
+        <a class="btn btn--secondary" href={localePath('corporate-english', locale)}>
+          {t('cta.learnMore')}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <header class="section-head">
+      <h2>{locale === 'ka' ? 'ხელოვნების კურსები' : 'Art courses'}</h2>
+    </header>
+    <div class="grid grid--4">
+      {artCourses.slice(0, 4).map((course) => (
+        <CourseCard
+          course={course}
+          locale={locale}
+          href={course.slug === 'contemporary-art' ? localePath('art', locale) : undefined}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section-head">
+        <h2>{locale === 'ka' ? 'ფასდაკლებები' : 'Discounts'}</h2>
+      </header>
+      <ul class="grid grid--3">
+        {discounts.map((discount) => (
+          <li class="card discount">
+            <p class="discount__value">−10%</p>
+            <h3>{discount.title[locale]}</h3>
+            <p class="muted">{discount.body[locale]}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <QuizCta locale={locale} />
+</Base>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(120% 120% at 15% 0%, #1b4570 0%, var(--navy) 55%, #0a1f34 100%);
+    color: #fff;
+    padding-block: clamp(3.5rem, 2rem + 8vw, 8rem);
+  }
+  .hero__inner { max-width: 54ch; }
+  .hero h1 { color: #fff; margin-block: 0.75rem 1rem; }
+  .hero__kicker {
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .hero__lede { color: #cfdded; font-size: var(--step-1); }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: 2rem;
+  }
+  .hero .btn--ghost { color: #fff; }
+  .hero .btn--ghost:hover { background: #fff; color: var(--navy); }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-block-end: clamp(1.25rem, 1rem + 1vw, 2rem);
+  }
+
+  .pillars, .tracks { list-style: none; padding: 0; margin: 0; }
+
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    padding: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .pillar:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .pillar h3 { font-size: var(--step-1); }
+  .pillar__more { margin-block-start: auto; font-weight: 600; color: var(--navy); }
+
+  .track h3 { font-size: var(--step-0); }
+
+  .discount__value {
+    font-size: var(--step-3);
+    font-weight: 800;
+    color: var(--gold-600);
+    line-height: 1;
+  }
+  .discount h3 { font-size: var(--step-1); margin-block: 0.5rem 0.35rem; }
+
+  .section-foot { margin-block-start: 1.75rem; }
+</style>
