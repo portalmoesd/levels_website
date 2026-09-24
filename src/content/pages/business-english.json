@@ -1,0 +1,186 @@
+{
+  "slug": "business-english",
+  "title": {
+    "en": "Professional/Business English — Levels Academy",
+    "ka": "პროფესიული/ბიზნეს ინგლისური | Levels Academy"
+  },
+  "description": {
+    "en": "Business English for professionals in Georgia: presentations, emails, negotiations, meetings.",
+    "ka": "ბიზნეს ინგლისური პროფესიონალებისთვის საქართველოში: პრეზენტაციები, ელექტრონული ფოსტა, მოლაპარაკებები, შეხვედრები."
+  },
+  "header": {
+    "en": [
+      "Professional/Business English — Levels Academy",
+      "PROFESSIONAL ENGLISH",
+      "The course is designed for you to develop proficiency and confidence in using English effectively and clearly across diverse professional and business settings.",
+      "Enroll",
+      "Duration",
+      "4 months",
+      "Age",
+      "for adults",
+      "Lessons per week",
+      "three times a week",
+      "Lesson Duration",
+      "120 mins"
+    ],
+    "ka": [
+      "პროფესიული/ბიზნეს ინგლისური | Levels Academy",
+      "პროფესიული ინგლისური",
+      "კურსი შექმნილია იმისთვის, რომ განივითაროთ ინგლისური ენის ცოდნა და თავდაჯერებულობა ეფექტურად და გასაგებად გამოყენებისას სხვადასხვა პროფესიულ და ბიზნეს გარემოში.",
+      "დარეგისტრირდი",
+      "ხანგრძლივობა",
+      "4 თვე",
+      "ასაკი",
+      "ზრდასრულები",
+      "გაკვეთილები",
+      "სამჯერ კვირაში",
+      "ხანგრძლივობა",
+      "120 წუთი"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "4 months",
+      "age": "for adults",
+      "perWeek": "three times a week",
+      "lessonLength": "120 mins"
+    },
+    "ka": {
+      "duration": "4 თვე",
+      "age": "ზრდასრულები",
+      "perWeek": "სამჯერ კვირაში"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [
+          "The Professional English program is designed for individuals who want to improve their communication skills in a workplace context. The course focuses on practical language use, helping participants build the confidence and accuracy needed to perform effectively in professional environments.",
+          "By engaging with real-life workplace scenarios and relevant topics, students develop the essential competencies in writing, reading, speaking, and listening, while mastering the grammar and vocabulary required for their specific field."
+        ],
+        "ka": [
+          "პროფესიული ინგლისური ენის პროგრამა შექმნილია იმ მოსწავლეებისთვის, რომელთაც სურთ სამუშაო გარემოში კომუნიკაციის უნარების გაუმჯობესება. კურსი ფოკუსირებულია ენის პრაქტიკულ გამოყენებაზე, რაც მოსწავლეებს ეხმარება პროფესიულ გარემოში საჭირო თავდაჯერებულობის ამაღლებაში.",
+          "რეალური სამუშაო სცენარებისა და შესაბამისი თემების შესწავლით, სტუდენტები ავითარებენ წერის, კითხვის, საუბრისა და მოსმენის აუცილებელ უნარ-ჩვევებს, ამავდროულად, დაეუფლებიან მათი კონკრეტული სფეროსთვის საჭირო გრამატიკასა და ლექსიკას."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will students learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "Significant improvement in all core skills: writing, reading, speaking, and listening.",
+          "Correct usage of professional grammar and vocabulary relevant to specific industries.",
+          "Practical communication skills for real workplace situations.",
+          "Confidence in professional interaction and effective communication in English."
+        ],
+        "ka": [
+          "მნიშვნელოვანი გაუმჯობესება ყველა ძირითად უნარში: წერა, კითხვა, საუბარი და მოსმენა.",
+          "კონკრეტული ინდუსტრიებისთვის შესაბამისი პროფესიული გრამატიკისა და ლექსიკის სწორი გამოყენება.",
+          "პრაქტიკული კომუნიკაციის უნარები რეალური სამუშაო სიტუაციებისთვის.",
+          "პროფესიონალური ურთიერთქმედებისადმი თავდაჯერებულობა და ინგლისურ ენაზე ეფექტური კომუნიკაცია."
+        ]
+      }
+    },
+    {
+      "key": "materials",
+      "heading": {
+        "en": "What learning materials will be used?",
+        "ka": "რომელი სასწავლო მასალები გამოიყენება კურსზე?"
+      },
+      "body": {
+        "en": [
+          "Profession-specific textbooks and resources designed for practical application.",
+          "Case studies, workplace simulations, and authentic professional materials.",
+          "Activities that combine academic rigor with real-world communication practice."
+        ],
+        "ka": [
+          "პროფესიაზე ორიენტირებული სახელმძღვანელოები და რესურსები, რომლებიც შექმნილია პრაქტიკული გამოყენებისთვის.",
+          "შერჩეული სცენარები, სამუშაო ადგილის სიმულაციები და ავთენტური პროფესიული მასალები.",
+          "აქტივობები, რომლებიც აერთიანებს აკადემიურ სწავლებას რეალურ სამყაროში კომუნიკაციის პრაქტიკასთან."
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "Enrollment is open on a continuous basis.",
+          "Schedules and program length can be adapted to the needs of individuals or organizations."
+        ],
+        "ka": [
+          "რეგისტრაცია ღიაა უწყვეტად.",
+          "პროგრამის გრაფიკი და ხანგრძლივობა შეიძლება მოერგოს როგორც ცალკეული პირების, ასევე ორგანიზაციების საჭიროებებს."
+        ]
+      }
+    },
+    {
+      "key": "tracks",
+      "heading": {
+        "en": "Available Course Tracks",
+        "ka": "ხელმისაწვდომი კურსის მიმართულებები"
+      },
+      "body": {
+        "en": [
+          "The program offers specialized tracks tailored to specific professional needs:",
+          "Business English",
+          "Medical English",
+          "Diplomatic English",
+          "Journalistic/Political English",
+          "Legal English"
+        ],
+        "ka": [
+          "პროგრამა გთავაზობთ სპეციალიზებულ მიმართულებებს, რომლებიც მორგებულია კონკრეტულ პროფესიულ საჭიროებებზე:",
+          "ბიზნეს ინგლისური",
+          "სამედიცინო ინგლისური",
+          "დიპლომატიური ინგლისური",
+          "ჟურნალისტური/პოლიტიკური ინგლისური",
+          "იურიდიული ინგლისური"
+        ]
+      }
+    },
+    {
+      "key": "lessonStructure",
+      "heading": {
+        "en": "What is the lesson structure?",
+        "ka": "როგორია გაკვეთილის სტრუქტურა?"
+      },
+      "body": {
+        "en": [
+          "Lessons combine theory, practical exercises, and role-play scenarios.",
+          "Each session is focused on immediate applicability to professional contexts.",
+          "Progress is regularly assessed, with continuous feedback from instructors.",
+          "Enroll",
+          "Certificate",
+          "Upon successful completion of the course, you will receive an official certificate from Levels Academy, recognizing your achievements and progress in English language learning. 🎓✅",
+          "Test your",
+          "English skills",
+          "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+        ],
+        "ka": [
+          "გაკვეთილები აერთიანებს თეორიას, პრაქტიკულ სავარჯიშოებსა და სხვადასხვა სცენარების გათამაშებას.",
+          "თითოეულიგაკვეთილი ფოკუსირებულია პროფესიულ კონტექსტებში გამოყენებაზე.",
+          "პროგრესი რეგულარულად ფასდება ინსტრუქტორების მხრიდან უწყვეტი უკუკავშირით.",
+          "რეგისტრაცია",
+          "სერტიფიკატი",
+          "კურსის წარმატებით დასრულების შემდეგ მიიღებთ Levels Academy-ის ოფიციალურ სერტიფიკატს, რომელიც ადასტურებს თქვენს მიღწევებსა და პროგრესს ინგლისური ენის შესწავლის პროცესში. 🎓✅",
+          "გაიგე შენი",
+          "ინგლისურის დონე",
+          "გაიარეთ ჩვენი სწრაფი და უფასო ინგლისური ენის ტესტი, შეაფასეთ თქვენი ენის ცოდნის დონე და გაიგეთ, რომელი კურსი შეგეფერებათ! 🚀"
+        ]
+      }
+    }
+  ]
+}

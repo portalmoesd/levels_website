@@ -1,0 +1,218 @@
+{
+  "slug": "english-for-teens",
+  "title": {
+    "en": "General English for Teens — Levels Academy",
+    "ka": "ზოგადი ინგლისური მოზარდებისთვის | Levels Academy"
+  },
+  "description": {
+    "en": "Communicative lessons for ages 11–17 with real‑world topics and projects. Level‑based groups.",
+    "ka": "კომუნიკაციური გაკვეთილები 11–17 წლის მოზარდებისთვის რეალური თემებითა და პროექტებით. ინგლისური ენის ცოდნის დონის მიხედვით დაჯგუფება."
+  },
+  "header": {
+    "en": [
+      "General English for Teens — Levels Academy",
+      "GENERAL ENGLISH",
+      "Designed for learners aged 11–17, the program combines academic English training with dynamic speaking practice, preparing students for international exams and helping them communicate effectively in real-life situations.",
+      "Enroll",
+      "Duration",
+      "4 months",
+      "Age",
+      "11 - 17 y.o.",
+      "Lessons per week",
+      "three times a week",
+      "Lesson Duration",
+      "90 mins",
+      "Learn English",
+      "Become the Best Student",
+      "Earn a Summer School in London ★"
+    ],
+    "ka": [
+      "ზოგადი ინგლისური მოზარდებისთვის | Levels Academy",
+      "ზოგადი ინგლისური",
+      "11–17 წლის მოსწავლეებისთვის განკუთვნილი პროგრამა აერთიანებს აკადემიური ინგლისურის სწავლასა და საუბრის პრაქტიკას, ამზადებს მოსწავლეებს რეალურ სიტუაციებში ეფექტურად კომუნიკირებაში.",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "4 თვე",
+      "ასაკი",
+      "11 - 17 წელი",
+      "გაკვეთილები",
+      "სამჯერ კვირაში",
+      "ხანგრძლივობა",
+      "90 წუთი",
+      "წლის საუკეთესო მოსწავლე გაემგზავრება საზაფხულო სკოლაში ლონდონში ★"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "4 months",
+      "age": "11 - 17 y.o.",
+      "perWeek": "three times a week",
+      "lessonLength": "90 mins"
+    },
+    "ka": {
+      "duration": "4 თვე",
+      "age": "11 - 17 წელი",
+      "perWeek": "სამჯერ კვირაში"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [
+          "The General English Course (ages 11–17) at Levels Language Academy provides teenagers with an exceptional opportunity not only to improve their English skills but also to gain international exposure and learn in a friendly, motivating environment.",
+          "In addition to academic advancement, students of this program become eligible to participate in a scholarship competition, where the winner will travel to the United Kingdom for a fully funded one-week summer course, gaining first-hand experience of life and study in one of the world’s leading universities.",
+          "This program combines structured academic learning with engaging communication practice, ensuring that learners develop confidence, accuracy, and fluency in English."
+        ],
+        "ka": [
+          "ლეველს აკადემიაში 11–17 წლისთვის განკუთვნილი ზოგადი ინგლისურის კურსი მოზარდებს უნიკალურ შესაძლებლობას აძლევს ინგლისური ენის უნარების გაუმჯობესებისთვის.",
+          "აკადემიურ პროგრესთან ერთად, ამ პროგრამის მოსწავლეებს ეძლევათ შესაძლებლობა მონაწილეობა მიიღონ კონკურსში, რომლის გამარჯვებული ერთკვირიან, სრულად დაფინანსებულ საზაფხულო სკოლაში გაემგზავრება გაერთიანებულ სამეფოში და პირადად შეიგრძნობს ცხოვრებისა და სწავლის პროცესს მსოფლიოს ერთ-ერთი წამყვანი უნივერსიტეტის საზაფხულო სკოლაში.",
+          "პროგრამა აერთიანებს სტრუქტურირებულ აკადემიურ სწავლებას კომუნიკაციურ პრაქტიკასთან ერთად, რაც უზრუნველყოფს, რომ მოსწავლეებს განუვითარდეთ თავდაჯერებულობა, გრამატიკისა და კომუნიკაციის უნარები."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will students learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "Comprehensive development of all language skills: reading, writing, grammar, vocabulary, and independent study skills.",
+          "Improved pronunciation, intonation, and communication abilities.",
+          "Preparation for Cambridge International English Certification Exams.",
+          "A full program covering two stages of English proficiency.",
+          "Opportunity to compete for a scholarship to the UK."
+        ],
+        "ka": [
+          "ენის ყველა უნარის კომპლექსური განვითარება: კითხვა, წერა, გრამატიკა, ლექსიკა და ინდივიდუალური უნარები.",
+          "გამოთქმის, ინტონაციისა და კომუნიკაციის უნარების გაუმჯობესება.",
+          "კემბრიჯის საერთაშორისო ინგლისურის სერტიფიკაციის გამოცდებისთვის მომზადება.",
+          "სრული პროგრამა, რომელიც მოიცავს ინგლისური ენის ორ დონეს.",
+          "გაერთიანებულ სამეფოში სასწავლებლად კონკურსში მონაწილეობის შესაძლებლობა."
+        ]
+      }
+    },
+    {
+      "key": "materials",
+      "heading": {
+        "en": "What learning materials will I use?",
+        "ka": "რა სასწავლო მასალები გამოიყენება კურზე?"
+      },
+      "body": {
+        "en": [
+          "Innovative and age-appropriate Cambridge University Press textbooks.",
+          "Engaging learning resources: fun texts, listening exercises, videos, and interactive games.",
+          "Materials and activities designed to ensure active participation and maximum engagement in every lesson."
+        ],
+        "ka": [
+          "Cambridge University Press-ის ინოვაციური და ასაკთან შესაბამისი სასწავლო წიგნები.",
+          "სასწავლო რესურსები: სახალისო ტექსტები, მოსმენითი სავარჯიშოები, ვიდეოები და ინტერაქტიული თამაშები.",
+          "მასალები და აქტივობები შექმნილია ისე, რომ უზრუნველყოს აქტიური მონაწილეობა და მაქსიმალური ჩართულობა თითოეულ გაკვეთილზე."
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "The program runs for a full academic year, with 12 sessions per month.",
+          "Lessons are held three times per week, each lasting 90 minutes.",
+          "Students may attend lessons in-person in the classroom, with the option of online participation if needed."
+        ],
+        "ka": [
+          "პროგრამა მიმდინარეობს სრული აკადემიური წლის განმავლობაში; თვეში 12 გაკვეთილი.",
+          "გაკვეთილები ტარდება კვირაში სამჯერ, თითოეული 90 წუთის ხანგრძლივობის.",
+          "მოსწავლეებს შეუძლიათ დაესწრონ გაკვეთილებს აკადემიაში, საჭიროების შემთხვევაში — ონლაინ ჩართვითაც."
+        ]
+      }
+    },
+    {
+      "key": "groups",
+      "heading": {
+        "en": "How are groups formed?",
+        "ka": "როგორ იქმნება ჯგუფები?"
+      },
+      "body": {
+        "en": [
+          "Groups are formed based on English level and placement testing.",
+          "Registration process:",
+          "Choose your preferred course on our website.",
+          "Complete the online registration form.",
+          "Take a placement test to determine your level.",
+          "Confirm registration with the administration.",
+          "Groups are limited to a maximum of 10 students, ensuring personal attention."
+        ],
+        "ka": [
+          "ჯგუფები ყალიბდება ინგლისური ენის დონისა და დონის განსაზღვრის ტესტის შედეგების მიხედვით.",
+          "რეგისტრაციის პროცესი:",
+          "– აირჩიეთ სასურველი კურსი ჩვენს ვებგვერდზე.",
+          "– შეავსეთ ონლაინ რეგისტრაციის ფორმა.",
+          "– ჩააბარეთ დონის განსაზღვრის ტესტი.",
+          "– დაადასტურეთ რეგისტრაცია ადმინისტრაციასთან.",
+          "ჯგუფში მაქსიმუმ 10 მოსწავლეა, რაც უზრუნველყოფს ინდივიდუალურ ყურადღებას."
+        ]
+      }
+    },
+    {
+      "key": "lessonStructure",
+      "heading": {
+        "en": "What is the lesson structure?",
+        "ka": "როგორია გაკვეთილის სტრუქტურა?"
+      },
+      "body": {
+        "en": [
+          "Two lessons per week with a Georgian teacher, focusing on general English (reading, writing, grammar, and vocabulary).",
+          "One lesson per week with a native English-speaking teacher, focusing on speaking, pronunciation, and communication.",
+          "Regular assessments, feedback, and semester-end evaluation shared with parents.",
+          "UK Scholarship Competition ★",
+          "All students who complete one full academic year in this program (ages 11–17) automatically participate in the UK scholarship competition.",
+          "The winner is selected based on the combined results of the two final writing assessments.",
+          "The prize includes:",
+          "One-week summer program in the UK.",
+          "Accommodation and study at a leading university.",
+          "Daily English lessons, excursions, and cultural activities.",
+          "Full board (three meals per day).",
+          "Visa support.",
+          "The scholarship does not cover visa and airfare costs.",
+          "Enroll",
+          "Certificate",
+          "Upon successful completion of the course, you will receive an official certificate from Levels Academy, recognizing your achievements and progress in English language learning. 🎓✅",
+          "Test your",
+          "English skills",
+          "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+        ],
+        "ka": [
+          "კვირაში ორი გაკვეთილი ქართველ მასწავლებელთან — ფოკუსი: ზოგადი ინგლისური (კითხვა, წერა, გრამატიკა და ლექსიკა).",
+          "კვირაში ერთი გაკვეთილი ინგლისურის მშობლიურენოვან 'ნეითივ' მასწავლებელთან — ფოკუსი: საუბარი, გამოთქმა და კომუნიკაცია.",
+          "რეგულარული შეფასებები და უკუკავშირი; სემესტრის ბოლოს — შემაჯამებელი შეფასება.",
+          "კონკურსი: უფასო საზაფხულო სკოლა ინგლისში ★",
+          "ამ პროგრამაში ჩართული 11–17 წლის ყველა მოსწავლე, რომელიც ერთ სრულ აკადემიურ წელს დაასრულებს, ავტომატურად მონაწილეობს გაერთიანებული სამეფოს სრულად დაფინანსებულ საზაფხულო სკოლის კონკურსში.",
+          "გამარჯვებული განისაზღვრება ორი ფინალური წერითი შეფასების საერთო შედეგების საფუძველზე.",
+          "ჯილდო მოიცავს:",
+          "— ერთკვირიან საზაფხულო პროგრამას გაერთიანებულ სამეფოში.",
+          "— განთავსებას და სწავლებას წამყვან უნივერსიტეტში.",
+          "— ყოველდღიურ ინგლისურის გაკვეთილებს, ექსკურსიებსა და კულტურულ აქტივობებს.",
+          "— სამჯერად კვებას (დღეში სამი კვება).",
+          "— ვიზის გაფორმებაში დახმარებას.",
+          "სტიპენდია არ ფარავს ვიზისა და ავიაბილეთის ხარჯებს.",
+          "რეგისტრაცია",
+          "სერტიფიკატი",
+          "კურსის წარმატებით დასრულების შემდეგ მიიღებთ Levels Academy-ის ოფიციალურ სერტიფიკატს, რომელიც ადასტურებს თქვენს მიღწევებსა და პროგრესს ინგლისური ენის შესწავლის პროცესში. 🎓✅",
+          "გაიგე შენი",
+          "ინგლისურის დონე",
+          "გაიარეთ ჩვენი სწრაფი და უფასო ინგლისური ენის ტესტი, შეაფასეთ თქვენი ენის ცოდნის დონე და გაიგეთ, რომელი კურსი შეგეფერებათ! 🚀"
+        ]
+      }
+    }
+  ]
+}

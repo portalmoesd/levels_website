@@ -1,0 +1,128 @@
+{
+  "slug": "summer-school-london-brunel",
+  "title": {
+    "en": "Brunel University London — Summer School | Levels Academy",
+    "ka": "ლონდონის Brunel University საზაფხულო სკოლა | Levels Academy"
+  },
+  "description": {
+    "en": "UK summer school in London (ages 10-17). 16h/week English, secure campus stay, and trips (London Eye, museums). Price: GBP 2,950.",
+    "ka": "ლონდონში დიდი ბრიტანეთის საზაფხულო სკოლა (ასაკი: 10-17). კვირაში 16 საათი ინგლისური ენის შესწავლა, კამპუსში უსაფრთხო ცხოვრება და ექსკურსიები (ლონდონ აი, მუზეუმები...). ფასი: 2,950 GBP."
+  },
+  "header": {
+    "en": [
+      "Brunel University London — Summer School | Levels Academy",
+      "Brunel University",
+      "London, UK",
+      "Sign up",
+      "Summer in London",
+      "Duration",
+      "2 weeks",
+      "Age",
+      "from 10 y.o.",
+      "Price",
+      "GBP 2,950 for two weeks",
+      "London Uxbridge Summer School offers the perfect blend of learning, travel, and relaxation, with options to suit every interest. You can join a chaperoned group departure or, if you prefer, travel independently.",
+      "English course: 16 hours per week",
+      "Location: London, with easy access to central London",
+      "Campus: Secure on-campus residence; sports fields; library; refurbished classrooms",
+      "On-site fun: Markets and social spaces on campus, sports tournaments, parties, talent shows, themed evenings, arts & crafts",
+      "Excursions: National Gallery, British Museum, Science Museum, London Eye, Madame Tussauds",
+      "Networking: Meet students from around the world and learn from leading lecturers",
+      "Enroll"
+    ],
+    "ka": [
+      "ლონდონის Brunel University საზაფხულო სკოლა | Levels Academy",
+      "Brunel University",
+      "London, UK",
+      "რეგისტრაცია",
+      "ზაფხული ლონდონში",
+      "ხანგრძლივობა",
+      "2 კვირიდან",
+      "ასაკი",
+      "10 წლიდან",
+      "ფასი",
+      "GBP 2,950 ორი კვირა",
+      "ლონდონის Brunel University- ის აქსბრიჯის საზაფხულო სკოლა გთავაზობთ სწავლის, მოგზაურობისა და დასვენების იდეალურ ნაზავს, ყველა ინტერესის შესაბამისი ვარიანტებით. შეგიძლიათ შეუერთდეთ თანმხლები ჯგუფის გამგზავრებას ან, თუ გირჩევნიათ, დამოუკიდებლად იმოგზაუროთ.",
+      "ინგლისური ენის კურსი: კვირაში 16 საათი",
+      "ადგილმდებარეობა: ლონდონი, ლონდონის ცენტრში მარტივი წვდომით",
+      "კამპუსი: კამპუსის უსაფრთხო საცხოვრებელი; სპორტული მოედნები; ბიბლიოთეკა; გარემონტებული საკლასო ოთახები",
+      "გართობა ადგილზე: ბაზრობები და სოციალური სივრცეები კამპუსში, სპორტული ტურნირები, წვეულებები, ნიჭიერების შოუები, თემატური საღამოები, ხელოვნება და ხელნაკეთი ნივთები",
+      "ექსკურსიები: ეროვნული გალერეა, ბრიტანეთის მუზეუმი, მეცნიერების მუზეუმი, ლონდონის თვალი, მადამ ტიუსოს მუზეუმი",
+      "კავშირები: შეხვდით სტუდენტებს მთელი მსოფლიოდან და ისწავლეთ წამყვანი ლექტორებისგან",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "2 weeks",
+      "age": "from 10 y.o.",
+      "price": {
+        "now": "GBP 2,950 for two weeks"
+      }
+    },
+    "ka": {
+      "duration": "2 კვირიდან",
+      "age": "10 წლიდან",
+      "price": {
+        "now": "GBP 2,950 ორი კვირა"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "activities",
+      "heading": {
+        "en": "Activities",
+        "ka": "აქტივობები"
+      },
+      "body": {
+        "en": [
+          "These are the standard activities that all participants of the summer school will have the opportunity to attend without any extra cost.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "Trips",
+          "Cambridge Tour",
+          "Oxford Tour",
+          "A Musical",
+          "Boat Cruise on Thames",
+          "Madame Tussauds",
+          "London Eye",
+          "Science Museum",
+          "National Museum",
+          "National Gallery",
+          "Brighton Tour",
+          "School Gallery"
+        ],
+        "ka": [
+          "ეს არის სტანდარტული აქტივობები, რომლებზეც ზაფხულის სკოლის ყველა მონაწილეს ექნება შესაძლებლობა დაესწროს ყოველგვარი დამატებითი გადასახადის გარეშე.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "ტურები",
+          "Cambridge Tour",
+          "Oxford Tour",
+          "A Musical",
+          "Boat Cruise on Thames",
+          "Madame Tussauds",
+          "London Eye",
+          "Science Museum",
+          "National Museum",
+          "National Gallery",
+          "Brighton Tour",
+          "სკოლის გალერეა"
+        ]
+      }
+    }
+  ]
+}

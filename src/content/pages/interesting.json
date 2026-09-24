@@ -1,0 +1,30 @@
+{
+  "slug": "interesting",
+  "title": {
+    "en": "Interesting | Levels Academy",
+    "ka": "Interesting | Levels Academy"
+  },
+  "description": {
+    "en": "",
+    "ka": ""
+  },
+  "header": {
+    "en": [
+      "Interesting | Levels Academy",
+      "English Sign up",
+      "Art Sign up",
+      "Summer Sign up",
+      "Study Sign up",
+      "Corporate Sign up"
+    ],
+    "ka": [
+      "Interesting | Levels Academy",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

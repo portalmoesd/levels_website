@@ -1,0 +1,233 @@
+{
+  "slug": "english-for-children",
+  "title": {
+    "en": "General English for Children — Levels Academy",
+    "ka": "ზოგადი ინგლისური ბავშვებისთვის | Levels Academy"
+  },
+  "description": {
+    "en": "English for children (6–10) with Cambridge‑trained teachers. Fun lessons, clear progress, parent updates.",
+    "ka": "ინგლისური 6–10 წლისთვის. სახალისო გაკვეთილები, პროგრესის მონიტორინგი, მშობელთან კომუნიკაცია."
+  },
+  "header": {
+    "en": [
+      "General English for Children — Levels Academy",
+      "Age: 6-10",
+      "Skills. Activities.",
+      "GENERAL ENGLISH",
+      "Enroll",
+      "Course Duration",
+      "1 Academic Year",
+      "Lesson Duration",
+      "60 mins",
+      "Lessons per week",
+      "Twice a week",
+      "Price",
+      "₾ 185",
+      "₾ 165 / month",
+      "Levels Academy is an official",
+      "Cambridge English Educational Partner."
+    ],
+    "ka": [
+      "ზოგადი ინგლისური ბავშვებისთვის | Levels Academy",
+      "ასაკი: 6-10",
+      "Skills. Activities.",
+      "ზოგადი ინგლისური",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "1 აკადემიური წელი",
+      "გაკვეთილი",
+      "60 წუთი",
+      "გაკვეთილები",
+      "კვირაში ორჯერ",
+      "ფასი",
+      "₾ 185",
+      "₾ 165 / თვე",
+      "ლეველს აკადემია",
+      "კემბრიჯის ოფიციალური საგანმანათლებლო პარტნიორია"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "1 Academic Year",
+      "lessonLength": "60 mins",
+      "perWeek": "Twice a week",
+      "price": {
+        "was": "₾ 185",
+        "now": "₾ 165 / month"
+      }
+    },
+    "ka": {
+      "duration": "1 აკადემიური წელი",
+      "lessonLength": "60 წუთი",
+      "perWeek": "კვირაში ორჯერ",
+      "price": {
+        "was": "₾ 185",
+        "now": "₾ 165 / თვე"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "About the Course"
+      },
+      "body": {
+        "en": [
+          "The General English Course for Children Aged 6–10 at Levels Language Academy is a unique program designed to combine academic depth with engaging activities for young learners. Led by experienced Georgian teachers and native English-speaking instructors, the course ensures a balanced approach to both structured language learning and natural spoken English practice.",
+          "Over the span of a full academic year, children develop all essential skills—reading, writing, grammar, and communication—while building confidence and independent study habits. With its innovative Cambridge-based methodology and interactive lessons, this course provides children with the best opportunity to achieve steady, measurable progress in English."
+        ],
+        "ka": [
+          "ლეველს აკადემიაში 6–10 წლის მოსწავლეების ზოგადი ინგლისურის კურსი უნიკალური პროგრამაა, რომელიც აკადემიურ მიდგომასა და გასართობ აქტივობებს აერთიანებს. კურსს ხელმძღვანელობენ გამოცდილი ქართველი და ინგლისურის მშობლიურენოვანი 'ნეითივ' ინსტრუქტორები, რაც უზრუნველყოფს დაბალანსებულ მიდგომას როგორც ინგლისური ენის გრამატიკის, ისე ბუნებრივი საუბრით პრაქტიკის.",
+          "სრული აკადემიური წლის განმავლობაში მოსწავლეები ავითარებენ ყველა აუცილებელ კომპონენტს — კითხვას, წერას, გრამატიკასა და კომუნიკაციას — იძენენ თავდაჯერებულობასა და ინდივიდუალური შესწავლის ჩვევებს. კემბრიჯის უნივერსიტეტის მიდგომებზე დაფუძნებული ინოვაციური მეთოდოლოგიისა და ინტერაქტიული გაკვეთილების მეშვეობით, ეს კურსი ქმნის საუკეთესო შესაძლებლობას ინგლისურში საფუძვლიანი პროგრესის მისაღწევად."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will my child learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "Development of all core language skills: reading, writing, grammar, vocabulary, and independent learning.",
+          "Enhanced speaking abilities and communication confidence, with correct pronunciation and intonation.",
+          "A program covering two stages of English proficiency.",
+          "Practice through interactive activities, games, listening tasks, and role-play.",
+          "Continuous feedback from teachers and assessments to track progress."
+        ],
+        "ka": [
+          "ენის ყველა უნარის განვითარება: კითხვა, წერა, გრამატიკა, ლექსიკა და ინდივიდუალურობის უნარები.",
+          "კომუნიკაციის უნარების გაუმჯობესება, სწორ გამოთქმასა და ინტონაციაზე განსაკუთრებული ყურადღებით.",
+          "პრაქტიკა ინტერაქტიულ და გასართობ აქტივობებში: მოსმენითი დავალებები, თამაშები, ვიდეოები და სახალისო ტექსტები.",
+          "პროგრესის შეფასება და მასწავლებლის უკუკავშირი.",
+          "პროგრამის განმავლობაში ბავშვები ასრულებენ ინგლისური ენის ორ დონეს, რაც უზრუნველყოფს როგორც აკადემიურ, ისე სასასუბრო ინგლისურის თვალსაჩინო პროგრესს."
+        ]
+      }
+    },
+    {
+      "key": "materials",
+      "heading": {
+        "en": "What learning materials will my child use?",
+        "ka": "რა სასწავლო მასალები გამოიყენება კურსზე?"
+      },
+      "body": {
+        "en": [
+          "Innovative, child-friendly Cambridge University Press textbooks.",
+          "Supplementary resources: fun texts, listening exercises, videos, and interactive games.",
+          "Materials adapted to ensure active participation and enjoyment in every lesson."
+        ],
+        "ka": [
+          "Cambridge University Press-ის ინოვაციური და ბავშვებზე მორგებული სასწავლო წიგნები.",
+          "სასწავლო რესურსების ფართო არჩევანი: გასართობი ტექსტები, მოსმენითი სავარჯიშოები, ვიდეოები და ინტერაქტიული თამაშები.",
+          "მასალები, რომლებიც მორგებულია გაკვეთილების განმავლობაში მოსწავლეთა მაქსიმალური ჩართულობის უზრუნველსაყოფად."
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "The program runs for a full academic year.",
+          "Lessons take place twice per week (8 lessons per month).",
+          "Each lesson is 60 minutes, with two consecutive lessons per session (total 120 minutes).",
+          "Students can join the course at any time during the academic year."
+        ],
+        "ka": [
+          "პროგრამა მიმდინარეობს სრული აკადემიური წლის განმავლობაში.",
+          "გაკვეთილები ტარდება კვირაში ორჯერ (თვეში 8 გაკვეთილი).",
+          "თითო გაკვეთილი 60-წუთიანია; თითო სესია მოიცავს ზედიზედ ორ გაკვეთილს (სულ 120 წუთი).",
+          "მოსწავლეებს შეუძლიათ კურსს შეუერთდნენ აკადემიური წლის ნებისმიერ დროს."
+        ]
+      }
+    },
+    {
+      "key": "groups",
+      "heading": {
+        "en": "How do you form groups?",
+        "ka": "როგორ იქმნება ჯგუფები?"
+      },
+      "body": {
+        "en": [
+          "Initial grouping is based on age and parental information.",
+          "During the first 2–3 sessions, teachers evaluate students’ language skills.",
+          "Children may be reassigned to the most suitable group according to their level.",
+          "Parents receive confirmation of the final schedule and placement from the administration."
+        ],
+        "ka": [
+          "საწყისი დაჯგუფება ასაკსა და მშობლების მიერ მიწოდებულ ინფორმაციაზე დაყრდნობით ხდება.",
+          "პირველი 2–3 სესიის განმავლობაში მასწავლებლები ყურადღებით აკვირდებიან მოსწავლეებს, რომ განსაზღვრონ მათი ენის ცოდნის დონე და სასწავლო საჭიროებები.",
+          "შემდეგ ბავშვები გადანაწილდებიან მათთვის ყველაზე შესაფერის ჯგუფში.",
+          "მშობლებს ადმინისტრაცია აცნობებს საბოლოო განრიგსა და ჯგუფში გადანაწილების შესახებ."
+        ]
+      }
+    },
+    {
+      "key": "lessonStructure",
+      "heading": {
+        "en": "What is the lesson structure?",
+        "ka": "როგორია გაკვეთილის სტრუქტურა?"
+      },
+      "body": {
+        "en": [
+          "60 minutes with a Georgian teacher, focusing on reading, writing, grammar, and vocabulary.",
+          "60 minutes with a native English-speaking teacher, focusing on speaking, pronunciation, and communication.",
+          "The program includes 2 mid-term tests and 2 final tests.",
+          "Parents receive:",
+          "Mid-term test papers for home review.",
+          "Final test results and teacher recommendations via email.",
+          "Parents may also request a meeting with teachers to discuss progress.",
+          "Successful completion of the program results in a certificate of achievement.",
+          "Enroll",
+          "Certificate",
+          "Upon successful completion of the course, you will receive an official certificate from Levels Academy, recognizing your achievements and progress in English language learning. 🎓✅",
+          "Family Discount",
+          "-10%",
+          "Enroll more than one family member and enjoy a special discount! Learning together makes the experience more fun and effective.",
+          "Student Discount",
+          "-10%",
+          "Are you a student? Get an exclusive discount on our courses and invest in your future with high-quality Art training.",
+          "Bring a Friend Discount",
+          "-10%",
+          "Learning is better with friends! Invite a friend to join the course and both of you will receive a discount on your enrollment.",
+          "Test your",
+          "English skills",
+          "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+        ],
+        "ka": [
+          "60 წუთი ზოგად ინგლისურზე ქართველ მასწავლებელთან (ფოკუსი: კითხვა, წერა, გრამატიკა და ლექსიკა).",
+          "60 წუთი საუბრით ინგლისურზე ინგლისურის მშობლიურენოვან მასწავლებელთან (ფოკუსი: საუბარი, სწორი გამოთქმა).",
+          "პროგრამა მოიცავს 2 შუალედურ და 2 ფინალურ ტესტს.",
+          "მშობლები იღებენ:",
+          "– შუალედური ტესტების ნამუშევრებს პროგრესის შესაფასებლად.",
+          "– საბოლოო გამოცდის შედეგებს და მასწავლებლის ინდივიდუალურ რეკომენდაციებს ელფოსტაზე.",
+          "– რეგულარულ ანგარიშებს და საჭიროების შემთხვევაში მასწავლებლებთან შეხვედრების დანიშვნის შესაძლებლობას.",
+          "კურსის დასასრულს წარმატებული მოსწავლეები იღებენ სერტიფიკატს.",
+          "რეგისტრაცია",
+          "სერტიფიკატი",
+          "კურსის წარმატებით დასრულების შემდეგ მიიღებთ Levels Academy-ის ოფიციალურ სერტიფიკატს, რომელიც ადასტურებს თქვენს მიღწევებსა და პროგრესს ინგლისური ენის შესწავლის პროცესში. 🎓✅",
+          "საოჯახო ფასდაკლება",
+          "-10%",
+          "დაარეგისტრირეთ ოჯახიდან ერთზე მეტი წევრი და ისარგებლეთ სპეციალური ფასდაკლებით!",
+          "ერთად სწავლა ბევრად უფრო საინტერესო და ეფექტურია.",
+          "სტუდენტური ფასდაკლება",
+          "-10%",
+          "სტუდენტი ხართ? მიიღეთ ექსკლუზიური ფასდაკლება ჩვენს კურსებზე.",
+          "მეგობრული ფასდაკლება",
+          "-10%",
+          "სწავლა მეგობრებთან ერთად უკეთესია!",
+          "მოიწვიეთ მეგობარი, რომ შემოუერთდეს კურსს და თქვენ ორივეს მოგენიჭებათ ფასდაკლება დარეგისტრირებისას.",
+          "გაიგე შენი",
+          "ინგლისურის დონე",
+          "გაიარეთ ჩვენი სწრაფი და უფასო ინგლისური ენის ტესტი, შეაფასეთ თქვენი ენის ცოდნის დონე და გაიგეთ, რომელი კურსი შეგეფერებათ! 🚀"
+        ]
+      }
+    }
+  ]
+}

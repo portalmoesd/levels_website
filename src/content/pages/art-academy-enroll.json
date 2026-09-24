@@ -1,0 +1,26 @@
+{
+  "slug": "art-academy-enroll",
+  "title": {
+    "en": "Art Courses Enroll | Levels Academy",
+    "ka": "ხელოვნების კურსების რეგისტრაცია | Levels Academy"
+  },
+  "description": {
+    "en": "Sign up for Art Courses for all ages.",
+    "ka": "დარეგისტრირდით ხელოვნების კურსებზე ყველა ასაკისთვის."
+  },
+  "header": {
+    "en": [
+      "Art Courses Enroll | Levels Academy",
+      "Sign up"
+    ],
+    "ka": [
+      "ხელოვნების კურსების რეგისტრაცია | Levels Academy",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

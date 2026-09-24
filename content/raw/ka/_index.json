@@ -2,32 +2,32 @@
   "INDEX": {
     "title": "ინგლისური ენის კურსები | Levels Academy",
     "description": "საშაბათო და საკვირაო სკოლა, ზოგადი ინგლისურის კურსი ბავშვებისთვის, მოზარდებისთვის, ზრდასრულებისთვის, IELTS, კემბრიჯის გამოცდებისთვის მომზადება, კორპორაციული ტრენინგები.",
-    "blockCount": 54
+    "blockCount": 102
   },
   "about": {
     "title": "ჩვენ შესახებ | ლეველს აკადემია",
     "description": "დაარსდა 2018 წელს. მცირე ჯგუფები, კემბრიჯის სერტიფიცირებული მასწავლებლები, ინგლიდური ენისა და ხელოვნების კურსები.",
-    "blockCount": 65
+    "blockCount": 80
   },
   "art-academy-enroll": {
     "title": "ხელოვნების კურსების რეგისტრაცია | Levels Academy",
     "description": "დარეგისტრირდით ხელოვნების კურსებზე ყველა ასაკისთვის.",
-    "blockCount": 3
+    "blockCount": 2
   },
   "art": {
     "title": "ხელოვნების კურსები | Levels Academy",
     "description": "ხატვის კურსები ბავშვებისთვის და მოზარდებისთვის. ხელოვნების პორტფოლიოს მოსამადებელი კურსი.",
-    "blockCount": 36
+    "blockCount": 45
   },
   "blank-11": {
     "title": "blank | Levels Academy",
     "description": "",
-    "blockCount": 130
+    "blockCount": 143
   },
   "blank": {
     "title": "საზაფხულო სკოლები — დიდი ბრიტანეთი, აშშ, საქართველო",
     "description": "საზაფხულო პროგრამები მოზარდებისთვის (ასაკი: 11-17) ინგლისსა და ამერიკაში.",
-    "blockCount": 35
+    "blockCount": 43
   },
   "business-english": {
     "title": "პროფესიული/ბიზნეს ინგლისური | Levels Academy",
@@ -37,12 +37,12 @@
   "certificate": {
     "title": "certificate | Levels Academy",
     "description": "",
-    "blockCount": 2
+    "blockCount": 1
   },
   "contactus": {
     "title": "დაგვიკავშირდით  | Levels Academy, თბილისი",
     "description": "დაგვირეკეთ, მოგვწერეთ ელ. ფოსტით ან მესიჯით. ფილიალები ვაკესა და კრწანისში. შემოგვიერთდით ჩვენს კურსებზე.",
-    "blockCount": 9
+    "blockCount": 8
   },
   "corporate-english": {
     "title": "კორპორაციული ინგლისური ენის კურსები | Levels Academy",
@@ -52,27 +52,27 @@
   "corporate-enroll": {
     "title": "ინგლისური ენის ორპორაციული კურსები | Levels Academy",
     "description": "კორპორაციული პროგრამები კომპანიებისთვის: დონის შეფასება, KPI-ები, პროგრესის ანგარიშები.",
-    "blockCount": 3
+    "blockCount": 2
   },
   "drawing-13-18": {
     "title": "ხატვა და ფერწერა ბავშვებისთვის 9-12 წლის | Levels Art Academy",
     "description": "საღამოსა და შაბათ/კვირის კლასები ბავშვებისთვის (9-12 წელი). ნატურმორტი, ფიგურა, კომპოზიცია; სტუდიის მასალები.",
-    "blockCount": 56
+    "blockCount": 57
   },
   "drawing-9-12": {
     "title": "ხატვის კურსი ბავშვებისთვის 9-12 | Levels Art Academy",
     "description": "ეს პროგრამა ბავშვებს აცნობს ხატვისა და ფერწერის საფუძვლებს, კომპოზიციიდან და პერსპექტივიდან დაწყებული, ფერითა და სტილით დამთავრებული, ამავდროულად ხელს უწყობს შემოქმედებითობას და თვითგამოხატვას.",
-    "blockCount": 56
+    "blockCount": 57
   },
   "drawing-kids": {
     "title": "ხატვა და ფერწერა ბავშვებისთვის | Levels Art Academy",
     "description": "ხატვისა და ფერწერის გაკვეთილები 5-8 წლის ბავშვებისთვის. მცირე ჯგუფები, უზრუნველყოფილი მასალები, გამოცდილი მასწავლებლები ვაკესა და კრწანისში.",
-    "blockCount": 112
+    "blockCount": 113
   },
   "english-enroll": {
     "title": "ინგლისური ენის კურსების რეგისტრაცია | Levels Academy",
     "description": "დარეგისტრირდით ინგლისური ენის კურსებზე ბავშვების, მოზარდების, ზრდასრულებისა და კომპანიებისთვის.",
-    "blockCount": 6
+    "blockCount": 5
   },
   "english-for-adults": {
     "title": "ზოგადი ინგლისური ზრდასრულებისთვის | Levels Academy",
@@ -82,27 +82,27 @@
   "english-for-children": {
     "title": "ზოგადი ინგლისური ბავშვებისთვის | Levels Academy",
     "description": "ინგლისური 6–10 წლისთვის. სახალისო გაკვეთილები, პროგრესის მონიტორინგი, მშობელთან კომუნიკაცია.",
-    "blockCount": 63
+    "blockCount": 65
   },
   "english-for-teens": {
     "title": "ზოგადი ინგლისური მოზარდებისთვის | Levels Academy",
     "description": "კომუნიკაციური გაკვეთილები 11–17 წლის მოზარდებისთვის რეალური თემებითა და პროექტებით. ინგლისური ენის ცოდნის დონის მიხედვით დაჯგუფება.",
-    "blockCount": 58
+    "blockCount": 59
   },
   "enroll": {
     "title": "დარეგისტრირდი | Levels Academy",
     "description": "აირჩიეთ ინგლისური ენისა და ხელოვნების კურსებიდან. დაგეგმეთ თქვენი ბავშვის მოგზაურობა საზაფხულო სკოლებში. დაჯავშნე უფასო კონსულტაცია საზღვარგარეთ სწავლისათვის.",
-    "blockCount": 7
+    "blockCount": 6
   },
   "fce-pet-cae": {
     "title": "FCE PET CAE კურსები | Levels Academy",
     "description": "პროგრამა ამზადებს სტუდენტებს კემბრიჯის FCE, CAE და PET გამოცდებისთვის კითხვის, წერის, მოსმენის, საუბრისა და გრამატიკის მიზანმიმართული ტრენინგების მეშვეობით.",
-    "blockCount": 36
+    "blockCount": 37
   },
   "home": {
     "title": "Levels Academy — ინგლისურისა და ხელოვნების კურსები",
     "description": "ინგლისურისა და ხელოვნების კურსები ბავშვებისთვის, მოზარდებისა და ზრდასრულებისთვის. ვაკე და კრწანისის ფილიალები. გაიარე ინგლისური ენის დონის ქვიზი.",
-    "blockCount": 88
+    "blockCount": 112
   },
   "ielts": {
     "title": "IELTS კურსი | Levels Academy",
@@ -112,17 +112,17 @@
   "interesting": {
     "title": "Interesting | Levels Academy",
     "description": "",
-    "blockCount": 3
+    "blockCount": 2
   },
   "london-kingston-summer-school": {
     "title": "London, Kingston Summer School | levels academy",
     "description": "ინგლისურის საზაფხულო სკოლა ლონდონში. თანამედროვე და ულამაზესი კამპუსი, შესანიშნავი ინფრასტრუქტურა, ცენტრალურ ლონდონთან ახლოს.",
-    "blockCount": 48
+    "blockCount": 49
   },
   "placement-quiz": {
     "title": "უფასო ინგლისური ენის დონის ქვიზი | Levels Academy",
     "description": "გაიარეთ ჩვენი უფასო ინგლისური ენის დონის ქვიზი თქვენი დონის გასარკვევად.",
-    "blockCount": 3
+    "blockCount": 2
   },
   "portfolio-creation": {
     "title": "Art Portfolio Creation — Tbilisi",
@@ -132,37 +132,37 @@
   "privacy-policy": {
     "title": "კონფიდენციალურობის პოლიტიკა| Levels Academy",
     "description": "",
-    "blockCount": 69
+    "blockCount": 68
   },
   "private-lessons": {
     "title": "ინდივიდუალური გაკვეთილები | Levels Academy",
     "description": "ისწავლეთ თქვენთვის სასურველი ტემპით, თქვენს მიზნებზე მორგებული მოქნილი, ინდივიდუალური გაკვეთილებით, რომლებიც ხელმისაწვდომია როგორც ონლაინ, ასევე აკადემიაში.",
-    "blockCount": 28
+    "blockCount": 32
   },
   "saturday-school": {
     "title": "საშაბათო სკოლა | Levels Academy",
     "description": "საკვირაო სკოლა: ინგლისური, კრეატიულობა და აქტივობები ბავშვებისთვის. მცირე ჯგუფები ვაკესა და კრწანისში.",
-    "blockCount": 60
+    "blockCount": 62
   },
   "study-abroad-consultation": {
     "title": "სწავლა საზღვარგარეთ - კონსულტაცია | Levels Academy",
     "description": "დარეგისტრირდით უფასო კონსულტაციაზე. სრული მხარდაჭერა: უნივერსიტეტის შერჩევა, IELTS-ის გამოცდა, განაცხადები, სტიპენდიები, ვიზა და გამგზავრება.",
-    "blockCount": 3
+    "blockCount": 2
   },
   "study-abroad": {
     "title": "სწავლა საზღვარგარეთ | Levels Academy",
     "description": "სრული მხარდაჭერა: უნივერსიტეტის პროგრამების შერჩევა, IELTS-ის გამოცდისთვის მომზადება, საბუთები, დაფინანსება, აპლიკაციები, ვიზა, გამგზავრება.",
-    "blockCount": 85
+    "blockCount": 86
   },
   "summer-school-california": {
     "title": "საზაფხულო სკოლა კალიფორნიაში (აშშ) | Levels Academy",
     "description": "საზაფხულო პროგრამები კალიფორნიაში: ინგლისური, კამპუსში ცხოვრება და ექსკურსიები ლოს-ანჯელესში და მის ფარგლებს გარეთ.",
-    "blockCount": 53
+    "blockCount": 59
   },
   "summer-school-enroll": {
     "title": "საზაფხულო სკოლების რეგისტრაცია | Levels Academy",
     "description": "დაგეგმეთ თქვენი შვილის ზაფხული მსოფლიოს წამყვან ზაფხულის სკოლებში აშშ-სა და დიდ ბრიტანეთში.",
-    "blockCount": 3
+    "blockCount": 2
   },
   "summer-school-london-brunel": {
     "title": "ლონდონის Brunel University საზაფხულო სკოლა | Levels Academy",
@@ -182,7 +182,7 @@
   "summer-school-new-york-st-johns": {
     "title": "ნიუ-იროკის St. John’s საზაფხულო სკოლა | Levels Academy",
     "description": "საზაფხულო სკოლა (ასაკი: 10-17) ნიუ-იორკში. კვირაში 15 საათი ინგლისური ენის შესწავლა, კამპუსში ცხოვრება, ექსკურსიები ნიუ-იორკში, ვაშინგტონსა და ნიაგარას ჩანჩქერზე. ფასი: 4,300 აშშ დოლარი.",
-    "blockCount": 54
+    "blockCount": 55
   },
   "summer-school-uk-ellesmere": {
     "title": "ინგლისის Ellesmere College საზაფხულო სკოლა | Levels Academy",
@@ -192,31 +192,31 @@
   "summer-schools": {
     "title": "საზაფხულო სკოლები — დიდი ბრიტანეთი, აშშ, საქართველო",
     "description": "საზაფხულო პროგრამები მოზარდებისთვის (ასაკი: 11-17) ინგლისსა და ამერიკაში.",
-    "blockCount": 35
+    "blockCount": 43
   },
   "sunday-school": {
     "title": "საკვირაო სკოლა | Levels Academy",
     "description": "საკვირაო სკოლა: ინგლისური, კრეატიულობა და აქტივობები ბავშვებისთვის. მცირე ჯგუფები ვაკესა და კრწანისში.",
-    "blockCount": 61
+    "blockCount": 64
   },
   "team": {
     "title": "ჩვენი გუნდი | Levels Academy",
     "description": "გაიცანით ჩვენი კემბრიჯის მიერ სერტიფიცირებული ინგლისური ენის მენტორები და გამოცდილი ხელოვნების აკადემიის მასწავლებლები.",
-    "blockCount": 29
+    "blockCount": 36
   },
   "university-rankings-map": {
     "title": "უნივერსიტეტების მსოფლიო რეიტინგის ინტერაქტიული რუკა | Levels Academy",
     "description": "",
-    "blockCount": 2
+    "blockCount": 1
   },
   "verify": {
     "title": "verify | Levels Academy",
     "description": "",
-    "blockCount": 2
+    "blockCount": 1
   },
   "work-with-us": {
     "title": "შემოგვიერთდით | Levels Academy",
     "description": "შემოუერთდით ჩვენს გუნდს.",
-    "blockCount": 15
+    "blockCount": 14
   }
 }

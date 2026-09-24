@@ -1,0 +1,26 @@
+{
+  "slug": "corporate-enroll",
+  "title": {
+    "en": "English Language Corporate Courses | Levels Academy",
+    "ka": "ინგლისური ენის ორპორაციული კურსები | Levels Academy"
+  },
+  "description": {
+    "en": "",
+    "ka": "კორპორაციული პროგრამები კომპანიებისთვის: დონის შეფასება, KPI-ები, პროგრესის ანგარიშები."
+  },
+  "header": {
+    "en": [
+      "English Language Corporate Courses | Levels Academy",
+      "Sign up"
+    ],
+    "ka": [
+      "ინგლისური ენის ორპორაციული კურსები | Levels Academy",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

@@ -22,6 +22,7 @@
     "გასართობი აქტივობები: სპორტული შეჯიბრებები, წვეულებები, ტალანტშოუები, თემატური საღამოები",
     "ექსკურსიები: ჰოლივუდი, სან-ფრანცისკო, ლას-ვეგასი, გრანდ-კანიონი",
     "ნეთვორქინგი: ურთიერთობა სხვადასხვა ეროვნების სტუდენტებთან და წამყვან ლექტორებთან",
+    "რეგისტრაცია",
     "Activities",
     "სტანდარტული აქტივობები, რომლებშიც საზაფხულო სკოლის ყველა მონაწილეს ექნება მონაწილეობის შესაძლებლობა დამატებითი ხარჯების გარეშე.",
     "ცურვა",
@@ -41,6 +42,7 @@
     "Disneyland",
     "USD 225",
     "Universal Park",
+    "USD 225",
     "Las Vegas Show",
     "USD 185",
     "Las Vegas Limo Tour",
@@ -49,13 +51,17 @@
     "USD",
     "სკოლის გალერეა",
     "University Main Building",
+    "6 Flags",
+    "Universal Park",
     "San Francisco",
+    "Grand Canyon",
     "Golden Gate",
+    "Disneyland",
     "Common Room",
     "Accommodation Yard",
     "University Top View",
     "Main Building",
-    "კამპუსის ტური",
-    "&copy; 2026 by Levels Academy."
+    "Accommodation Yard",
+    "კამპუსის ტური"
   ]
 }

@@ -1,0 +1,121 @@
+{
+  "slug": "portfolio-creation",
+  "title": {
+    "en": "Art Portfolio Creation — Tbilisi",
+    "ka": "Art Portfolio Creation — Tbilisi"
+  },
+  "description": {
+    "en": "1:1 mentoring to build an art/design portfolio for UK/USA/EU admissions. Project planning, feedback, and deadline tracking.",
+    "ka": "პირადი მენტორინგი არტ/დიზაინის პორტფოლიოსთვის (UK/USA/EU). პროექტის გეგმა, უკუკავშირი, ვადების მართვა."
+  },
+  "header": {
+    "en": [
+      "Art Portfolio Creation — Tbilisi",
+      "Portfolio Creation",
+      "This program helps aspiring art students create a professional portfolio under the guidance of experienced artists and professors. Alongside portfolio preparation, students receive free admission support for our partner universities.",
+      "Enroll",
+      "Duration",
+      "from 1 month",
+      "Age",
+      "from 16 y.o."
+    ],
+    "ka": [
+      "Art Portfolio Creation — Tbilisi",
+      "პორტფოლიოს შექმნა",
+      "ეს პროგრამა ხელოვნების მომავალ სტუდენტებს გამოცდილი მხატვრებისა და პროფესორების ხელმძღვანელობით პროფესიული პორტფოლიოს შექმნაში ეხმარება. პორტფოლიოს მომზადებასთან ერთად, სტუდენტები ჩვენს პარტნიორ უნივერსიტეტებში ჩარიცხვის უფასო მხარდაჭერას იღებენ.",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "1 თვიდან",
+      "ასაკი",
+      "16 წლიდან"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "from 1 month",
+      "age": "from 16 y.o."
+    },
+    "ka": {
+      "duration": "1 თვიდან",
+      "age": "16 წლიდან"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [
+          "The Portfolio Creation program at Levels Art Academy is designed for students who wish to continue their studies abroad in the field of art and need a professional, competitive portfolio. Our instructors—experienced and recognized artists with years of teaching expertise—guide students step by step in creating a portfolio that highlights their skills, creativity, and potential.",
+          "As part of the program, students also benefit from free support with admission procedures at our partner universities, ensuring a smooth transition into international art studies."
+        ],
+        "ka": [
+          "ლეველს აკადემიის პორტფოლიოს შექმნის პროგრამა შექმნილია მათთვის, ვისაც სურს სწავლის გაგრძელება საზღვარგარეთ ხელოვნების სფეროში და სჭირდებათ პროფესიონალური, კონკურენტუნარიანი პორტფოლიო. ჩვენი ინსტრუქტორები - გამოცდილი და აღიარებული მხატვრები მრავალწლიანი პედაგოგიური გამოცდილებით - ეტაპობრივად უხელმძღვანელებენ სტუდენტებს პორტფოლიოს შექმნაში, რომელიც მათ უნარებს, შემოქმედებითობას და პოტენციალს გამოაჩენს.",
+          "პროგრამის ფარგლებში, სტუდენტები ასევე სარგებლობენ უფასო მხარდაჭერით ჩვენს პარტნიორ უნივერსიტეტებში მიღების პროცედურებთან დაკავშირებით."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will students learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "How to select and present your best artworks for an academic portfolio.",
+          "Development of technical and creative skills needed for professional presentation.",
+          "Guidance on structuring, editing, and refining works to meet international standards.",
+          "Insights into what leading art universities look for in applicants."
+        ],
+        "ka": [
+          "როგორ შევარჩიოთ და წარმოვადგინოთ თქვენი საუკეთესო ნამუშევრები აკადემიური პორტფოლიოსთვის.",
+          "პროფესიონალური პრეზენტაციისთვის საჭირო ტექნიკური და შემოქმედებითი უნარების განვითარება.",
+          "ხელმძღვანელობა ნამუშევრების სტრუქტურირების, რედაქტირებისა და დახვეწის შესახებ საერთაშორისო სტანდარტების შესაბამისად.",
+          "გაეცანით ინფორმაციას იმის შესახებ, თუ რას ეძებენ წამყვანი ხელოვნების უნივერსიტეტები აპლიკანტებში."
+        ]
+      }
+    },
+    {
+      "key": "admission",
+      "heading": {
+        "en": "University Admission Support",
+        "ka": "უნივერსიტეტში ჩაბარების მხარდაჭერა"
+      },
+      "body": {
+        "en": [
+          "Free admission guidance is provided for applications to partner universities, including:",
+          "Istituto Marangoni",
+          "Nuova Accademia di Belle Arti (NABA)"
+        ],
+        "ka": [
+          "ლეველს აკადემიის პარტნიორ უნივერსიტეტებში განაცხადების გაგზვნა და საჭირო პროცედურების მხარდაჭერა უფასოა, მათ შორის:",
+          "Istituto Marangoni",
+          "Nuova Accademia di Belle Arti (NABA)"
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "Enrollment is open year-round.",
+          "The program is customized to fit the student’s timeline and application deadlines.",
+          "Enroll"
+        ],
+        "ka": [
+          "რეგისტრაცია მთელი წლის განმავლობაშია შესაძლებელი.",
+          "პროგრამა მორგებულია სტუდენტის ვადებსა და განაცხადის წარდგენის ბოლო ვადებზე.",
+          "რეგისტრაცია"
+        ]
+      }
+    }
+  ]
+}

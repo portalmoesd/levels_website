@@ -1,0 +1,32 @@
+{
+  "slug": "english-enroll",
+  "title": {
+    "en": "English Courses Enroll | Levels Academy",
+    "ka": "ინგლისური ენის კურსების რეგისტრაცია | Levels Academy"
+  },
+  "description": {
+    "en": "Sign up for English Language Courses designed for children, teenagers, adults and companies.",
+    "ka": "დარეგისტრირდით ინგლისური ენის კურსებზე ბავშვების, მოზარდების, ზრდასრულებისა და კომპანიებისთვის."
+  },
+  "header": {
+    "en": [
+      "English Courses Enroll | Levels Academy",
+      "Sign up",
+      "Test your",
+      "English skills",
+      "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+    ],
+    "ka": [
+      "ინგლისური ენის კურსების რეგისტრაცია | Levels Academy",
+      "რეგისტრაცია",
+      "Test your",
+      "English skills",
+      "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

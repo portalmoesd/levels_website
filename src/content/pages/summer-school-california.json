@@ -1,0 +1,164 @@
+{
+  "slug": "summer-school-california",
+  "title": {
+    "en": "California Summer School (USA) | Levels Academy",
+    "ka": "საზაფხულო სკოლა კალიფორნიაში (აშშ) | Levels Academy"
+  },
+  "description": {
+    "en": "California summer school options with English classes, campus accommodation and iconic excursions across LA & beyond.",
+    "ka": "საზაფხულო პროგრამები კალიფორნიაში: ინგლისური, კამპუსში ცხოვრება და ექსკურსიები ლოს-ანჯელესში და მის ფარგლებს გარეთ."
+  },
+  "header": {
+    "en": [
+      "California Summer School (USA) | Levels Academy",
+      "California State University",
+      "Los Angeles, USA",
+      "Sign up",
+      "Summer in Los Angeles",
+      "Duration",
+      "2 weeks",
+      "Age",
+      "from 10 y.o.",
+      "Price",
+      "USD 4,500 for two weeks",
+      "Northridge Summer School, located on the campus of California State University, offers the perfect combination of learning, travel, and relaxation. The program includes a variety of options to suit all interests. We offer group trips with an accompanying guide, and, if preferred, you can also travel individually.",
+      "English Course: 15 hours per week",
+      "Location: 20 minutes from Beverly Hills",
+      "Campus: Modern and secure housing, library, classrooms, sports fields, swimming pools, gardens",
+      "Recreational Activities: Sports competitions, parties, talent shows, themed evenings",
+      "Excursions: Hollywood, San Francisco, Las Vegas, Grand Canyon",
+      "Networking: Interaction with students of different nationalities and leading lecturers",
+      "sign up"
+    ],
+    "ka": [
+      "საზაფხულო სკოლა კალიფორნიაში (აშშ) | Levels Academy",
+      "California State University",
+      "Los Angeles, USA",
+      "რეგისტრაცია",
+      "ზაფხული ლოს-ანჯელესში",
+      "ხანგრძლივობა",
+      "2 კვირა",
+      "ასაკი",
+      "10 წლიდან",
+      "ფასი",
+      "USD 4,500 ორი კვირა",
+      "Northridge Summer School მდებარეობს California State University-ს კამპუსზე და გთავაზობთ სწავლის, მოგზაურობისა და დასვენების იდეალურ კომბინაციას. პროგრამა მოიცავს მრავალფეროვან არჩევანს ყველა ინტერესის დასაკმაყოფილებლად. გთავაზობთ ჯგუფურ მოგზაურობებს თანმხლებ გიდთან ერთად, ხოლო სურვილის შემთხვევაში შეგიძლიათ ინდივიდუალურადაც იმგზავროთ.",
+      "ინგლისური ენის კურსი: კვირაში 15 საათი",
+      "ლოკაცია: ბევერლი ჰილსიდან 20 წუთი",
+      "კამპუსი: თანამედროვე და უსაფრთხო საცხოვრებელი, ბიბლიოთეკა, აუდიტორიები, სპორტული მოედნები, საცურაო აუზები, ბაღები",
+      "გასართობი აქტივობები: სპორტული შეჯიბრებები, წვეულებები, ტალანტშოუები, თემატური საღამოები",
+      "ექსკურსიები: ჰოლივუდი, სან-ფრანცისკო, ლას-ვეგასი, გრანდ-კანიონი",
+      "ნეთვორქინგი: ურთიერთობა სხვადასხვა ეროვნების სტუდენტებთან და წამყვან ლექტორებთან",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "2 weeks",
+      "age": "from 10 y.o.",
+      "price": {
+        "now": "USD 4,500 for two weeks"
+      }
+    },
+    "ka": {
+      "duration": "2 კვირა",
+      "age": "10 წლიდან",
+      "price": {
+        "now": "USD 4,500 ორი კვირა"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "activities",
+      "heading": {
+        "en": "Activities",
+        "ka": "Activities"
+      },
+      "body": {
+        "en": [
+          "These are the standard activities that all participants of the summer school will have the opportunity to attend without any extra cost.",
+          "Swimming",
+          "Movie Nights",
+          "Theme Events",
+          "Basketball",
+          "Karaoke Nights",
+          "Football",
+          "Talent Show",
+          "Welcome Party",
+          "Trips",
+          "Las Vegas",
+          "Hollywood",
+          "San Fracisco",
+          "Grand Canyon",
+          "Additional Activities",
+          "Disneyland",
+          "USD 225",
+          "Universal Park",
+          "USD 225",
+          "Las Vegas Show",
+          "USD 185",
+          "Las Vegas Limo Tour",
+          "USD 115",
+          "6 Flags",
+          "USD",
+          "School Gallery",
+          "University Main Building",
+          "6 Flags",
+          "Universal Park",
+          "San Francisco",
+          "Grand Canyon",
+          "Golden Gate",
+          "Disneyland",
+          "Common Room",
+          "Accommodation Yard",
+          "University Top View",
+          "Main Building",
+          "Accommodation Yard",
+          "Campus Tour"
+        ],
+        "ka": [
+          "სტანდარტული აქტივობები, რომლებშიც საზაფხულო სკოლის ყველა მონაწილეს ექნება მონაწილეობის შესაძლებლობა დამატებითი ხარჯების გარეშე.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საჭამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ტალანტ შოუ",
+          "Welcome Party",
+          "ტურები",
+          "Las Vegas",
+          "Hollywood",
+          "San Fracisco",
+          "Grand Canyon",
+          "დამატებითი აქტივობები",
+          "Disneyland",
+          "USD 225",
+          "Universal Park",
+          "USD 225",
+          "Las Vegas Show",
+          "USD 185",
+          "Las Vegas Limo Tour",
+          "USD 115",
+          "6 Flags",
+          "USD",
+          "სკოლის გალერეა",
+          "University Main Building",
+          "6 Flags",
+          "Universal Park",
+          "San Francisco",
+          "Grand Canyon",
+          "Golden Gate",
+          "Disneyland",
+          "Common Room",
+          "Accommodation Yard",
+          "University Top View",
+          "Main Building",
+          "Accommodation Yard",
+          "კამპუსის ტური"
+        ]
+      }
+    }
+  ]
+}

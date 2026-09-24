@@ -1,0 +1,160 @@
+{
+  "slug": "london-kingston-summer-school",
+  "title": {
+    "en": "London, Kingston Summer School | levels academy",
+    "ka": "London, Kingston Summer School | levels academy"
+  },
+  "description": {
+    "en": "Learn English in Kingston Summer School on a beautiful university campus - great facilities, safe location, easy access to central London.",
+    "ka": "ინგლისურის საზაფხულო სკოლა ლონდონში. თანამედროვე და ულამაზესი კამპუსი, შესანიშნავი ინფრასტრუქტურა, ცენტრალურ ლონდონთან ახლოს."
+  },
+  "header": {
+    "en": [
+      "London, Kingston Summer School | levels academy",
+      "Age: 13-17",
+      "London",
+      "Kingston",
+      "Enroll",
+      "Duration",
+      "2 weeks",
+      "Lessons",
+      "12 hrs / week",
+      "Price",
+      "11.07 - 25.07",
+      "Price",
+      "£3,450 / 2 weeks",
+      "£3,100 / 2 weeks",
+      "Summer School in Kingston",
+      "Kingston is a vibrant, green corner of southwest London-set on the River Thames and just 10 miles from Charing Cross. With royal heritage nearby at Hampton Court Palace, vast parklands on your doorstep, and a lively riverside lined with cafés, pubs, and restaurants, it’s an ideal place to live and explore. Add excellent shopping from well-known high-street brands to a historic market that’s been running for over 800 years and you get the best of London, with a calmer, safer feel.",
+      "The learning centre is perfectly placed between Richmond Park and Wimbledon Common on a beautiful hillside university campus. Modern facilities sit within landscaped gardens and open green spaces, creating a friendly, community atmosphere. Everything is a short walk away, including tennis courts, a student bar, a restaurant, and relaxed social areas. Free transfers connect you to the nearest station and town centre, and central London is easily reached in around 30 minutes by public transport.",
+      "Course",
+      "General English",
+      "English language level testing",
+      "12 hours of lessons each week, with the option to add more",
+      "Maximum class size: 15-20 students",
+      "Course materials provided",
+      "End-of-Course certificate",
+      "Accomodation",
+      "Error: empty slot",
+      "Campus facilities",
+      "Green areas and gardens around the campus",
+      "Tennis courts on-site",
+      "Free Wi-Fi",
+      "On-site bar, shop and a cash point",
+      "On site bus stop with free transfers",
+      "24-hour CCTV"
+    ],
+    "ka": [
+      "London, Kingston Summer School | levels academy",
+      "ასაკი: 13-17",
+      "ლონდონი",
+      "კინგსტონი",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "2 კვირა",
+      "გაკვეთილები",
+      "12 საათი / კვირაში",
+      "ფასი",
+      "11.07 - 25.07",
+      "ფასი",
+      "£3,450 / 2 კვირა",
+      "£3,100 / 2 კვირა",
+      "საზაფხულო სკოლა კინგსტონში",
+      "კინგსტონი ლონდონის სამხრეთ-დასავლეთ ნაწილში მდებარე სიცოცხლით სავსე და გამწვანებული უბანია - მდინარე ტემზას ნაპირზე, ჩარინგ-კროსიდან სულ რაღაც 10 მილის დაშორებით. ახლოს არის სამეფო მემკვიდრეობის ერთ-ერთი სიმბოლო - ჰემპტონ კორტის სასახლე; კამპუსთან მდებარეობს პარკები, ხოლო ცოცხალი სანაპირო ზოლი სავსეა კაფეებით და რესტორნებით. ასევე, კინგსტონი გამოირჩევა შესანიშნავი შოპინგით: არის ცნობილი ბრენდების მაღაზიები, ასევე ისტორიული ბაზრობა, რომელიც 800 წელზე მეტია მოქმედებს. კინგსტონი არის ლონდონის ერთ-ერთი საუკეთესო, შვიდი და უსაფრთხო უბანია ვიზიტორებისთვის.",
+      "სასწავლო შენობა არის განთავსებული რიჩმონდ პარკსა და უიმბლდონ ქომონს შორის, უნივერსიტეტის ულამაზეს კამპუსში თანამედროვე ინფრასტრუქტურით, ბაღებითა და მწვანე სივრცეებით. ფეხით სავალ მანძილზეა: ჩოგბურთის მოედნები, რესტორნები, კაფეები და კომფორტული სოციალური სივრცეები. უფასო ტრანსფერები აკავშირებს კამპუსს უახლოეს სადგურთან და ქალაქის ცენტრთან, ხოლო ცენტრალური ლონდონი საზოგადოებრივი ტრანსპორტით დაახლოებით 30 წუთშია."
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "2 weeks",
+      "perWeek": "12 hrs / week",
+      "price": {
+        "now": "11.07 - 25.07"
+      }
+    },
+    "ka": {
+      "duration": "2 კვირა",
+      "perWeek": "12 საათი / კვირაში",
+      "price": {
+        "now": "11.07 - 25.07"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "activities",
+      "heading": {
+        "en": "Activities",
+        "ka": "აქტივობები"
+      },
+      "body": {
+        "en": [
+          "These are the standard activities that all participants of the summer school will have the opportunity to attend without any extra cost.",
+          "Sports Activities",
+          "Movie Nights",
+          "Theme Events",
+          "Talent Show",
+          "Trips",
+          "Welcome Party",
+          "Trips",
+          "Cambridge Tour",
+          "Oxford Tour",
+          "A Musical",
+          "Boat Cruise on Thames",
+          "Madame Tussauds",
+          "London Eye",
+          "Science Museum",
+          "National Museum",
+          "National Gallery",
+          "Brighton Tour",
+          "School Gallery",
+          "Enroll"
+        ],
+        "ka": [
+          "ეს არის სტანდარტული აქტივობები, რომლებზეც ზაფხულის სკოლის ყველა მონაწილეს ექნება შესაძლებლობა დაესწროს ყოველგვარი დამატებითი გადასახადის გარეშე.",
+          "სპორტული აქტივობები",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "ნიჭირების შოუ",
+          "ექსკურსიები",
+          "Welcome Party",
+          "ტურები",
+          "Cambridge Tour",
+          "Oxford Tour",
+          "A Musical",
+          "Boat Cruise on Thames",
+          "Madame Tussauds",
+          "London Eye",
+          "Science Museum",
+          "National Museum",
+          "National Gallery",
+          "Brighton Tour",
+          "სკოლის გალერეა",
+          "რეგისტრაცია"
+        ]
+      }
+    },
+    {
+      "key": "about",
+      "heading": {
+        "en": "",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [],
+        "ka": [
+          "Error: empty slot",
+          "საცხოვრებელი",
+          "საცხოვრებელში განთავსება ხდება ერთადგილიან საძინებლებში, ინდივიდუალური აბაზანით, 6-8-ოთახიან აპარტამენტებში. თითოეულ აპარტამენტში არის პატარა სამზარეულო და საერთო მოსასვენებელი სივრცე.",
+          "კამპუსი",
+          "კამპუსის ირგვლივაა მწვანე ზონები და ბაღები",
+          "კამპუსის ტერიტორიაზეა ჩოგბურთის მოედნები",
+          "უფასო Wi-Fi",
+          "ადგილზე მაღაზია და ბანკომატი",
+          "კამპუსის ტერიტორიაზეა ავტობუსის გაჩერება და უფასო ტრანსფერები",
+          "24-საათიანი ვიდეომეთვალყურეობა (CCTV)"
+        ]
+      }
+    }
+  ]
+}

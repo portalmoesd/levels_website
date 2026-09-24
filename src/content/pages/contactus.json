@@ -1,0 +1,38 @@
+{
+  "slug": "contactus",
+  "title": {
+    "en": "Contact Levels Academy — Tbilisi",
+    "ka": "დაგვიკავშირდით  | Levels Academy, თბილისი"
+  },
+  "description": {
+    "en": "Call, email, or message us. Branches in Vake & Krtsanisi. Join our courses.",
+    "ka": "დაგვირეკეთ, მოგვწერეთ ელ. ფოსტით ან მესიჯით. ფილიალები ვაკესა და კრწანისში. შემოგვიერთდით ჩვენს კურსებზე."
+  },
+  "header": {
+    "en": [
+      "Contact Levels Academy — Tbilisi",
+      "Contact Us",
+      "29g Chavchavadze Avenue",
+      "35 Krtsanisi street Turn II",
+      "info@levels.ge",
+      "+995 32 2 18 06 05",
+      "work with us",
+      "Apply"
+    ],
+    "ka": [
+      "დაგვიკავშირდით | Levels Academy, თბილისი",
+      "დაგვიკავშირდით",
+      "29გ ჭავჭავაძის გამზირი",
+      "35 კრწანისის ქუჩა II შესახვევი",
+      "info@levels.ge",
+      "+995 32 2 18 06 05",
+      "შემოუერთდი ჩვენს გუნდს",
+      "Apply"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

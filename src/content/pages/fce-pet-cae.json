@@ -1,0 +1,173 @@
+{
+  "slug": "fce-pet-cae",
+  "title": {
+    "en": "FCE PET CAE Courses — Levels Academy",
+    "ka": "FCE PET CAE კურსები | Levels Academy"
+  },
+  "description": {
+    "en": "The program prepares students for the Cambridge FCE, CAE, and PET exams through targeted training in reading, writing, listening, speaking, and gramma",
+    "ka": "პროგრამა ამზადებს სტუდენტებს კემბრიჯის FCE, CAE და PET გამოცდებისთვის კითხვის, წერის, მოსმენის, საუბრისა და გრამატიკის მიზანმიმართული ტრენინგების მეშვეობით."
+  },
+  "header": {
+    "en": [
+      "FCE PET CAE Courses — Levels Academy",
+      "FCE PET CAE",
+      "This program prepares students for the Cambridge FCE, CAE, and PET exams through targeted training in reading, writing, listening, speaking, and grammar, with guidance from CELTA-certified Georgian and foreign instructors. Regular mock exams and personalized feedback ensure students are fully equipped for success.",
+      "Enroll",
+      "Duration",
+      "1.5 months",
+      "Age",
+      "all age groups",
+      "Lessons per week",
+      "twice a week",
+      "Lesson Duration",
+      "90 mins"
+    ],
+    "ka": [
+      "FCE PET CAE კურსები | Levels Academy",
+      "FCE PET CAE",
+      "ეს პროგრამა ამზადებს სტუდენტებს კემბრიჯის FCE, CAE და PET გამოცდებისთვის კითხვის, წერის, მოსმენის, საუბრისა და გრამატიკის მიზანმიმართული ტრენინგების მეშვეობით, CELTA-ს მიერ სერტიფიცირებული ქართველი და უცხოელი ინსტრუქტორების ხელმძღვანელობით. რეგულარული სატესტო გამოცდები და პერსონალიზებული უკუკავშირი უზრუნველყოფს სტუდენტების სრულ მზადყოფნას გამოცდებისათვის.",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "1.5 თვე",
+      "ასაკი",
+      "ყველა ასაკისთვის",
+      "გაკვეთილები",
+      "კვირაში ორჯერ",
+      "ხანგრძლივობა",
+      "90 წუთი"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "1.5 months",
+      "age": "all age groups",
+      "perWeek": "twice a week",
+      "lessonLength": "90 mins"
+    },
+    "ka": {
+      "duration": "1.5 თვე",
+      "age": "ყველა ასაკისთვის",
+      "perWeek": "კვირაში ორჯერ"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "About the Course"
+      },
+      "body": {
+        "en": [
+          "Levels Language Academy offers specialized preparation for international Cambridge examinations FCE, CAE, and PET. The program is designed to equip learners with the skills, strategies, and confidence necessary to achieve excellent results and obtain internationally recognized certification.",
+          "Instruction is delivered by highly qualified Georgian and foreign teachers, all certified by Cambridge University with CELTA credentials. Students benefit from professional guidance across all exam components and gain the essential competencies required for success."
+        ],
+        "ka": [
+          "ლეველს აკადემია გთავაზობთ სპეციალიზებულ მომზადებას კემბრიჯის საერთაშორისო გამოცდებისთვის FCE, CAE და PET. პროგრამა შექმნილია იმისთვის, რომ მოსწავლეებს განუვითარდეთ უნარ-ჩვევები, სტრატეგიები და თავდაჯერებულობა, რაც აუცილებელია შესანიშნავი შედეგების მისაღწევად და საერთაშორისოდ აღიარებული სერტიფიკატის მისაღებად.",
+          "სწავლებას ატარებენ მაღალკვალიფიციური ქართველი და უცხოელი მასწავლებლები, რომლებიც სერტიფიცირებულები არიან კემბრიჯის უნივერსიტეტის მიერ CELTA-ს სერთიფიკატებით. სტუდენტები სარგებლობენ ოფიციალური სახელმძღვანელოებით გამოცდის ყველა კომპონენტში."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will students learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "Targeted preparation for all exam components: Reading, Writing, Speaking, Listening, and Grammar.",
+          "Development of exam-specific strategies and practical test-taking skills.",
+          "Improvement in academic vocabulary, accuracy, and communication.",
+          "Regular practice tests and feedback to monitor progress."
+        ],
+        "ka": [
+          "გამოცდის ყველა კომპონენტისთვის მიზანმიმართული მომზადება: კითხვა, წერა, საუბარი, მოსმენა და გრამატიკა.",
+          "გამოცდისთვის სპეციფიკური სტრატეგიებისა და პრაქტიკული ტესტების ჩაბარების უნარების განვითარება.",
+          "აკადემიური ლექსიკის, სიზუსტისა და კომუნიკაციის გაუმჯობესება.",
+          "რეგულარული სავარჯიშო ტესტები და უკუკავშირი პროგრესის მონიტორინგისთვის."
+        ]
+      }
+    },
+    {
+      "key": "materials",
+      "heading": {
+        "en": "What learning materials will be used?",
+        "ka": "რომელი სასწავლო მასალები გამოიყენება კურსზე?"
+      },
+      "body": {
+        "en": [
+          "Official Cambridge examination preparation resources.",
+          "Practice tests, exercises, and supplementary materials tailored to student level and exam requirements."
+        ],
+        "ka": [
+          "კემბრიჯის გამოცდებისთვის მოსამზადებელი ოფიციალური რესურსები.",
+          "სავარჯიშო ტესტები, სხვა სავარჯიშოები და დამატებითი მასალები, რომლებიც მორგებულია სტუდენტის დონესა და გამოცდის მოთხოვნებზე."
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "Enrollment is open on a continuous basis.",
+          "A placement test and interview are conducted before registration to determine student level and design an appropriate program."
+        ],
+        "ka": [
+          "რეგისტრაცია ღიაა უწყვეტად.",
+          "რეგისტრაციამდე ტარდება ტესტირება და გასაუბრება სტუდენტის დონის დასადგენად და შესაბამისი პროგრამის შესადგენად."
+        ]
+      }
+    },
+    {
+      "key": "groups",
+      "heading": {
+        "en": "How are groups formed?",
+        "ka": "როგორ იქმნება ჯგუფები?"
+      },
+      "body": {
+        "en": [
+          "Students are grouped based on language proficiency and test results.",
+          "Grouping ensures learners receive the right level of support and challenge.",
+          "Groups are also organized according to the age of students, ensuring that learners study alongside peers with similar needs and learning dynamics."
+        ],
+        "ka": [
+          "სტუდენტები ჯგუფდებიან ენის ცოდნისა და ტესტის შედეგების მიხედვით.",
+          "ჯგუფები ასევე ორგანიზებულია მოსწავლეთა ასაკის მიხედვით, რაც უზრუნველყოფს, რომ მოსწავლეები სწავლობენ მსგავსი საჭიროებების და სწავლის დინამიკის მქონე თანატოლებთან ერთად."
+        ]
+      }
+    },
+    {
+      "key": "lessonStructure",
+      "heading": {
+        "en": "What is the lesson structure?",
+        "ka": "როგორია გაკვეთილის სტრუქტურა?"
+      },
+      "body": {
+        "en": [
+          "Lessons are fully focused on exam preparation.",
+          "Students take several simulated exams during the course to experience real test conditions and measure progress.",
+          "Personalized feedback ensures steady improvement in weaker areas.",
+          "Enroll",
+          "Test your",
+          "English skills",
+          "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀"
+        ],
+        "ka": [
+          "გაკვეთილები სრულად ორიენტირებულია გამოცდებისთვის მომზადებაზე.",
+          "კურსის განმავლობაში სტუდენტები აბარებენ რამდენიმე სიმულაციურ გამოცდას, რათა განიცადონ რეალური ტესტის პირობები და შეაფასონ პროგრესი.",
+          "პერსონალიზებული უკუკავშირი უზრუნველყოფს სტაბილურ გაუმჯობესებას სუსტი სფეროების მიმართ.",
+          "რეგისტრაცია",
+          "გაიგე შენი",
+          "ინგლისურის დონე",
+          "გაიარეთ ჩვენი სწრაფი და უფასო ინგლისური ენის ტესტი, შეაფასეთ თქვენი ენის ცოდნის დონე და გაიგეთ, რომელი კურსი შეგეფერებათ! 🚀"
+        ]
+      }
+    }
+  ]
+}

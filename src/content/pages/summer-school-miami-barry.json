@@ -1,0 +1,135 @@
+{
+  "slug": "summer-school-miami-barry",
+  "title": {
+    "en": "Miami — Barry University Summer School | Levels Academy",
+    "ka": "მაიამის Barry University საზაფხულო სკოლა | Levels Academy"
+  },
+  "description": {
+    "en": "Summer School in Miami, USA (ages 10-17). English lessons, secure campus stay, and trips (NASA Center, South Beach, Disney Springs). Price: USD 4,100.",
+    "ka": "საზაფხულო სკოლა მაიამიში, აშშ (ასაკი: 10-17). ინგლისური ენის გაკვეთილები, კამპუსში უსაფრთხო ცხოვრება და ექსკურსიები (NASA ცენტრი, საუთ ბიჩი, დისნეი სპრინგსი). ფასი: 4,100 აშშ დოლარი."
+  },
+  "header": {
+    "en": [
+      "Miami — Barry University Summer School | Levels Academy",
+      "Barry University",
+      "Miami, USA",
+      "Sign up",
+      "Summer in Miami",
+      "Duration",
+      "2 weeks",
+      "Age",
+      "from 10 y.o.",
+      "Price",
+      "USD 4,100 for two weeks",
+      "CSUN’s Summer School is the ideal choice if you’re looking for a well-rounded educational experience paired with plenty of recreation. Just ~20 minutes from Beverly Hills, the campus offers expansive sports fields, parks, swimming pools, and welcoming spaces to relax between activities.",
+      "Location: Northridge, Los Angeles (approx. 20 minutes from Beverly Hills)",
+      "Campus & facilities: Modern, secure environment with sports grounds, parks, swimming pools, and dedicated leisure areas",
+      "On-campus fun: Sports tournaments, talent shows, themed evenings, and a full calendar of social events",
+      "Excursions: Hollywood, San Francisco, Las Vegas, and the Grand Canyon",
+      "Global community: Connect with students from around the world and build lasting friendships",
+      "sign up"
+    ],
+    "ka": [
+      "მაიამის Barry University საზაფხულო სკოლა | Levels Academy",
+      "Barry University",
+      "Miami, USA",
+      "რეგისტრაცია",
+      "ზაფხული მაიამიზე",
+      "ხანგძლივობა",
+      "2 კვირიდან",
+      "ასაკი",
+      "10 წლიდან",
+      "ფასი",
+      "USD 4,100 ორი კვირა",
+      "CSUN-ის საზაფხულო სკოლა იდეალური არჩევანია, თუ ეძებთ ყოვლისმომცველ საგანმანათლებლო გამოცდილებას, რომელიც შერწყმულია უამრავ გასართობ აქტივობასთან. ბევერლი ჰილზიდან სულ რაღაც 20 წუთის სავალზე, კამპუსი გთავაზობთ სპორტულ მოედნებს, პარკებს, საცურაო აუზებს და მყუდრო სივრცეებს აქტივობებს შორის დასასვენებლად.",
+      "მდებარეობა: ნორთრიჯი, ლოს-ანჯელესი (დაახლოებით 20 წუთის სავალზე ბევერლი ჰილზიდან)",
+      "კამპუსი და ინფრასტრუქტურა: თანამედროვე, უსაფრთხო გარემო სპორტული მოედნებით, პარკებით, საცურაო აუზებით და სპეციალური დასასვენებელი ადგილებით",
+      "გართობა კამპუსში: სპორტული ტურნირები, ნიჭიერების შოუები, თემატური საღამოები და სოციალური ღონისძიებების სრული კალენდარი",
+      "ექსკურსიები: ჰოლივუდი, სან-ფრანცისკო, ლას-ვეგასი და გრანდ კანიონი",
+      "გლობალური საზოგადოება: დაუკავშირდით მსოფლიოს სხვადასხვა კუთხიდან ჩამოსულ სტუდენტებს და დაამყარეთ ხანგრძლივი მეგობრობა.",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "2 weeks",
+      "age": "from 10 y.o.",
+      "price": {
+        "now": "USD 4,100 for two weeks"
+      }
+    },
+    "ka": {
+      "age": "10 წლიდან",
+      "price": {
+        "now": "USD 4,100 ორი კვირა"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "activities",
+      "heading": {
+        "en": "Activities",
+        "ka": "აქტივობები"
+      },
+      "body": {
+        "en": [
+          "These are the standard activities that all participants of the summer school will have the opportunity to attend without any extra cost.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "Trips",
+          "NASA Kennedy Space Center Tour",
+          "Disney Springs",
+          "South Beach",
+          "Hollywood Beach Broadwalk",
+          "Additional Activities",
+          "Thriller Miami Speedboat",
+          "USD 75",
+          "Universal Studios Tour",
+          "USD 180 - 265",
+          "DIsneyland Tour",
+          "USD 210",
+          "Miami City Lights Tour",
+          "USD 125",
+          "Skyview Miami Tour",
+          "USD 35",
+          "School Gallery"
+        ],
+        "ka": [
+          "ეს არის სტანდარტული აქტივობები, რომლებზეც ზაფხულის სკოლის ყველა მონაწილეს ექნება შესაძლებლობა დაესწროს ყოველგვარი დამატებითი გადასახადის გარეშე.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "ტურები",
+          "NASA Kennedy Space Center Tour",
+          "Disney Springs",
+          "South Beach",
+          "Hollywood Beach Broadwalk",
+          "დამატებითი აქტივობები",
+          "Thriller Miami Speedboat",
+          "USD 75",
+          "Universal Studios Tour",
+          "USD 180 - 265",
+          "DIsneyland Tour",
+          "USD 210",
+          "Miami City Lights Tour",
+          "USD 125",
+          "Skyview Miami Tour",
+          "USD 35",
+          "სკოლის გალერეა"
+        ]
+      }
+    }
+  ]
+}

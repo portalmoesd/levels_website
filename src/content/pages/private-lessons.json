@@ -1,0 +1,118 @@
+{
+  "slug": "private-lessons",
+  "title": {
+    "en": "Private Lessons — Levels Academy",
+    "ka": "ინდივიდუალური გაკვეთილები | Levels Academy"
+  },
+  "description": {
+    "en": "Learn at your own pace with flexible one-on-one lessons tailored to your goals, available both online and at the academy.",
+    "ka": "ისწავლეთ თქვენთვის სასურველი ტემპით, თქვენს მიზნებზე მორგებული მოქნილი, ინდივიდუალური გაკვეთილებით, რომლებიც ხელმისაწვდომია როგორც ონლაინ, ასევე აკადემიაში."
+  },
+  "header": {
+    "en": [
+      "Private Lessons — Levels Academy",
+      "PRIVATE LESSONS",
+      "Learn at your own pace with flexible one-on-one lessons tailored to your goals, available both online and at the academy.",
+      "Enroll",
+      "Duration",
+      "individual approach",
+      "Age",
+      "all age groups",
+      "Lessons per week",
+      "individual approach",
+      "Lesson Duration",
+      "60 mins"
+    ],
+    "ka": [
+      "ინდივიდუალური გაკვეთილები | Levels Academy",
+      "ინდივიდუალური გაკვეთილები",
+      "ისწავლეთ თქვენთვის სასურველი ტემპით, თქვენს მიზნებზე მორგებული მოქნილი, ინდივიდუალური გაკვეთილებით, რომლებიც ხელმისაწვდომია როგორც ონლაინ, ასევე აკადემიაში.",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "ინდივიდუალური",
+      "ასაკი",
+      "ყველა ასაკისთვის",
+      "გაკვეთილები",
+      "ინდივიდულაური",
+      "ხანგრძლივობა",
+      "60 წუთი"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "individual approach",
+      "age": "all age groups",
+      "perWeek": "individual approach",
+      "lessonLength": "60 mins"
+    },
+    "ka": {
+      "duration": "ინდივიდუალური",
+      "age": "ყველა ასაკისთვის",
+      "perWeek": "ინდივიდულაური"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [
+          "At Levels Language Academy, individual lessons are available on a continuous basis for all courses. Flexible in format, sessions can be held either on-site at the academy or online, allowing students to choose the mode of study that best suits their schedule and needs.",
+          "Each lesson is a minimum of 1 hour in duration, with programs designed to provide personalized attention, targeted feedback, and tailored learning strategies."
+        ],
+        "ka": [
+          "ლეველს აკადემიაში ინდივიდუალური გაკვეთილები ყველა კურსისთვის უწყვეტად არის ხელმისაწვდომი. მოქნილი ფორმატის მეშვეობით, გაკვეთილები შეიძლება ჩატარდეს როგორც აკადემიაში, ასევე ონლაინ, რაც სტუდენტებს საშუალებას აძლევს აირჩიონ სწავლების ის სტრუქტურა, რომელიც საუკეთესოდ შეესაბამება მათ გრაფიკსა და საჭიროებებს.",
+          "თითოეული გაკვეთილის ხანგრძლივობა მინიმუმ 1 საათია, პროგრამები კი შექმნილია პერსონალიზებული ყურადღების, მიზანმიმართული უკუკავშირისა და მორგებული სასწავლო სტრატეგიების უზრუნველსაყოფად."
+        ]
+      }
+    },
+    {
+      "key": "pricing",
+      "heading": {
+        "en": "Available Individual Programs and Pricing (per 8 lessons)",
+        "ka": "ინდივიდუალური პროგრამები და ღირებულება (8 გაკვეთილი)"
+      },
+      "body": {
+        "en": [
+          "General English",
+          "With a Georgian mentor at the academy – ₾320",
+          "With a Georgian mentor online – ₾320",
+          "With a foreign mentor at the academy – ₾390",
+          "English for School Graduates/University Entrants",
+          "With a Georgian mentor at the academy – ₾320",
+          "Professional English",
+          "With a Georgian mentor at the academy – ₾350",
+          "FCE / CAE / PET Exam Preparation",
+          "With a Georgian mentor at the academy – ₾350",
+          "IELTS Preparation",
+          "With a Georgian mentor at the academy – ₾350",
+          "Test your",
+          "English skills",
+          "Take our quick and free English language quiz to assess your proficiency level and discover the right course for you! 🚀",
+          "Enroll"
+        ],
+        "ka": [
+          "ზოგადი ინგლისური",
+          "აკადემიაში ქართველ მენტორთან ერთად – ₾320",
+          "ონლაინ ქართველ მენტორთან ერთად – ₾320",
+          "აკადემიაში უცხოელ 'ნეითივ' მენტორთან ერთად – ₾390",
+          "ინგლისური აბიტურიენტებისთვის",
+          "აკადემიაში ქართველ მენტორთან ერთად – ₾320",
+          "პროფესიული ინგლისური",
+          "აკადემიაში ქართველ მენტორთან ერთად – ₾350",
+          "FCE / CAE / PET",
+          "აკადემიაში ქართველ მენტორთან ერთად – ₾350",
+          "IELTS",
+          "აკადემიაში ქართველ მენტორთან ერთად – ₾350",
+          "გაიგე შენი",
+          "ინგლისურის დონე",
+          "გაიარეთ ჩვენი სწრაფი და უფასო ინგლისური ენის ტესტი, შეაფასეთ თქვენი ენის ცოდნის დონე და გაიგეთ, რომელი კურსი შეგეფერებათ! 🚀",
+          "რეგისტრაცია"
+        ]
+      }
+    }
+  ]
+}

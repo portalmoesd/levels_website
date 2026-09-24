@@ -1,0 +1,212 @@
+{
+  "slug": "drawing-13-18",
+  "title": {
+    "en": "Drawing & Painting for Kids (9-12) — Tbilisi",
+    "ka": "ხატვა და ფერწერა ბავშვებისთვის 9-12 წლის | Levels Art Academy"
+  },
+  "description": {
+    "en": "Evening & weekend art classes for kids (9-12 y.o.). Still life, figure, composition; studio materials included.",
+    "ka": "საღამოსა და შაბათ/კვირის კლასები ბავშვებისთვის (9-12 წელი). ნატურმორტი, ფიგურა, კომპოზიცია; სტუდიის მასალები."
+  },
+  "header": {
+    "en": [
+      "Drawing & Painting for Kids (9-12) — Tbilisi",
+      "Drawing Course",
+      "This program helps teenagers master the fundamentals and techniques of drawing and painting while developing their own artistic style. Guided by professional artists, participants explore both classical exercises and creative projects, culminating in a final exhibition and certificate.",
+      "Enroll",
+      "Duration",
+      "1 academic year",
+      "Age",
+      "13 - 18 y.o.",
+      "Lessons per week",
+      "twice a week",
+      "Lesson Duration",
+      "90 mins"
+    ],
+    "ka": [
+      "ხატვა და ფერწერა ბავშვებისთვის 9-12 წლის | Levels Art Academy",
+      "ხატვის კურსი",
+      "ეს პროგრამა ეხმარება მოზარდებს დაეუფლონ ხატვისა და ფერწერის საფუძვლებსა და ტექნიკას, ამავდროულად განავითარონ საკუთარი მხატვრული სტილი. პროფესიონალი მხატვრების ხელმძღვანელობით, მონაწილეები იკვლევენ როგორც კლასიკურ სავარჯიშოებს, ასევე შემოქმედებით პროექტებს, რაც მთავრდება საბოლოო გამოფენითა და სერტიფიკატით.",
+      "რეგისტრაცია",
+      "ხანგრძლივობა",
+      "1 აკადემიური წელი",
+      "ასაკი",
+      "13 - 18 წელი",
+      "გაკვეთილები",
+      "ორჯერ კვირაში",
+      "ხანგრძლივობა",
+      "90 წუთი"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "1 academic year",
+      "age": "13 - 18 y.o.",
+      "perWeek": "twice a week",
+      "lessonLength": "90 mins"
+    },
+    "ka": {
+      "duration": "1 აკადემიური წელი",
+      "age": "13 - 18 წელი",
+      "perWeek": "ორჯერ კვირაში"
+    }
+  },
+  "sections": [
+    {
+      "key": "about",
+      "heading": {
+        "en": "About the Course",
+        "ka": "კურსის შესახებ"
+      },
+      "body": {
+        "en": [
+          "The drawing and painting course at the Levels Academy offers students the opportunity to learn about all the components of drawing, such as composition, form, line, spatial-volumetric thinking, perspective, tonal solution, and manner of execution. In the form of a presentation, the teacher will introduce students to the meaning of each new topic, its origin, technique, famous artists and their works.",
+          "At the end of the academic year, students participate in a final exhibition of their works and receive an official certificate of completion."
+        ],
+        "ka": [
+          "ლეველს აკადემიის ხატვისა და ფერწერის კურსი მოსწავლეებს სთავაზობს, გაეცნონ ხატვის ყველა კომპონენტს როგორიცაა, კომპოზიცია, ფორმა, ხაზი, სივრცობრივი-მოცულობითი აზროვნება, პერსპექტივა, ტონალური გადაწყვეტა, შესრულების მანერა. პრეზენტაციის სახით მასწავლებელი გააცნობს მოსწავლეებს ყველა ახალი თემის მნიშვენელობას,მის წარმოშობას, ტექნიკას, ცნობილ მხატვრებს და მათ ნამუშევრებს.",
+          "სასწავლო წლის ბოლოს სტუდენტები მონაწილეობენ თავიანთი ნამუშევრების დასკვნით გამოფენაში და იღებენ დასრულების ოფიციალურ სერტიფიკატს."
+        ]
+      }
+    },
+    {
+      "key": "learn",
+      "heading": {
+        "en": "What will students learn in this course?",
+        "ka": "რას მოიცავს კურსი?"
+      },
+      "body": {
+        "en": [
+          "Development of presentation skills,",
+          "The ability to critically evaluate and think in color,",
+          "Study of graphic and painting techniques,",
+          "The ability to work independently,",
+          "Introduction to contemporary art,",
+          "Study of artistic trends, styles and concepts,",
+          "Creating an individual perspective in the field of visual arts.",
+          "Increasing knowledge and interest in art among students."
+        ],
+        "ka": [
+          "პრეზენტაციის უნარ-ჩვევების განვითარება,",
+          "კრიტიკული შეფასებისა და ფერში აზროვნების შესაძლებლობა,",
+          "გრაფიკული და ფერწერული ტექნიკის შესწავლა,",
+          "დამოუკიდებლად მუშაობის შესაძლებლობა,",
+          "თანამედროვე ხელოვნების გაცნობა,",
+          "მხატვრული ტენდენციების, სტილების და კონცეფციების შესწავლა,",
+          "ინდივიდუალური პერსპექტივის შექმნა ვიზუალური ხელოვნების სფეროში.",
+          "მოსწავლეებში ხელოვნების ცოდნისა და ინტერესის ამაღლება."
+        ]
+      }
+    },
+    {
+      "key": "methodology",
+      "heading": {
+        "en": "Teaching Methodology",
+        "ka": "სწავლების მეთოდოლოგია"
+      },
+      "body": {
+        "en": [
+          "Instruction is based on a step-by-step academic approach, complemented by creative projects.",
+          "Students work both on classical exercises (still life, portrait, landscape) and on independent, imaginative projects guided by professional artists.",
+          "Reference study of works by famous painters (e.g., Claude Monet, Vincent van Gogh, René Magritte, Salvador Dalí, Niko Pirosmani).",
+          "Integration of art history with practice, allowing students to understand the evolution of artistic styles while applying them in their own work."
+        ],
+        "ka": [
+          "სწავლება ეფუძნება ეტაპობრივ აკადემიურ მიდგომას, რომელსაც ავსებს შემოქმედებითი პროექტები.",
+          "სტუდენტები მუშაობენ როგორც კლასიკურ სავარჯიშოებზე (ნატურმორტი, პორტრეტი, პეიზაჟი), ასევე დამოუკიდებელ, წარმოსახვით პროექტებზე, რომლებსაც ხელმძღვანელობენ პროფესიონალი მხატვრები.",
+          "ცნობილი მხატვრების (მაგ., კლოდ მონე, ვინსენტ ვან გოგი, რენე მაგრიტი, სალვადორ დალი, ნიკო ფიროსმანი) ნამუშევრების საცნობარო შესწავლა.",
+          "ხელოვნების ისტორიის ინტეგრაცია პრაქტიკასთან, რაც სტუდენტებს საშუალებას აძლევს გაიგონ მხატვრული სტილის ევოლუცია და ამავდროულად გამოიყენონ ისინი საკუთარ ნამუშევრებში."
+        ]
+      }
+    },
+    {
+      "key": "start",
+      "heading": {
+        "en": "When does the course start?",
+        "ka": "როდის იწყება კურსი?"
+      },
+      "body": {
+        "en": [
+          "The program runs for a full academic year, with 8 sessions per month.",
+          "Lessons are held twice a week, each lasting 90 minutes."
+        ],
+        "ka": [
+          "პროგრამა სრული აკადემიური წლის განმავლობაში მიმდინარეობს, თვეში 8 გაკვეთილი.",
+          "გაკვეთილები კვირაში ორჯერ ტარდება, თითოეული 90 წუთიანი."
+        ]
+      }
+    },
+    {
+      "key": "groups",
+      "heading": {
+        "en": "How are groups formed?",
+        "ka": "როგორ იქმნება ჯგუფები?"
+      },
+      "body": {
+        "en": [
+          "Groups are organized according to both age and skill level, ensuring that students learn alongside peers with similar abilities and interests, while receiving guidance appropriate to their stage of artistic development."
+        ],
+        "ka": [
+          "ჯგუფები ორგანიზებულია როგორც ასაკის, ასევე უნარების დონის მიხედვით, რაც უზრუნველყოფს, რომ მოსწავლეები სწავლობენ მსგავსი შესაძლებლობებისა და ინტერესების მქონე თანატოლებთან ერთად, ამავდროულად, იღებენ მათი მხატვრული განვითარების დონის შესაბამის ხელმძღვანელობას."
+        ]
+      }
+    },
+    {
+      "key": "teacher",
+      "heading": {
+        "en": "Who will be guiding the course?",
+        "ka": "ვინ ხელმძრვანელობს კურსს?"
+      },
+      "body": {
+        "en": [
+          "Drawing courses are led by professional artists, who have participated in dozens of exhibitions in Georgia and abroad, and also have many years of experience in the field of drawing mentoring.",
+          "Certification & Exhibition",
+          "At the end of the course, students present their works in a public exhibition.",
+          "Each participant receives a certificate of completion, recognizing their progress and artistic achievement.",
+          "Curriculum Semester I",
+          "Semester I",
+          "1. Still life: strokes, lines, light and shadow and the basic principles of perspective. Study of graphic and painting techniques.",
+          "2. Famous artists: The history of the origin of still life and acquaintance with the works of famous artists and drawing references.",
+          "3. Autumn landscape: An outdoor lesson in nature. Students will work on the theme of autumn in the open air. They draw a landscape, learn how to draw nature, trees and plants.",
+          "4. Basics of composition: The balance of objects, color and shape in the composition.",
+          "5. Portrait: Drawing a flat and plaster head. Development of skills in creating portraits.",
+          "6. New Year's drawing: A work done on the theme of New Year.",
+          "Curriculum Semester II",
+          "Semester II",
+          "7. Contemporary Art: Criteria and Trends of Contemporary Painting",
+          "8. Easter Still Life: Creating still lifes on an Easter theme.",
+          "9. Illustration: Visualizing characters from favorite books.",
+          "10. Georgian Art: History of Georgian painting and architecture. Getting to know the works of famous Georgian artists, drawing references.",
+          "11. Abstraction: Students will learn about the essence of abstraction, its types and meaning. They will look at famous examples of abstract painting (e.g. Kandinsky, Mondrian, Malevich, Lisztsky, Rothko). Students will create their own abstract work.",
+          "Enroll",
+          "Certificate",
+          "Upon successful completion of the course, you will receive an official certificate from Levels Academy, recognizing your achievements and progress in learning. 🎓✅"
+        ],
+        "ka": [
+          "ხატვის კურსებს უძღვებიან პრაქტიკოსი მხატვრები, რომლებიც არიან ათეულობით გამოფენის მონაწილეები საქართველოში და საქართველოს გარეთ, ასევე აქვთ მრავალწლიანი გამოცდილება ხატვის სწავლების სფეროში.",
+          "სერტიფიკატი და გამოფენა",
+          "სასწავლო წლის ბოლოს გაიმართება მოსწავლეების ნამუშევრების გამოფენა, მოსწავლეს მიეცემათ შესაძლებლობა სხვებს გაუზიარონ საკუთარი შემოქმედება. გამოფენაში მონაწილეებს მათი მიღწეული შედეგებისათვის გადაეცემათ სერტიფიკატი.",
+          "თითოეული მონაწილე იღებს კურსის დასრულების სერტიფიკატს, რომელიც მათი პროგრესისა და მხატვრული მიღწევების აღიარებას წარმოადგენს.",
+          "სასწავლო გეგმა სემესტრი I",
+          "სემესტრი I",
+          "1. ნატურმორტი: შტრიხები, ხაზები, შუქჩრდილები და პერსპექტივის ძირითადი პრინციპები.გრაფიკული და ფერწერული ტექნიკის შესწავლა.",
+          "2.ცნობილი მხატვრები: ნატურმორტის წარმოშობის ისტორია და ცნობილი მხატვრების ნამუშევრების გაცნობა და რეფერენსების გადახატვა.",
+          "3.შემოდგომის პეიზაჟი: გასვლითი გაკვეთილი ბუნებაში.მოსწავლეები იმუშავებენ შემოდგომის თემატიკაზე პლენერზე.ხატავენ პეიზაჟს,სწავლობენ როგორ დახატონ ბუნება, ხეები და მცენარეები.",
+          "4.კომპოზიციის საფუძვლები: კომპოზიციაში ნივთის,ფერის და ფორმის წონასწორობა.",
+          "5.პორტრეტი: სიბრტყეებიანი და თაბაშირის თავის ხატვა.პორტრეტების შექმნის უნარების განვითარება.",
+          "6. საახალწლო ნახატი: საახალწლო თემატიკაზე შესრულებული ნამუშევარი.",
+          "სასწავლო გეგმა სემესტრი II",
+          "II სემესტრი",
+          "7.თანამედროვე ხელოვნება: თანამედროვე მხატვრობის კრიტერიუმები და ტენდენციები",
+          "8.სააღდგომო ნატურმორტი: ნატურმორტების შექმნა სააღდგომო თემაზე.",
+          "9.ილუსტრაცია: საყვარელი წიგნების პერსონაჟების ვიზუალიზაცია.",
+          "10.ქართული ხელოვნება: ქართული მხატვრობის და არქიტექტურის ისტორია.ცნობილი ქართველი მხატვრების ნამუშევრების გაცნობა რეფერენსების გადახატვა.",
+          "11.აბსტრაქცია:მოსწავლეები გაეცნობიან აბცტრაქციის არსს, მის სახეებსა და მნიშვნელობას.დაათვალიერებენ აბსტრაქტული მხატვრობის ცნობილ ნიმუშებს(მაგ.კანდინსკი,მონდრიანი,მალევიჩი,ლისკიცკი,როტკო).შეასრულებენ საკუთარ აბსტრაქციულ ნამუშევარს.",
+          "რეგისტრაცია",
+          "სერტიფიკატი",
+          "კურსის წარმატებით დასრულების შემდეგ მიიღებთ Levels Academy-ის ოფიციალურ სერტიფიკატს, რომელიც ადასტურებს თქვენს მიღწევებსა და პროგრესს სწავლის პროცესში. 🎓✅"
+        ]
+      }
+    }
+  ]
+}

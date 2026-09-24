@@ -1,0 +1,37 @@
+{
+  "slug": "enroll",
+  "title": {
+    "en": "Enroll | Levels Academy",
+    "ka": "დარეგისტრირდი | Levels Academy"
+  },
+  "description": {
+    "en": "Choose from English & Art Courses. Plan your trips to Summer Schools. Apply for Universities to Study Abroad.",
+    "ka": "აირჩიეთ ინგლისური ენისა და ხელოვნების კურსებიდან. დაგეგმეთ თქვენი ბავშვის მოგზაურობა საზაფხულო სკოლებში. დაჯავშნე უფასო კონსულტაცია საზღვარგარეთ სწავლისათვის."
+  },
+  "header": {
+    "en": [
+      "Enroll | Levels Academy",
+      "enroll for",
+      "Language Courses",
+      "Courses",
+      "Summer",
+      "Schools",
+      "Study",
+      "Abroad",
+      "Corporate Courses"
+    ],
+    "ka": [
+      "დარეგისტრირდი | Levels Academy",
+      "რეგისტრაცია",
+      "ინგლისური ენის კურსები",
+      "ხელოვნების კურსები",
+      "საზაფხულო სკოლა",
+      "კორპორაციული კურსები"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

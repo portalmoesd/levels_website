@@ -1,0 +1,118 @@
+{
+  "slug": "summer-school-uk-ellesmere",
+  "title": {
+    "en": "Ellesmere College Summer School (UK) | Levels Academy",
+    "ka": "ინგლისის Ellesmere College საზაფხულო სკოლა | Levels Academy"
+  },
+  "description": {
+    "en": "UK summer school (ages 10+). 16h/week English, secure campus stay, trips to London, Wales & Liverpool. From £2,350.",
+    "ka": "UK summer school (ages 10+). 16h/week English, secure campus stay, trips to London, Wales & Liverpool. From £2,350."
+  },
+  "header": {
+    "en": [
+      "Ellesmere College Summer School (UK) | Levels Academy",
+      "Ellesmere College",
+      "Ellesmere, UK",
+      "Sign up",
+      "Summer in London",
+      "Duration",
+      "2 weeks",
+      "Age",
+      "from 10 y.o.",
+      "Price",
+      "GBP 2,350 for two weeks",
+      "Ellesmere College Summer School offers the perfect blend of learning, travel, and relaxation, with options to suit every interest. You can join a chaperoned group departure or, if you prefer, travel independently.",
+      "English course: 16 hours per week",
+      "Location: About 100 km from both Manchester and Birmingham",
+      "Campus: 50 hectares of landscaped green space with secure on-campus residence, sports fields, and classrooms",
+      "Activities: Sports tournaments, parties, talent shows, themed evenings, arts & crafts",
+      "Excursions: Wales, Chester, Shrewsbury, Liverpool, London",
+      "Networking: Connect with students from around the world and learn from experienced instructors",
+      "sign up"
+    ],
+    "ka": [
+      "ინგლისის Ellesmere College საზაფხულო სკოლა | Levels Academy",
+      "Ellesmere College",
+      "Ellesmere, UK",
+      "რეგისტრაცია",
+      "ზაფხული ინგლისში",
+      "ხანგრძლივობა",
+      "2 კვირიდან",
+      "ასაკი",
+      "10 წლიდან",
+      "ფასი",
+      "GBP 2,350 ორი კვირა",
+      "ელსმერის კოლეჯის საზაფხულო სკოლა გთავაზობთ სწავლის, მოგზაურობისა და დასვენების იდეალურ კომბინაციას, ყველა ინტერესის შესაბამისი ვარიანტებით. შეგიძლიათ შეუერთდეთ თანმხლები ჯგუფის გამგზავრებას ან, თუ გირჩევნიათ, დამოუკიდებლად იმოგზაუროთ.",
+      "ინგლისური ენის კურსი: კვირაში 16 საათი",
+      "ადგილმდებარეობა: მანჩესტერიდან და ბირმინგემიდან დაახლოებით 100 კმ-ში",
+      "კამპუსი: 50 ჰექტარი ლანდშაფტით მოწყობილი მწვანე სივრცე კამპუსში უსაფრთხო საცხოვრებელი ადგილით, სპორტული მოედნებითა და საკლასო ოთახებით",
+      "აქტივობები: სპორტული ტურნირები, წვეულებები, ნიჭიერების შოუები, თემატური საღამოები, ხელოვნება და ხელნაკეთი ნივთები",
+      "ექსკურსიები: უელსი, ჩესტერი, შრიუსბერი, ლივერპული, ლონდონი",
+      "ქსელური მუშაობა: დაუკავშირდით სტუდენტებს მთელი მსოფლიოდან და ისწავლეთ გამოცდილი ინსტრუქტორებისგან",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {
+      "duration": "2 weeks",
+      "age": "from 10 y.o.",
+      "price": {
+        "now": "GBP 2,350 for two weeks"
+      }
+    },
+    "ka": {
+      "duration": "2 კვირიდან",
+      "age": "10 წლიდან",
+      "price": {
+        "now": "GBP 2,350 ორი კვირა"
+      }
+    }
+  },
+  "sections": [
+    {
+      "key": "activities",
+      "heading": {
+        "en": "Activities",
+        "ka": "აქტივობები"
+      },
+      "body": {
+        "en": [
+          "These are the standard activities that all participants of the summer school will have the opportunity to attend without any extra cost.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "Trips",
+          "London Tour",
+          "Cardiff Tour",
+          "Liverpool Tour",
+          "Chester Tour",
+          "Shrewsbury Tour",
+          "School Gallery"
+        ],
+        "ka": [
+          "ეს არის სტანდარტული აქტივობები, რომლებზეც ზაფხულის სკოლის ყველა მონაწილეს ექნება შესაძლებლობა დაესწროს ყოველგვარი დამატებითი გადასახადის გარეშე.",
+          "ცურვა",
+          "ფილმების საღამოები",
+          "თემატური საღამოები",
+          "კალათბურთი",
+          "კარაოკე საღამოები",
+          "ფეხბურთი",
+          "ნიჭიერების შოუ",
+          "Welcome Party",
+          "ტურები",
+          "London Tour",
+          "Cardiff Tour",
+          "Liverpool Tour",
+          "Chester Tour",
+          "Shrewsbury Tour",
+          "სკოლის გალერეა"
+        ]
+      }
+    }
+  ]
+}

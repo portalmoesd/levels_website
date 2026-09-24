@@ -1,0 +1,50 @@
+{
+  "slug": "work-with-us",
+  "title": {
+    "en": "Work with us | Levels Academy",
+    "ka": "შემოგვიერთდით | Levels Academy"
+  },
+  "description": {
+    "en": "Join our team.",
+    "ka": "შემოუერთდით ჩვენს გუნდს."
+  },
+  "header": {
+    "en": [
+      "Work with us | Levels Academy",
+      "work with us",
+      "First name*",
+      "Last name*",
+      "Phone*",
+      "Email*",
+      "Leave a message*",
+      "Birthday*",
+      "Day",
+      "Month",
+      "Year",
+      "Upload Resume*",
+      "Upload File",
+      "Submit"
+    ],
+    "ka": [
+      "შემოგვიერთდით | Levels Academy",
+      "შემოუერთდი ჩვენს გუნდს",
+      "სახელი*",
+      "გვარი*",
+      "ტელეფონი*",
+      "Email*",
+      "დატოვეთ შეტყობინება*",
+      "დაბადების დღე*",
+      "Day",
+      "Month",
+      "Year",
+      "რეზიუმეს ატვირთვა*",
+      "ფაილის ატვირთვა",
+      "რეგისტრაცია"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

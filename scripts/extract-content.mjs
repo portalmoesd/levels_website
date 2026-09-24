@@ -20,8 +20,12 @@ const BLOCK =
   'address|article|aside|blockquote|br|div|dd|dl|dt|fieldset|figcaption|figure|footer|form|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|td|tfoot|th|thead|tr|ul';
 
 const ENTITIES = {
-  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ',
-  '#39': "'", '#8217': '’', '#8216': '‘', '#8211': '–', '#8212': '—',
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0',
+  ndash: '\u2013', mdash: '\u2014', hellip: '\u2026', shy: '',
+  lsquo: '\u2018', rsquo: '\u2019', ldquo: '\u201c', rdquo: '\u201d',
+  bull: '\u2022', middot: '\u00b7', deg: '\u00b0', times: '\u00d7',
+  laquo: '\u00ab', raquo: '\u00bb', eacute: '\u00e9', iacute: '\u00ed',
+  copy: '\u00a9', pound: '\u00a3', euro: '\u20ac', bdquo: '\u201e',
 };
 const decode = (s) =>
   s.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (m, e) => {
@@ -66,7 +70,7 @@ for (const file of (await readdir(crawlDir)).sort()) {
     .replace(new RegExp(`</?(?:${BLOCK})\\b[^>]*>`, 'gi'), '\n') // block -> separator
     .replace(/<[^>]+>/g, '');                                     // inline -> nothing
 
-  const seen = new Set();
+  let previous = null;
   const blocks = [];
   for (const line of decode(body).split('\n')) {
     // Wix's stored content contains stray NUL bytes and zero-width characters,
@@ -77,8 +81,12 @@ for (const file of (await readdir(crawlDir)).sort()) {
       .replace(/[ \t\u00a0]+/g, ' ')
       .trim();
     if (!t || t === '​' || CHROME.has(t)) continue;
-    if (seen.has(t)) continue;        // Wix renders each string twice (mobile + desktop)
-    seen.add(t);
+    // Only consecutive repeats are collapsed. A global de-duplication would
+    // drop legitimately repeated content, such as the nine "English Language
+    // Teacher" labels on the team page or the shared "120 mins" values in the
+    // homepage course grid.
+    if (t === previous) continue;
+    previous = t;
     blocks.push(t);
   }
 

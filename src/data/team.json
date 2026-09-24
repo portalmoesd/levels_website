@@ -1,0 +1,167 @@
+[
+  {
+    "id": "ani-kvekveskiri",
+    "name": {
+      "en": "Ani Kvekveskiri",
+      "ka": "ანი კვეკვესქირი"
+    },
+    "role": {
+      "en": "Academy Manager",
+      "ka": "აკადემიის მენეჯერი"
+    },
+    "bio": {
+      "en": "Ani holds a bachelor’s in Law from TSU and has worked in courts, a law firm, and private companies, as well as in quality management. At Levels Academy (since 2022), she contributes to a well-organized, student-centred learning environment.",
+      "ka": "ანი თბილისის ივანე ჯავახიშვილის სახელობის სახელმწიფო უნივერსიტეტის იურიდიული ფაკულტეტის ბაკალავრია. სსამუშაო გამოცდილება აქვს სასამართლოში, საადვოკატო ბიუროსა და კერძო კომპანიებში. ასევე იყო გეოლოგიური კომპანიის ხარისხის მენეჯერი. ლეველსის აკადემიის გუნდს შეუერთდა 2022 წლიდან."
+    }
+  },
+  {
+    "id": "olga-tavadze",
+    "name": {
+      "en": "Olga Tavadze",
+      "ka": "ოლღა თავაძე"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Olga graduated in Arabic Studies from Ivane Javakhishvili Tbilisi State University and holds a Cambridge CELTA certificate. She has taught English abroad to learners from kindergarten through secondary school and has professional experience as a consecutive interpreter.",
+      "ka": "ოლღა არის თბილისის სახელმწიფო უნივერსიტეტის არაბისტიკის ფაკულტეტის კურსდამთავრებული. აღებული აქვს კემბრიჯის უნივერსიტეტის CELTA სერთიფიკატი. გამოცდილება აქვსუცხოეთში ბაღისა და სკოლისმოსწავლეების ინგლისური ენის სწავლებისა და თანმიმდევრულ თარჯიმნად მუშაობის."
+    }
+  },
+  {
+    "id": "ia-revazishvili",
+    "name": {
+      "en": "Ia Revazishvili",
+      "ka": "ია რევაზიშვილი"
+    },
+    "role": {
+      "en": "Art Academy Teacher",
+      "ka": "ხელოვნების აკადემიის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Ia holds a degree from the Apolon Kutateladze Tbilisi State Academy of Arts. She lectures in Interior Design at the Academy and also teaches at Fokani Workshops. Her work has been shown in dozens of exhibitions.",
+      "ka": "იამ განათლება თბილისის აპოლონ ქუთათელაძის სახელობის სახელმწიფოსამხატვრო აკადემიაში მიიღო. მუშაობს სახატვრო აკადემიის ლექტორადინტერიერის დიზაინის მიმართულებით და „ფოკანის სახელოსნოებში“. არისათეულობით გამოფენის მონაწილე."
+    }
+  },
+  {
+    "id": "jasmine-liu",
+    "name": {
+      "en": "Jasmine Liu",
+      "ka": "ჟასმინ ლიუ"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Jasmine is a South African English instructor at Levels Academy. She completed her studies at Northern Caucasus Federal University and the National Technical University of Ukraine, and brings international experience, having taught English across multiple countries.",
+      "ka": "ჟასმინი ლეველსის აკადემიის სამხრეთ აფრიკელი მასწავლებელია. მან განათლება"
+    }
+  },
+  {
+    "id": "carrie-mac",
+    "name": {
+      "en": "Carrie Mac",
+      "ka": "ქერი მაკი"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Carrie is an American instructor at Levels Academy. She holds an MA in Linguistics from the University of London and additional degrees in Agriculture and Fashion Design. Since 2014, she has taught English in both public and private schools and has worked as an academic translator and editor.",
+      "ka": "ქერი ლეველსის აკადემიის ამერიკელი მასწავლებელია. მან მაგისტრის ხარისხილონდონის უნივერსიტეტში მიიღო ლინგვისტიკის მიმართულებით. ის ასევეფლობს სოფლის მეურნეობისა და მოდის დიზაინის ხარისხებს. 2014 წლიდან ქერიინგლისურ ენას ასწავლიდა კერძო და საჯარო სკოლებში. მუშაობდა სამეცნიეროთარჯიმნად და რედაქტორად."
+    }
+  },
+  {
+    "id": "kristine-makhatlishvili",
+    "name": {
+      "en": "Kristine Makhatlishvili",
+      "ka": "ქრისიტინე მახათლიშვილი"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Kristine has taught English since 2019, working with both children and adults. She blends a communicative approach with clear grammar support, tailoring lessons to different levels. Experienced in group and one-to-one formats, she fosters a calm, motivating classroom.",
+      "ka": "ქრისტინეს 2019 წლიდან აქვს მასწავლებლის პოზიციაზე მუშაობის გამოცდილება, როგორც ბავშვების, ისე ზრდასრულების ასაკობრივ კატეგორიაში."
+    }
+  },
+  {
+    "id": "mariam-mikeladze",
+    "name": {
+      "en": "Mariam Mikeladze",
+      "ka": "მარიამ მიქელაძე"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Mariam is an English instructor at Levels Academy. Recognized as a winner of multiple international competitions and programs, she brings a high standard of excellence to her teaching. She fosters a supportive, results-oriented classroom and helps learners build confidence and clear, measurable progress.",
+      "ka": "მარიამი არის ლეველსის აკადემიის ინგლისური ენის მასწასვლებელი. მარიამი არის არაერთი საერთაშორისო კონკურსისა და პროგრამის გამარჯვებული."
+    }
+  },
+  {
+    "id": "faith-yongama-gwaza",
+    "name": {
+      "en": "Faith Yongama Gwaza",
+      "ka": "ფაით იონგამა გვაზა"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Faith Yongama Gwaza is our English teacher with many years of experience in international educational projects. She holds a TESOL certificate from the World TESOL Academy, which enables her to teach English as a foreign language effectively. She actively collaborates with organizations such as Network Without Borders, where she helps children in Africa and the Caucasus develop their communication skills.",
+      "ka": "ჩვენი ინგლისური ენის მასწავლებელი , რომელსაც აქვს მრავალწლიანი გამოცდილება საერთაშორისო საგანმანათლებლო პროექტებში. მიღებული აქვს World TESOL Academy-ს TESOL სერტიფიკატი, რაც მას საშუალებას აძლევს ეფექტურად ასწავლოს ინგლისური როგორც უცხო ენა. იგი აქტიურად თანამშრომლობს ორგანიზაციებთან, როგორიცაა Network Without Borders, სადაც ეხმარება ბავშვებს აფრიკასა და კავკასიაში კომუნიკაციური უნარების განვითარებაში."
+    }
+  },
+  {
+    "id": "elene-macharashvili",
+    "name": {
+      "en": "Elene Macharashvili",
+      "ka": "ელენე მაჭარაშვილი"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Elene is an English instructor at Levels Academy. She holds a BA in English Philology and an MA in Translation and Intercultural Relations. Drawing on her background in linguistics and cross-cultural communication, she designs clear, structured lessons that build accuracy, fluency, and cultural awareness.",
+      "ka": "ელენე ლეველსის ინგლისური ენის აკადემიის მასწავლებელია. ელენე ინგლისური ენის ფილოლოგიის ბაკალავრიატის, ასევე თარგმანისა და ინტერკულტურული ურთიერთობების პროგრამის მაგისტრის ხარისხის მფლობელია."
+    }
+  },
+  {
+    "id": "lana-giorgadze",
+    "name": {
+      "en": "Lana Giorgadze",
+      "ka": "ლანა გიორგაძე"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Lana holds a BA in English Philology from Ivane Javakhishvili Tbilisi State University and an MA in Linguistics from TSU and Ca’ Foscari University of Venice. She has taught English since 2022 across several schools, bringing a clear, student-centred approach that builds confidence and fluency.",
+      "ka": "ლანა არის ივანე ჯავახიშვილის სახელობის თბილისის სახელმწიფო უნივერსიტეტის, ინგლისური ფილოლოგიის ბაკალავრიატის კურსდამთავრებული. ფლობს თბილისის სახელმწიფო უნივერსიტეტისა და ვენეციის კა’ფოსკარის უნივერსიტის ენათმენცნიერების მაგისტრის ხარისხს. 2022 წლიდან აქვს ინგლისური ენის სწავლების გამოცდილება რამდენიმე სკოლაში."
+    }
+  },
+  {
+    "id": "ana-kikoshvili",
+    "name": {
+      "en": "Ana Kikoshvili",
+      "ka": "ანა კიკოშვილი"
+    },
+    "role": {
+      "en": "English Language Teacher",
+      "ka": "ინგლისური ენის მასწავლებელი"
+    },
+    "bio": {
+      "en": "Ana is an internationally educated professional with academic qualifications from universities in France, the Netherlands, Ireland, and Estonia. She brings extensive and diverse experience in English language instruction. Ana holds an internationally accredited IELTS C1 certification.",
+      "ka": "ანა საერთაშორისო განათლების მქონე პროფესიონალია, რომელსაც უმაღლესი განათლება მიღებული აქვს საფრანგეთის, ჰოლანდიის, ირლანდიისა და ესტონეთის უნივერსიტეტებში. ის გამოირჩევა ინგლისური ენის მრავალწლიანი და მრავალფეროვანი სწავლების გამოცდილებით. მას აღიარებული აქვს IELTS-ის C1 დონის სერტიფიკატი."
+    }
+  }
+]

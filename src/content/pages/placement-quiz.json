@@ -1,0 +1,26 @@
+{
+  "slug": "placement-quiz",
+  "title": {
+    "en": "Free English Level Quiz",
+    "ka": "უფასო ინგლისური ენის დონის ქვიზი | Levels Academy"
+  },
+  "description": {
+    "en": "Take our free English Language Level Quiz t to find your level.",
+    "ka": "გაიარეთ ჩვენი უფასო ინგლისური ენის დონის ქვიზი თქვენი დონის გასარკვევად."
+  },
+  "header": {
+    "en": [
+      "Free English Level Quiz",
+      "English Level Quiz"
+    ],
+    "ka": [
+      "უფასო ინგლისური ენის დონის ქვიზი | Levels Academy",
+      "English Level Quiz"
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": []
+}

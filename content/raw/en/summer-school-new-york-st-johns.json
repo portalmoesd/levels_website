@@ -19,7 +19,7 @@
     "$5,200 / 2 weeks",
     "$4,650 / 2 weeks",
     "Summer School in New York",
-    "The Summer School is based on St. John&rsquo;s University&rsquo;s Queens campus, offering a classic American college experience in a safe, supportive environment - right in New York City. Students live on a modern university campus with plenty of space to relax, study, and socialise, from the open green Great Lawn to a wide range of sports facilities including fields, courts, and stadium areas.",
+    "The Summer School is based on St. John’s University’s Queens campus, offering a classic American college experience in a safe, supportive environment - right in New York City. Students live on a modern university campus with plenty of space to relax, study, and socialise, from the open green Great Lawn to a wide range of sports facilities including fields, courts, and stadium areas.",
     "Daily life is easy and comfortable: accommodation is close to a large, modern cafeteria with multiple food stations, and everything you need is within walking distance. With simple public transport links, Manhattan is also within reach for day trips and iconic NYC experiences - so you can combine campus life, activities, and city adventures in one unforgettable summer.",
     "Course",
     "General English",
@@ -43,6 +43,7 @@
     "Talent Show",
     "Trips",
     "Welcome Party",
+    "Trips",
     "New York City Tour",
     "Washington Tour",
     "Philadelphia Tour",
@@ -59,7 +60,9 @@
     "NYC Helicopter Tour",
     "USD 440",
     "Broadway Show",
+    "USD 150",
     "NYC Limo Tour",
-    "School Gallery"
+    "School Gallery",
+    "Enroll"
   ]
 }

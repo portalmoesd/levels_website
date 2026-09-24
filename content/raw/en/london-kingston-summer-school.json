@@ -15,10 +15,11 @@
     "12 hrs / week",
     "Price",
     "11.07 - 25.07",
-    "&pound;3,450 / 2 weeks",
-    "&pound;3,100 / 2 weeks",
+    "Price",
+    "£3,450 / 2 weeks",
+    "£3,100 / 2 weeks",
     "Summer School in Kingston",
-    "Kingston is a vibrant, green corner of southwest London-set on the River Thames and just 10 miles from Charing Cross. With royal heritage nearby at Hampton Court Palace, vast parklands on your doorstep, and a lively riverside lined with caf&eacute;s, pubs, and restaurants, it&rsquo;s an ideal place to live and explore. Add excellent shopping from well-known high-street brands to a historic market that&rsquo;s been running for over 800 years and you get the best of London, with a calmer, safer feel.",
+    "Kingston is a vibrant, green corner of southwest London-set on the River Thames and just 10 miles from Charing Cross. With royal heritage nearby at Hampton Court Palace, vast parklands on your doorstep, and a lively riverside lined with cafés, pubs, and restaurants, it’s an ideal place to live and explore. Add excellent shopping from well-known high-street brands to a historic market that’s been running for over 800 years and you get the best of London, with a calmer, safer feel.",
     "The learning centre is perfectly placed between Richmond Park and Wimbledon Common on a beautiful hillside university campus. Modern facilities sit within landscaped gardens and open green spaces, creating a friendly, community atmosphere. Everything is a short walk away, including tennis courts, a student bar, a restaurant, and relaxed social areas. Free transfers connect you to the nearest station and town centre, and central London is easily reached in around 30 minutes by public transport.",
     "Course",
     "General English",
@@ -44,6 +45,7 @@
     "Talent Show",
     "Trips",
     "Welcome Party",
+    "Trips",
     "Cambridge Tour",
     "Oxford Tour",
     "A Musical",
@@ -54,6 +56,7 @@
     "National Museum",
     "National Gallery",
     "Brighton Tour",
-    "School Gallery"
+    "School Gallery",
+    "Enroll"
   ]
 }

@@ -1,0 +1,248 @@
+{
+  "slug": "study-abroad",
+  "title": {
+    "en": "Study Abroad — Programs, Visas & Prep",
+    "ka": "სწავლა საზღვარგარეთ | Levels Academy"
+  },
+  "description": {
+    "en": "End-to-end support: shortlist, IELTS plan, documents, applications, scholarships, visa, pre-departure.",
+    "ka": "სრული მხარდაჭერა: უნივერსიტეტის პროგრამების შერჩევა, IELTS-ის გამოცდისთვის მომზადება, საბუთები, დაფინანსება, აპლიკაციები, ვიზა, გამგზავრება."
+  },
+  "header": {
+    "en": [
+      "Study Abroad — Programs, Visas & Prep",
+      "Study abroad with confidence",
+      "End-to-end guidance—from choosing the right program to visas and pre-departure.",
+      "Book a Free Consultation",
+      "Study Abroad with",
+      "Levels Academy",
+      "We help you choose the right program and country, prepare IELTS, craft a strong CV & Motivation Letter, build an art/design portfolio, submit applications, explore scholarships, and complete visa & pre-departure steps.",
+      "Free application handling is available for selected partner universities.",
+      "Book a free consultation to get a tailored shortlist and timeline."
+    ],
+    "ka": [
+      "სწავლა საზღვარგარეთ | Levels Academy",
+      "სრული მხარდაჭერა — სწორი პროგრამის შერჩევა, ვიზები და გამგზავრებამდე მომზადება.",
+      "უფასო კონსულტაცია",
+      "ლეველს აკადემიასთან",
+      "ერთად",
+      "ლეველს აკადემია გეხმარებათ სწორი პროგრამისა და ქვეყნის შერჩევაში, IELTS-ისთვის მომზადებაში, ძლიერი CV-ისა და სამოტივაციო წერილის მომზადებაში, ხელოვნებისა და დიზაინის პორტფოლიოს შექმნაში, განაცხადების გაგზავნაში, სტიპენდიების მოძიებაში, ასევე ვიზისა და გამგზავრებამდე საჭირო ნაბიჯების შესრულებაში.",
+      "ჩვენი შერჩეული პარტნიორი უნივერსიტეტების შემთხვევაში განაცხადების დამუშავება უფასოა.",
+      "დაჯავშნეთ უფასო კონსულტაცია."
+    ]
+  },
+  "meta": {
+    "en": {},
+    "ka": {}
+  },
+  "sections": [
+    {
+      "key": "audience",
+      "heading": {
+        "en": "Who is it for?",
+        "ka": "ვისთვის არის პროგრამა?"
+      },
+      "body": {
+        "en": [
+          "High-school graduates targeting Foundation/Bachelor’s",
+          "University students & professionals aiming for Master’s/Short courses",
+          "Creative applicants needing portfolio coaching for top art & fashion schools"
+        ],
+        "ka": [
+          "საშუალო სკოლის კურსდამთავრებულები, რომლებიც მიზნად ისახავენ მოსამზადებელ/ბაკალავრიატის პროგრამებს.",
+          "უნივერსიტეტის სტუდენტები და პროფესიონალები, რომლებიც მიზნად ისახავენ მაგისტრატურის ან მოკლე კურსებს.",
+          "კრეატიული სფეროს კანდიდატები, რომელთაც სჭირდებათ პორტფოლიოს მენტორინგი წამყვან ხელოვნებისა და მოდის სკოლებისთვის."
+        ]
+      }
+    },
+    {
+      "key": "how",
+      "heading": {
+        "en": "How it works?",
+        "ka": "პროცესი"
+      },
+      "body": {
+        "en": [
+          "Free Consultation – Goals, budget, timeline.",
+          "Program Shortlist – 3–5 best-fit options + entry requirements.",
+          "Language & Portfolio Prep – IELTS plan; portfolio milestones.",
+          "Documents – CV, SOP/Motivation, references, translations.",
+          "Applications – Submission & tracking; scholarship windows.",
+          "Offer & Visa – Deposit, CAS/LOA guidance, visa file, biometrics.",
+          "Pre-Departure – Housing, insurance, packing list, arrival plan.",
+          "Tip: Deadlines vary by country and program. Starting 6–9 months early is ideal."
+        ],
+        "ka": [
+          "უფასო კონსულტაცია — მიზნები, ბიუჯეტი, ვადები.",
+          "პროგრამების მოკლე სია — 3–5 ყველაზე შესაფერისი ვარიანტი + მისაღები მოთხოვნები.",
+          "ენისა და პორტფოლიოს მომზადება — IELTS-ის გეგმა; პორტფოლიოს ეტაპები.",
+          "დოკუმენტები — CV, SOP/მოტივაციის წერილი, სარეკომენდაციო წერილები, თარგმანები.",
+          "განაცხადები — გაგზავნა და სტატუსის მონიტორინგი; სტიპენდიების ვადები.",
+          "ოფერი და ვიზა — დეპოზიტი, CAS/LOA ინსტრუქცია, ვიზის დოსიე, ბიომეტრია.",
+          "გამგზავრებამდე — საცხოვრებელი, დაზღვევა, ნივთების სია, ჩასვლის გეგმა",
+          "რჩევა: ბოლო ვადები ქვეყანასა და პროგრამის მიხედვით განსხვავდება. 6–9 თვით ადრე დაწყებაა იდეალური."
+        ]
+      }
+    },
+    {
+      "key": "documents",
+      "heading": {
+        "en": "Required Documents",
+        "ka": "საჭირო დოკუმენტები"
+      },
+      "body": {
+        "en": [
+          "Passport; Academic transcripts & diplomas (with translations if needed)",
+          "English test results (or plan for test date)",
+          "CV; Motivation Letter/SOP; 2 references",
+          "Portfolio (for art/design/fashion programs)",
+          "Financial evidence (varies by visa/country)"
+        ],
+        "ka": [
+          "საჭირო დოკუმენტები (საწყისი ჩეკლისტი)",
+          "პასპორტი; სასწავლო ნიშნების ამონაწერი (transcript) და დიპლომები (საჭიროების შემთხვევაში თარგმანით)",
+          "ინგლისური ენის ტესტის შედეგები (ან დაგეგმილი გამოცდის თარიღი)",
+          "CV; მოტივაციის წერილი/SOP; 2 სარეკომენდაციო წერილი",
+          "პორტფოლიო (ხელოვნების/დიზაინის/მოდის პროგრამებისთვის)",
+          "ფინანსური უზრუნველყოფის დამადასტურებელი დოკუმენტაცია (ვიზასა და ქვეყანაზე დამოკიდებულია)"
+        ]
+      }
+    },
+    {
+      "key": "faqWork",
+      "heading": {
+        "en": "Can I work while studying?",
+        "ka": "შემიძლია სწავლას მუშაობაც შევუთავსო?"
+      },
+      "body": {
+        "en": [
+          "Rules vary by country; we’ll brief you for your destination."
+        ],
+        "ka": [
+          "წესები ქვეყნების მიხედვით განსხვავდება; თქვენი დანიშნულების ქვეყნისთვის დეტალურ ინფორმაციას მოგაწვდით."
+        ]
+      }
+    },
+    {
+      "key": "faqHousing",
+      "heading": {
+        "en": "Do you help we housing?",
+        "ka": "საცხოვრებლის პოვნაში ეხმარებით?"
+      },
+      "body": {
+        "en": [
+          "Yes—recommendations and booking guidance.",
+          "2026 QS",
+          "University World Rankings",
+          "Discover Ranking",
+          "programs",
+          "Bachelor's",
+          "Master's",
+          "Foundation",
+          "Short Programs",
+          "subjects",
+          "Art & Design",
+          "Business & Economics",
+          "Communications",
+          "Education",
+          "International Studies",
+          "Math",
+          "Natural & Applied Sciences",
+          "Social Sciences",
+          "Tourism & Hospitality",
+          "Engineering",
+          "Health",
+          "Humanities",
+          "Visual & Performing Arts",
+          "Languages",
+          "Get Ready for IELTS exam",
+          "A comprehensive IELTS preparation course with mock exams and expert guidance to help you achieve your target score.",
+          "Enroll",
+          "Duration",
+          "5 weeks",
+          "Age",
+          "all age groups",
+          "Lessons per week",
+          "three times a week",
+          "Lesson Duration",
+          "120 mins",
+          "Create Portoflio at Levels",
+          "This program helps aspiring art students create a professional portfolio under the guidance of experienced artists and professors. Alongside portfolio preparation, students receive free admission support for our partner universities.",
+          "Enroll",
+          "Duration",
+          "from 1 month",
+          "Age",
+          "from 16 y.o.",
+          "we are assisting",
+          "Application & Documents",
+          "Scholarship & Funding Guidance",
+          "Visa Application & Documents",
+          "Accommodation & Insurance",
+          "Contact Us",
+          "29g Chavchavadze Avenue",
+          "35 Krtsanisi street Turn II",
+          "info@levels.ge",
+          "+995 32 2 18 06 05",
+          "Book a consultation"
+        ],
+        "ka": [
+          "დიახ — გაგიწევთ რეკომენდაციებსა და დაჯავშნაზე კონსულტაციას.",
+          "2026 QS",
+          "მსოფლიო უნივერსიტეტების",
+          "რეიტინგი",
+          "აღმოაჩინე რეიტინგი",
+          "პროგრამები",
+          "ბაკალავრი",
+          "მაგისტრატურა",
+          "მოსამზადებელი",
+          "მოკლევადიანი პროგრამები",
+          "საგნები",
+          "ხელოვნება & დიზაინი",
+          "ბიზნესი & ეკონომიკა",
+          "კომუნიკაციები",
+          "განათლება",
+          "საერთაშორისო კვლევები",
+          "მათემატიკა",
+          "საბუნებისმეტყველო და გამოყენებითი მეცნიერებები",
+          "სოციალური მეცნიერებები",
+          "ტურიზმი და სტუმარ-მასპინძლობა",
+          "ინჟინერია",
+          "ჯანმრთელობა",
+          "ჰუმანიტარული მეცნიერებები",
+          "ვიზუალური და საშემსრულებლო ხელოვნება",
+          "ენები",
+          "მოემზადე IELTS-ის გამოცდისთვის",
+          "კომპლექსური IELTS-ის მოსამზადებელი კურსი სასიმულაციო გამოცდებითა და ექსპერტების ხელმძღვანელობით, რომელიც დაგეხმარებათ სასურველი ქულის მიღწევაში.",
+          "რეგისტრაცია",
+          "ხანგრძლივობა",
+          "5 კვირა",
+          "ასაკი",
+          "ყველა ასაკისთვის",
+          "გაკვეთილები",
+          "სამჯერ კვირაში",
+          "ხანგრძლივობა",
+          "120 წუთი",
+          "შექმენი პორტფოლიო ლეველსში",
+          "ეს პროგრამა ხელოვნების მომავალ სტუდენტებს გამოცდილი მხატვრებისა და პროფესორების ხელმძღვანელობით პროფესიული პორტფოლიოს შექმნაში ეხმარება. პორტფოლიოს მომზადებასთან ერთად, სტუდენტები ჩვენს პარტნიორ უნივერსიტეტებში უფასო ჩარიცხვის მხარდაჭერას იღებენ.",
+          "რეგისტრაცია",
+          "Duration",
+          "from 1 month",
+          "Age",
+          "from 16 y.o.",
+          "ჩვენ გეხმარებით",
+          "განაცხადი & დოკუმენტები",
+          "სტიპენდიები & დაფინანსება",
+          "სავიზო განაცხადი & დოკუმენტები",
+          "განთავსება & დაზღვევა",
+          "დაგვიკავშირდით",
+          "29გ ჭავჭავაძის გამზირი",
+          "35 კრწანისის ქუჩის მეორე შესახვევი",
+          "info@levels.ge",
+          "+995 32 2 18 06 05",
+          "დაჯავშნე უფასო",
+          "კონსულტაცია"
+        ]
+      }
+    }
+  ]
+}
