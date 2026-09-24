@@ -22,12 +22,21 @@ const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 const apiBase = import.meta.env.PUBLIC_API_BASE ?? '';
 ---
 
+{/*
+  The API base is published independently of the pixel. It used to be set
+  inside the pixel block, which meant a site deployed without a Pixel ID — the
+  normal first deploy — had no window.__API_BASE, so the forms and certificate
+  verification silently did nothing.
+*/}
+<script is:inline define:vars={{ apiBase }}>
+  window.__API_BASE = apiBase;
+</script>
+
 {
   pixelId && (
     <>
-      <script is:inline define:vars={{ pixelId, apiBase }}>
+      <script is:inline define:vars={{ pixelId }}>
         window.__META_PIXEL_ID = pixelId;
-        window.__API_BASE = apiBase;
 
         // Meta's queueing stub: collects fbq() calls made before fbevents.js
         // has finished loading, then replays them once it has.

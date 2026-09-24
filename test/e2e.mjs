@@ -44,7 +44,14 @@ await context.route('**facebook.com/tr**', (r) => r.fulfill({ status: 200, body:
 // --- homepage ---------------------------------------------------------
 await page.goto(BASE + '/', { waitUntil: 'networkidle' });
 ok('homepage h1', (await page.locator('h1').count()) === 1, await page.locator('h1').first().innerText());
-ok('pixel stub initialised', await page.evaluate(() => typeof window.fbq === 'function'));
+// Only assert the pixel when one is configured — a build without
+// PUBLIC_META_PIXEL_ID is a valid deployment, and the API base must work
+// regardless of it.
+const pixelConfigured = await page.evaluate(() => Boolean(window.__META_PIXEL_ID));
+ok(
+  pixelConfigured ? 'pixel stub initialised' : 'no pixel configured (skipped)',
+  pixelConfigured ? await page.evaluate(() => typeof window.fbq === 'function') : true
+);
 ok('API base injected', (await page.evaluate(() => window.__API_BASE)).length > 0);
 await page.screenshot({ path: `${SHOT}/01-home.png`, fullPage: false });
 

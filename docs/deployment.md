@@ -130,7 +130,11 @@ minutes.
 **Do this last**, once you have confirmed the site works on its
 `*.github.io` URL, because this is the step that takes the site off Wix.
 
-`public/CNAME` already contains `www.levels.ge`, so it survives each deploy.
+The deploy workflow writes `dist/CNAME` on every production build, so the
+custom domain survives each deploy. It deliberately skips that step when
+`PUBLIC_BASE_PATH` is set, because a CNAME in the artifact sets the custom
+domain in the Pages settings and would redirect the github.io preview URL to a
+domain whose DNS may not point here yet.
 
 ### DNS records
 

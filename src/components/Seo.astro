@@ -1,7 +1,7 @@
 ---
 import { site } from '../data/site';
 import type { Locale } from '../data/site';
-import { absoluteUrl, localePath, alternateLinks } from '../i18n/utils';
+import { absoluteUrl, localePath, alternateLinks, IS_PREVIEW } from '../i18n/utils';
 
 interface Props {
   /** Page title, without the brand suffix. */
@@ -48,8 +48,12 @@ const altOgLocale = locale === 'ka' ? 'en_US' : 'ka_GE';
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 
-{noindex
-  ? <meta name="robots" content="noindex, follow" />
+{/*
+  A preview build (github.io subpath) is never indexable — it would otherwise
+  compete with levels.ge for the same content.
+*/}
+{noindex || IS_PREVIEW
+  ? <meta name="robots" content="noindex, nofollow" />
   : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
 {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}

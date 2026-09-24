@@ -15,6 +15,33 @@ export function localeFromPath(pathname: string): Locale {
 }
 
 /**
+ * The path the site is served under, without a trailing slash.
+ *
+ * Empty in production, where levels.ge is served from the domain root. On a
+ * GitHub Pages *project* URL the site sits at a subpath
+ * (portalmoesd.github.io/levels_website), and every internal link has to carry
+ * that prefix or it 404s. Astro exposes it as BASE_URL, set from `base` in
+ * astro.config.mjs.
+ */
+const BASE = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
+
+/**
+ * The origin this build is for.
+ *
+ * Astro exposes the configured `site` as import.meta.env.SITE, which follows
+ * the PUBLIC_SITE_URL override. Reading the constant directly would make a
+ * preview build emit canonicals pointing at the production domain.
+ */
+const ORIGIN = (import.meta.env.SITE ?? SITE_URL).replace(/\/+$/, '');
+
+/**
+ * True when this build is not the production site — i.e. a github.io preview
+ * served from a subpath. Such a build must not be indexable, or it competes
+ * with levels.ge for the same content.
+ */
+export const IS_PREVIEW = BASE !== '' || ORIGIN !== SITE_URL.replace(/\/+$/, '');
+
+/**
  * Builds a path for `slug` in `locale`. The slug is locale-independent — both
  * locales use the same English slugs, as the Wix site does (`/ka/english-for-teens`).
  * Pass an empty slug for the homepage.
@@ -22,13 +49,21 @@ export function localeFromPath(pathname: string): Locale {
 export function localePath(slug: string, locale: Locale): string {
   const clean = slug.replace(/^\/+|\/+$/g, '');
   const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
-  return clean ? `${prefix}/${clean}` : prefix || '/';
+  const path = clean ? `${prefix}/${clean}` : prefix;
+  return `${BASE}${path}` || '/';
 }
 
-/** Absolute URL, for canonicals, hreflang, OG tags and the sitemap. */
+/**
+ * Absolute URL, for canonicals, hreflang, OG tags and the sitemap.
+ *
+ * Accepts either a bare slug or a path already carrying the base prefix, and
+ * does not add the prefix twice.
+ */
 export function absoluteUrl(pathOrSlug: string): string {
-  const path = pathOrSlug.startsWith('/') ? pathOrSlug : `/${pathOrSlug}`;
-  return `${SITE_URL}${path === '/' ? '' : path}`;
+  const withSlash = pathOrSlug.startsWith('/') ? pathOrSlug : `/${pathOrSlug}`;
+  const path = BASE && withSlash.startsWith(`${BASE}/`) ? withSlash.slice(BASE.length) : withSlash;
+  const full = `${BASE}${path === '/' ? '' : path}`;
+  return `${ORIGIN}${full}`;
 }
 
 /**

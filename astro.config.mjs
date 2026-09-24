@@ -4,8 +4,19 @@ import sitemap from '@astrojs/sitemap';
 import { SITE_URL } from './src/data/site';
 import { localisedRedirects } from './src/data/redirects';
 
+/*
+ * The production site is levels.ge at the domain root. A GitHub Pages *project*
+ * URL instead serves it from a subpath (portalmoesd.github.io/levels_website),
+ * so both the origin and the base path are overridable at build time — which is
+ * what makes it possible to preview the site on github.io before the DNS for
+ * levels.ge is moved. Set them as repository variables; unset means production.
+ */
+const site = process.env.PUBLIC_SITE_URL || SITE_URL;
+const base = process.env.PUBLIC_BASE_PATH || undefined;
+
 export default defineConfig({
-  site: SITE_URL,
+  site,
+  base,
   trailingSlash: 'never',
   build: {
     // Emit /about.html rather than /about/index.html so URLs match the Wix
