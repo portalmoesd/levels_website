@@ -1,0 +1,41 @@
+# Render blueprint. Create the service from this file with
+# "New > Blueprint" and point it at this repository.
+services:
+  - type: web
+    name: levels-academy-api
+    runtime: node
+    rootDir: server
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: levels-academy-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+      # Set these in the Render dashboard, not here — render.yaml is committed.
+      - key: CERT_ACCESS_CODE
+        sync: false
+      - key: IP_HASH_SALT
+        sync: false
+      - key: META_PIXEL_ID
+        sync: false
+      - key: META_CAPI_TOKEN
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: NOTIFY_EMAIL
+        sync: false
+
+databases:
+  - name: levels-academy-db
+    plan: basic-256mb
+    databaseName: levels
+    user: levels
