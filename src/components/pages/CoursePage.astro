@@ -1,0 +1,203 @@
+---
+import Base from '../../layouts/Base.astro';
+import PriceTag from '../PriceTag.astro';
+import QuizCta from '../QuizCta.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import type { Course } from '../../data/types';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { sections, splitProse } from '../../lib/content';
+import { graph, organizationSchema, courseSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
+
+interface Props {
+  course: Course;
+  locale: Locale;
+  /** Which academy the course belongs to, for the breadcrumb trail. */
+  parent: { slug: string; label: Record<Locale, string> };
+}
+
+const { course, locale, parent } = Astro.props;
+const t = useTranslations(locale);
+
+const path = localePath(course.slug, locale);
+const body = sections(course.slug, locale);
+
+// Sections phrased as questions become FAQ structured data, which can earn an
+// expandable result in Google. The rest render as ordinary prose.
+const FAQ_KEYS = new Set([
+  'start', 'groups', 'lessonStructure', 'teacher', 'materials', 'faqWork', 'faqHousing',
+]);
+const faqs = body
+  .filter((s) => FAQ_KEYS.has(s.key) && s.heading.includes('?'))
+  .map((s) => ({ question: s.heading, answer: s.body.join(' ') }));
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: parent.label[locale], path: localePath(parent.slug, locale) },
+  { name: course.title[locale], path },
+];
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  courseSchema(course, locale, path),
+  faqSchema(faqs),
+  breadcrumbSchema(trail),
+]);
+
+const metaRows = [
+  { label: t('course.duration'), value: course.duration[locale] },
+  { label: t('course.lessonLength'), value: course.lessonLength[locale] },
+  { label: t('course.perWeek'), value: course.perWeek[locale] },
+  { label: t('course.age'), value: course.ageLabel[locale] },
+];
+---
+
+<Base
+  title={`${course.title[locale]} — ${parent.label[locale]}`}
+  description={course.summary[locale]}
+  slug={course.slug}
+  locale={locale}
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <article>
+    <header class="course-hero">
+      <div class="container course-hero__inner">
+        <div>
+          {course.kicker && <p class="eyebrow">{course.kicker[locale]}</p>}
+          <h1>{course.title[locale]}</h1>
+          <p class="course-hero__summary">{course.summary[locale]}</p>
+          {course.cambridge && (
+            <p class="cambridge-badge">{t('cambridge.partner')}</p>
+          )}
+          <a class="btn btn--primary" href={localePath('enroll', locale)} data-course={course.slug}>
+            {t('cta.enroll')}
+          </a>
+        </div>
+
+        <aside class="course-facts card" aria-label={t('course.about')}>
+          <dl>
+            {metaRows.map((row) => (
+              <div>
+                <dt>{row.label}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="course-facts__price">
+            <p class="eyebrow">{t('course.price')}</p>
+            <PriceTag price={course.price} locale={locale} />
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="container course-body">
+      {
+        body.map((sectionItem) => {
+          const { lead, items } = splitProse(sectionItem.body);
+          return (
+            <section class="course-section">
+              <h2>{sectionItem.heading}</h2>
+              <div class="prose">
+                {lead.map((paragraph) => <p>{paragraph}</p>)}
+                {items.length > 0 && (
+                  <ul>{items.map((item) => <li>{item}</li>)}</ul>
+                )}
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+  </article>
+
+  <QuizCta locale={locale} />
+
+  {/*
+    The course identity is passed through data attributes rather than
+    define:vars, because define:vars forces the script inline and an inline
+    script cannot import the bundled analytics module.
+  */}
+  <div
+    id="course-tracking"
+    hidden
+    data-course-name={course.title[locale]}
+    data-course-category={parent.slug}
+    data-course-price={course.price.now ?? ''}
+  >
+  </div>
+
+  <script>
+    // ViewContent lets Meta build an audience of people who looked at a course
+    // but did not enrol — the audience retargeting campaigns are built from.
+    import { trackCourseView } from '../../lib/analytics';
+
+    const el = document.getElementById('course-tracking');
+    if (el) {
+      const price = el.dataset.coursePrice;
+      trackCourseView(
+        el.dataset.courseName ?? '',
+        el.dataset.courseCategory ?? '',
+        price ? Number(price) : undefined
+      );
+    }
+  </script>
+</Base>
+
+<style>
+  .course-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2rem, 1.5rem + 3vw, 4rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .course-hero__inner {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .course-hero h1 { margin-block: 0.4rem 0.75rem; }
+  .course-hero__summary {
+    font-size: var(--step-1);
+    color: var(--ink-muted);
+    max-width: 52ch;
+    margin-block-end: 1.25rem;
+  }
+
+  .cambridge-badge {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    margin-block-end: 1.25rem;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--navy);
+    background: rgb(232 176 45 / 12%);
+  }
+
+  .course-facts dl { margin: 0; display: grid; gap: 0.6rem; }
+  .course-facts dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block-end: 0.6rem;
+    border-block-end: 1px solid var(--line);
+    font-size: var(--step--1);
+  }
+  .course-facts dt { color: var(--ink-muted); }
+  .course-facts dd { margin: 0; font-weight: 600; text-align: end; }
+  .course-facts__price { margin-block-start: 1.25rem; }
+
+  .course-body { padding-block: var(--section-y); }
+  .course-section + .course-section { margin-block-start: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+  .course-section h2 {
+    font-size: var(--step-2);
+    margin-block-end: 0.85rem;
+  }
+
+  @media (max-width: 52rem) {
+    .course-hero__inner { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,195 @@
+---
+import Base from '../../layouts/Base.astro';
+import PriceTag from '../PriceTag.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import type { SummerSchool } from '../../data/summer';
+import { countryLabels } from '../../data/summer';
+import { useTranslations, localePath, type Locale } from '../../i18n/utils';
+import { sections, splitProse } from '../../lib/content';
+import { graph, organizationSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { absoluteUrl } from '../../i18n/utils';
+import { SITE_URL } from '../../data/site';
+
+interface Props {
+  school: SummerSchool;
+  locale: Locale;
+}
+
+const { school, locale } = Astro.props;
+const t = useTranslations(locale);
+
+const path = localePath(school.slug, locale);
+const body = sections(school.slug, locale);
+const country = countryLabels[school.country][locale];
+
+const facts = [
+  { label: t('course.duration'), value: locale === 'ka' ? `${school.durationWeeks} კვირა` : `${school.durationWeeks} weeks` },
+  ...(school.hoursPerWeek
+    ? [{
+        label: locale === 'ka' ? 'ინგლისური' : 'English tuition',
+        value: locale === 'ka' ? `${school.hoursPerWeek} საათი / კვირა` : `${school.hoursPerWeek} hrs / week`,
+      }]
+    : []),
+  { label: t('course.age'), value: locale === 'ka' ? '10–17' : 'Ages 10–17' },
+  ...(school.dates ? [{ label: locale === 'ka' ? 'თარიღები' : 'Dates', value: school.dates }] : []),
+];
+
+const faqs = body
+  .filter((s) => s.heading.includes('?'))
+  .map((s) => ({ question: s.heading, answer: s.body.join(' ') }));
+
+const trail = [
+  { name: locale === 'ka' ? 'მთავარი' : 'Home', path: localePath('', locale) },
+  { name: locale === 'ka' ? 'საზაფხულო სკოლები' : 'Summer Schools', path: localePath('summer-schools', locale) },
+  { name: `${school.city[locale]} — ${school.institution[locale]}`, path },
+];
+
+const title = `${school.city[locale]} — ${school.institution[locale]}`;
+const description =
+  locale === 'ka'
+    ? `საზაფხულო სკოლა: ${school.city[locale]}, ${country}. ${school.durationWeeks} კვირა, ასაკი 10–17.`
+    : `Summer school in ${school.city[locale]}, ${country} at ${school.institution.en}. ${school.durationWeeks} weeks for ages 10–17.`;
+
+/**
+ * A summer school is a trip, so it is marked up as an Event with an Offer
+ * rather than a Course: that is what makes the price and dates eligible to
+ * appear in search.
+ */
+const eventSchema = {
+  '@type': 'Event',
+  '@id': `${absoluteUrl(path)}#event`,
+  name: `${title} — Summer School`,
+  description,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  organizer: { '@id': `${SITE_URL}/#organization` },
+  location: {
+    '@type': 'Place',
+    name: school.institution.en,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: school.city.en,
+      addressCountry: school.country === 'usa' ? 'US' : school.country === 'uk' ? 'GB' : 'GE',
+    },
+  },
+  typicalAgeRange: '10-17',
+  ...(school.price.now !== undefined
+    ? {
+        offers: {
+          '@type': 'Offer',
+          price: school.price.now,
+          priceCurrency: school.price.currency ?? 'GEL',
+          availability: 'https://schema.org/InStock',
+          url: absoluteUrl(localePath('enroll', locale)),
+        },
+      }
+    : {}),
+};
+
+const jsonLd = graph([
+  organizationSchema(locale),
+  eventSchema,
+  faqSchema(faqs),
+  breadcrumbSchema(trail),
+]);
+---
+
+<Base title={title} description={description} slug={school.slug} locale={locale} jsonLd={jsonLd}>
+  <Breadcrumbs trail={trail} locale={locale} />
+
+  <article>
+    <header class="summer-hero">
+      <div class="container summer-hero__inner">
+        <div>
+          <p class="eyebrow">{country}</p>
+          <h1>{school.city[locale]}</h1>
+          <p class="summer-hero__institution">{school.institution[locale]}</p>
+
+          {school.location && <p class="summer-hero__location muted">{school.location[locale]}</p>}
+
+          <a class="btn btn--primary" href={localePath('enroll', locale)}>{t('cta.signUp')}</a>
+        </div>
+
+        <aside class="card summer-facts">
+          <dl>
+            {facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="summer-facts__price">
+            <p class="eyebrow">{t('course.price')}</p>
+            <PriceTag price={school.price} locale={locale} />
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="container summer-body">
+      {school.excursions && (
+        <section class="summer-section">
+          <h2>{locale === 'ka' ? 'ექსკურსიები' : 'Excursions'}</h2>
+          <p class="prose">{school.excursions[locale]}</p>
+        </section>
+      )}
+
+      {
+        body.map((sectionItem) => {
+          const { lead, items } = splitProse(sectionItem.body);
+          return (
+            <section class="summer-section">
+              <h2>{sectionItem.heading}</h2>
+              <div class="prose">
+                {lead.map((paragraph) => <p>{paragraph}</p>)}
+                {items.length > 0 && <ul>{items.map((item) => <li>{item}</li>)}</ul>}
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+  </article>
+</Base>
+
+<style>
+  .summer-hero {
+    background: var(--surface-alt);
+    padding-block: clamp(2rem, 1.5rem + 3vw, 4rem);
+    border-block-end: 1px solid var(--line);
+  }
+  .summer-hero__inner {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .summer-hero h1 { margin-block: 0.4rem 0.25rem; }
+  .summer-hero__institution {
+    font-size: var(--step-1);
+    font-weight: 600;
+    color: var(--navy-300);
+  }
+  .summer-hero__location { margin-block: 0.75rem 1.5rem; max-width: 48ch; }
+
+  .summer-facts dl { margin: 0; display: grid; gap: 0.6rem; }
+  .summer-facts dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block-end: 0.6rem;
+    border-block-end: 1px solid var(--line);
+    font-size: var(--step--1);
+  }
+  .summer-facts dt { color: var(--ink-muted); }
+  .summer-facts dd { margin: 0; font-weight: 600; text-align: end; }
+  .summer-facts__price { margin-block-start: 1.25rem; }
+
+  .summer-body { padding-block: var(--section-y); }
+  .summer-section + .summer-section { margin-block-start: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+  .summer-section h2 { font-size: var(--step-2); margin-block-end: 0.85rem; }
+
+  @media (max-width: 52rem) {
+    .summer-hero__inner { grid-template-columns: 1fr; }
+  }
+</style>

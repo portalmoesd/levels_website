@@ -1,0 +1,23 @@
+---
+/** Georgian detail pages. Mirrors src/pages/[slug].astro from one manifest. */
+import CoursePage from '../../components/pages/CoursePage.astro';
+import SummerSchoolPage from '../../components/pages/SummerSchoolPage.astro';
+import { detailRoutes } from '../../data/routes';
+
+export function getStaticPaths() {
+  return detailRoutes.map((route) => ({
+    params: { slug: route.slug },
+    props: route,
+  }));
+}
+
+const route = Astro.props;
+---
+
+{
+  route.kind === 'summer' ? (
+    <SummerSchoolPage school={route.school} locale="ka" />
+  ) : (
+    <CoursePage course={route.course} locale="ka" parent={route.parent} />
+  )
+}
