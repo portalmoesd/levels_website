@@ -1,0 +1,22 @@
+{
+  "slug": "work-with-us",
+  "locale": "en",
+  "title": "Work with us | Levels Academy",
+  "description": "Join our team.",
+  "blocks": [
+    "Work with us | Levels Academy",
+    "work with us",
+    "First name*",
+    "Last name*",
+    "Phone*",
+    "Email*",
+    "Leave a message*",
+    "Birthday*",
+    "Day",
+    "Month",
+    "Year",
+    "Upload Resume*",
+    "Upload File",
+    "Submit"
+  ]
+}
