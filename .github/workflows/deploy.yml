@@ -47,6 +47,40 @@ jobs:
       - name: Type check
         run: npx astro check
 
+      # Where the site will be served from.
+      #
+      # Defaults to the GitHub Pages project URL, which always works. Publishing
+      # to the real domain is opt-in: set the repository variable
+      # PUBLIC_CUSTOM_DOMAIN to www.levels.ge once its DNS points at GitHub.
+      #
+      # The default matters because the two are not interchangeable. A project
+      # URL serves from a subpath (/levels_website), so every link and asset
+      # needs that prefix; a custom domain serves from the root and must not
+      # have it. Building for the domain before the DNS moves produces a site
+      # that returns 200 but loads no CSS and whose every link 404s.
+      - name: Resolve deployment target
+        id: target
+        env:
+          CUSTOM_DOMAIN: ${{ vars.PUBLIC_CUSTOM_DOMAIN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          if [ -n "$CUSTOM_DOMAIN" ]; then
+            echo "site=https://$CUSTOM_DOMAIN" >> "$GITHUB_OUTPUT"
+            echo "base=" >> "$GITHUB_OUTPUT"
+            echo "Building for custom domain: https://$CUSTOM_DOMAIN"
+          else
+            echo "site=https://${OWNER,,}.github.io" >> "$GITHUB_OUTPUT"
+            # A <owner>.github.io repository is a user site served from the
+            # root; every other repository is a project site on a subpath.
+            if [ "${REPO,,}" = "${OWNER,,}.github.io" ]; then
+              echo "base=" >> "$GITHUB_OUTPUT"
+            else
+              echo "base=/$REPO" >> "$GITHUB_OUTPUT"
+            fi
+            echo "Building for the GitHub Pages project URL (no custom domain set)"
+          fi
+
       - name: Build
         run: npm run build
         env:
@@ -55,20 +89,16 @@ jobs:
           # token is a secret and stays on the Render service.
           PUBLIC_META_PIXEL_ID: ${{ vars.PUBLIC_META_PIXEL_ID }}
           PUBLIC_API_BASE: ${{ vars.PUBLIC_API_BASE }}
-          # Set both of these to preview on the github.io project URL before
-          # levels.ge's DNS is moved:
-          #   PUBLIC_SITE_URL  https://<user>.github.io
-          #   PUBLIC_BASE_PATH /levels_website
-          # Leave them unset for production. See docs/deployment.md.
-          PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
-          PUBLIC_BASE_PATH: ${{ vars.PUBLIC_BASE_PATH }}
+          PUBLIC_SITE_URL: ${{ steps.target.outputs.site }}
+          PUBLIC_BASE_PATH: ${{ steps.target.outputs.base }}
 
       # A CNAME file in the artifact sets the custom domain in the Pages
-      # settings, which would redirect the github.io URL to a domain whose DNS
-      # may not point here yet. So it is written only for a production build.
+      # settings, which would redirect the project URL to a domain whose DNS
+      # may not point here yet — so it is written only when that domain has
+      # been opted into.
       - name: Add CNAME for the custom domain
-        if: vars.PUBLIC_BASE_PATH == ''
-        run: echo 'www.levels.ge' > dist/CNAME
+        if: vars.PUBLIC_CUSTOM_DOMAIN != ''
+        run: echo "${{ vars.PUBLIC_CUSTOM_DOMAIN }}" > dist/CNAME
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

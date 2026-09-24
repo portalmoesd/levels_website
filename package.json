@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "test:e2e": "node test/e2e.mjs"
+    "test:e2e": "node test/e2e.mjs",
+    "serve:pages": "node test/serve-like-pages.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.0",

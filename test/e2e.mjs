@@ -10,7 +10,13 @@
  */
 import { chromium } from 'playwright';
 
-const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:4321';
+const BASE = (process.env.BASE_URL ?? 'http://127.0.0.1:4321').replace(/\/+$/, '');
+/*
+ * The site sets trailingSlash: 'never', so the homepage of a subpath
+ * deployment is /levels_website, not /levels_website/. GitHub Pages serves
+ * either, but `astro preview` honours the setting strictly.
+ */
+const HOME = BASE;
 const SHOT = process.argv[2] ?? process.env.SHOT_DIR ?? 'test/screenshots';
 const results = [];
 const ok = (name, pass, detail = '') => {
@@ -42,7 +48,7 @@ await context.route('**connect.facebook.net/**', (r) => r.fulfill({ status: 200,
 await context.route('**facebook.com/tr**', (r) => r.fulfill({ status: 200, body: '' }));
 
 // --- homepage ---------------------------------------------------------
-await page.goto(BASE + '/', { waitUntil: 'networkidle' });
+await page.goto(HOME, { waitUntil: 'networkidle' });
 ok('homepage h1', (await page.locator('h1').count()) === 1, await page.locator('h1').first().innerText());
 // Only assert the pixel when one is configured — a build without
 // PUBLIC_META_PIXEL_ID is a valid deployment, and the API base must work
@@ -58,7 +64,13 @@ await page.screenshot({ path: `${SHOT}/01-home.png`, fullPage: false });
 // --- language switch --------------------------------------------------
 await page.goto(BASE + '/ielts', { waitUntil: 'domcontentloaded' });
 const switchHref = await page.locator('.lang-switch').getAttribute('href');
-ok('language switch keeps the page', switchHref === '/ka/ielts', switchHref);
+// Base-aware: a subpath deployment prefixes every internal link.
+const basePath = new URL(BASE).pathname.replace(/\/+$/, '');
+ok(
+  'language switch keeps the page',
+  switchHref === `${basePath}/ka/ielts`,
+  switchHref
+);
 await page.screenshot({ path: `${SHOT}/02-course.png`, fullPage: false });
 
 await page.goto(BASE + '/ka/ielts', { waitUntil: 'domcontentloaded' });
@@ -139,7 +151,7 @@ await page.screenshot({ path: `${SHOT}/06-quiz-result.png`, fullPage: false });
 // --- mobile -----------------------------------------------------------
 const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 const mp = await mobile.newPage();
-await mp.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
+await mp.goto(HOME, { waitUntil: 'domcontentloaded' });
 const overflow = await mp.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 ok('no horizontal overflow on mobile', overflow <= 1, `${overflow}px`);
 await mp.locator('.nav-toggle').click();

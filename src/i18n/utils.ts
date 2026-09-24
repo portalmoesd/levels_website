@@ -42,6 +42,17 @@ const ORIGIN = (import.meta.env.SITE ?? SITE_URL).replace(/\/+$/, '');
 export const IS_PREVIEW = BASE !== '' || ORIGIN !== SITE_URL.replace(/\/+$/, '');
 
 /**
+ * Prefixes a file in public/ with the base path.
+ *
+ * Astro rewrites its own bundled assets for `base`, but anything in public/ is
+ * copied verbatim and referenced by a path written by hand — so /favicon.svg
+ * 404s on a subpath deployment unless it goes through here.
+ */
+export function asset(path: string): string {
+  return `${BASE}/${path.replace(/^\/+/, '')}`;
+}
+
+/**
  * Builds a path for `slug` in `locale`. The slug is locale-independent — both
  * locales use the same English slugs, as the Wix site does (`/ka/english-for-teens`).
  * Pass an empty slug for the homepage.
@@ -61,9 +72,17 @@ export function localePath(slug: string, locale: Locale): string {
  */
 export function absoluteUrl(pathOrSlug: string): string {
   const withSlash = pathOrSlug.startsWith('/') ? pathOrSlug : `/${pathOrSlug}`;
-  const path = BASE && withSlash.startsWith(`${BASE}/`) ? withSlash.slice(BASE.length) : withSlash;
+
+  // Strip an existing base prefix so it is not added twice. The exact-match
+  // case matters: localePath('') returns the base itself with no trailing
+  // slash, which a `startsWith(BASE + '/')` test alone would miss — and that
+  // produced /levels_website/levels_website as the homepage canonical.
+  const alreadyPrefixed =
+    BASE !== '' && (withSlash === BASE || withSlash.startsWith(`${BASE}/`));
+  const path = alreadyPrefixed ? withSlash.slice(BASE.length) : withSlash;
+
   const full = `${BASE}${path === '/' ? '' : path}`;
-  return `${ORIGIN}${full}`;
+  return `${ORIGIN}${full || '/'}`;
 }
 
 /**

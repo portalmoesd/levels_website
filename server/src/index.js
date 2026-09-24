@@ -37,11 +37,11 @@ const allowedOrigins = new Set(
     'https://www.levels.ge',
     'https://levels.ge',
     ...(process.env.EXTRA_ORIGINS ?? '').split(',').map((o) => o.trim()).filter(Boolean),
-    // Both spellings of the dev server origin: a browser treats
-    // http://localhost:4321 and http://127.0.0.1:4321 as different origins.
-    ...(process.env.NODE_ENV !== 'production'
-      ? ['http://localhost:4321', 'http://127.0.0.1:4321']
-      : []),
+    // Loopback origins are handled by the predicate below rather than listed:
+    // the dev server, the preview server and the Pages-shaped test server all
+    // use different ports, and a browser treats localhost and 127.0.0.1 as
+    // different origins besides.
+
   ]
 );
 
@@ -52,6 +52,15 @@ app.use(
       // certificate generator running from a file). Those carry no ambient
       // credentials, so there is nothing for CORS to protect against.
       if (!origin || allowedOrigins.has(origin)) return callback(null, true);
+
+      // Outside production, accept any loopback origin whatever its port.
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        /^http:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(origin)
+      ) {
+        return callback(null, true);
+      }
+
       callback(new Error('origin not allowed'));
     },
     credentials: true,

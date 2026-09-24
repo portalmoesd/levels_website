@@ -118,6 +118,20 @@ anyway, and marking them secret would only stop you reading them back.
 > until the deploy workflow runs again — use **Actions → Deploy site to GitHub
 > Pages → Run workflow**.
 
+### Which URL the site builds for
+
+By default the workflow builds for the **GitHub Pages project URL**
+(`https://<owner>.github.io/<repo>/`), which works immediately and needs no
+DNS. Publishing to the real domain is opt-in — see §3 below.
+
+This is not cosmetic. A project URL serves the site from a subpath, so every
+link and asset must carry that prefix; a custom domain serves from the root and
+must not have it. Building for the domain before its DNS has moved produces a
+site that returns HTTP 200 but loads no CSS and whose every link 404s.
+
+A build for the project URL is marked `noindex`, so a preview can never compete
+with levels.ge in search results.
+
 ### Deploy
 
 Push to `main`. The workflow type-checks, builds and publishes. Takes about two
@@ -152,13 +166,24 @@ The four A records point the bare `levels.ge` at GitHub so it redirects to
 `www`. Keep the Meta domain-verification TXT record — removing it breaks
 Aggregated Event Measurement.
 
-### Then
+### Then switch the build over
 
-1. Repository → **Settings** → **Pages** → **Custom domain**: enter
-   `www.levels.ge`, save.
-2. Wait for the DNS check to pass (minutes to an hour).
-3. Tick **Enforce HTTPS**. GitHub issues a certificate automatically; this can
-   take up to 24 hours and the box stays greyed out until it is ready.
+Add one more repository variable:
+
+| Name | Value |
+|---|---|
+| `PUBLIC_CUSTOM_DOMAIN` | `www.levels.ge` |
+
+Re-run the deploy workflow. That does three things at once: builds for the
+domain root instead of the project subpath, writes the `CNAME` file that sets
+the custom domain in the Pages settings, and makes the site indexable.
+
+Then, in repository **Settings → Pages**, wait for the DNS check to pass
+(minutes to an hour) and tick **Enforce HTTPS**. GitHub issues the certificate
+automatically; this can take up to 24 hours and the box stays greyed out until
+it is ready.
+
+To roll back to the project URL, delete the variable and re-run the workflow.
 
 ---
 
